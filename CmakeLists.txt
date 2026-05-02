@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.10)
+project(PoweredPong)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+add_executable(PoweredPong
+    src/main.cpp
+)
+
+find_package(SDL2 CONFIG REQUIRED)
+
+target_link_libraries(PoweredPong PRIVATE SDL2::SDL2 SDL2::SDL2main)

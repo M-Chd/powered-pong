@@ -4,6 +4,12 @@
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ball.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\mouad\Desktop\powered-pong\CMakeLists.txt" />
@@ -12,5 +18,28 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{D3886A67-DD2E-3842-8A37-2984CB442028}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\entities">
+      <UniqueIdentifier>{987d98a8-d037-4761-aad0-8127f1666d2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{d21db596-a79a-494e-bc2f-bcd184471da7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\util">
+      <UniqueIdentifier>{097e198c-7784-4146-af75-aaa1dde3263b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ball.h">
+      <Filter>Source Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="vector2.h">
+      <Filter>Source Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Source Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="item.h">
+      <Filter>Source Files\entities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

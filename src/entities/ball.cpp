@@ -4,15 +4,15 @@ void Entities::Ball::move(float dx, float dy, float dt)
 {
 	switch (_effect)
 	{
-	case NORMAL:
+	case Item::NONE:
 		this->_center.x += dx;
 		this->_center.y += dy;
 		break;
-	case SPEED_BOOST:
+	case Item::EXPLOSIVE_BALL:
 		break;
-	case POWER_SHOT:
+	case Item::SPEED_BALL:
 		break;
-	case TELEPORT:
+	case Item::TELEPORT_BALL:
 		break;
 	default:
 		break;

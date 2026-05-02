@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-	Item PlayerStick::useItem(Ball* b)
+	void PlayerStick::useItem(Ball* b)
 	{
 		if (b)
 		{

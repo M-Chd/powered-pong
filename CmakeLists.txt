@@ -6,6 +6,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(PoweredPong
     src/main.cpp
+    src/entities/ball.cpp
+    src/entities/player.cpp
+ "src/core/window.h" "src/core/window.cpp" "src/core/game.cpp" "src/core/game.h" "src/core/View.h")
+
+target_include_directories(PoweredPong PRIVATE
+    src
+    src/util
+    src/entities
+    src/core
 )
 
 find_package(SDL2 CONFIG REQUIRED)

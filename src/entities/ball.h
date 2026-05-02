@@ -1,7 +1,7 @@
 #pragma once
-#include "item.h"
+#include "entities/item.h"
 #include <iostream>
-#include "vector2.h"
+#include "util/vector2.h"
 
 namespace Entities {
 
@@ -9,29 +9,18 @@ namespace Entities {
 	{
 	public:
 
-		Ball(Util::Vector2 center, float radius, float size, float speed, Item effect) :
-			_center(center), _radius(radius), _size(size), _speed(speed), _effect(effect)
+		Ball(Util::Vector2 center, float radius, float speed, Item effect) :
+			_center(center), _radius(radius), _speed(speed), _effect(effect)
 		{
-			if (size <= 0)
-			{
-				std::runtime_error("Ball's size cannot be negative or equals to 0...");
-			}
 			if (radius <= 0)
 			{
-				std::runtime_error("Ball's radius cannot be negative equals to 0...");
+				throw std::runtime_error("Ball's size cannot be negative or equals to 0...");
 			}
 		};
 
 		void move(float dx,float dy,float dt);
 
 		void setEffect(Item effect) { this->_effect = effect; }
-		void setSize(float newSize) 
-		{
-			if (newSize > 0)
-			{
-				this->_size = newSize;
-			}
-		}
 		void setSpeed(float newSpeed) { this->_speed = newSpeed; }
 		void setPosition(Util::Vector2 newPos) { this->_center = newPos; }
 		void setRadius(float newRadius)
@@ -39,6 +28,7 @@ namespace Entities {
 			if (newRadius > 0)
 			{
 				this->_radius = newRadius;
+				this->_size = 2 * _radius;
 			}
 		}
 

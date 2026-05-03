@@ -10,5 +10,8 @@ namespace Core
 		void drawScore(Game& g);
 		//void drawTime();
 		void drawBall(Entities::Ball& b);
+
+		void drawRectangle(float length, float height);
+		void drawCircel(float radius);
 	};
 }

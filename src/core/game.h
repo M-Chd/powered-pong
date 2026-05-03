@@ -14,11 +14,11 @@ namespace Core
 	struct Game
 	{
 		WindowRenderer windowRenderer;
+		GameMode mode;
+		Entities::Ball ball;
 		Entities::PlayerStick player_one;
 		//Entities::PlayerStick player_two; temporary
-		Entities::Ball ball;
 		std::vector<Entities::Item> items;
-		GameMode mode;
 
 		void initBoard();
 		void init();

@@ -16,7 +16,7 @@ namespace Entities
 	{
 	public:
 
-		PlayerStick(Util::Vector2 center, float length, float height, float speed, PlayerType type) :
+		PlayerStick(Util::Vec2 center, float length, float height, Util::Vec2 speed, PlayerType type) :
 			_center(center), _length(length), _height(height), _speed(speed), _type(type)
 		{
 			if (length <= 0 || height <= 0)
@@ -33,7 +33,7 @@ namespace Entities
 
 	private:
 
-		Util::Vector2 _center = {};
+		Util::Vec2 _center = {};
 		std::vector<Item> itemList = {};
 		const int itemlistSize = 3;
 
@@ -41,7 +41,9 @@ namespace Entities
 		float _radiusX = 0.0f;
 		float _radiusY = 0.0f;
 		float _height = 0.0f;
-		float _speed = 0.0f;
+		float _power = 1.0f;
+		Item _effect = Item::NONE;
+		Util::Vec2 _speed = { 0.0f,1.0f };
 		int _score = 0;
 		PlayerType _type = HUMAN;
 
@@ -62,16 +64,27 @@ namespace Entities
 				this->_radiusY = _height / 2;
 			}
 		}
-		void setSpeed(float newS) { this->_speed = newS; }
+		void setPower(float newP)
+		{
+			if (newP > 0)
+			{
+				this->_power = newP;
+			}
+		}
+		void setSpeed(Util::Vec2 newS) { this->_speed = newS; }
+		void setEffect(Item e) { this->_effect = e; }
+		
 
 		float getLength() const { return _length; }
 		float getHeight() const { return _height; }
 		float getRadiusX() const { return _radiusX; }
 		float getRadiusY() const { return _radiusY; }
-		float getSpeed() const { return _speed; }
+		Util::Vec2 getSpeed() const { return _speed; }
 		int getScore() const { return _score; }
+		Item getEffect() const { return _effect; }
+		float getPower() const { return _power; }
 
-		Util::Vector2 getCenter() const { return _center; }
+		Util::Vec2 getCenter() const { return _center; }
 		std::vector<Item> getItems() const { if (!itemList.empty()) return itemList; }
 	};
 }

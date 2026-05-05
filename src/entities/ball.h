@@ -27,7 +27,7 @@ namespace Entities {
 
 		void move(float dt,const Core::Board& board);
 		void draw(SDL_Renderer* renderer);
-		void checkColisions(const Core::Board& board);
+		void checkColisions(const Core::Board& board, float bounce);
 
 
 		void setEffect(Item effect) { this->_effect = effect; }

@@ -3,29 +3,33 @@
 
 void Entities::Ball::move(float dt,const Core::Board& board)
 {
+	float bounce = -1.0f;
+
 	switch (_effect)
 	{
 	case Item::EXPLOSIVE_BALL:
+		_center += _speed * dt;
+		checkColisions(board, bounce * 2);
 		break;
 	case Item::SPEED_BALL:
+		_center += _speed * 2 * dt;
+		checkColisions(board, bounce);
 		break;
 	case Item::TELEPORT_BALL:
 		break;
 	default:
 		_center += _speed * dt;
-		checkColisions(board);
+		checkColisions(board,bounce);
 		break;
 	}
 }
 
-void Entities::Ball::checkColisions(const Core::Board& board)
+void Entities::Ball::checkColisions(const Core::Board& board,float bounce)
 {
 	float edgeX = _center.x + _radius;
 	float edgeMinusX = _center.x - _radius;
 	float edgeY = _center.y + _radius;
 	float edgeMinusY = _center.y - _radius;
-
-	float bounce = -1.0f;
 
 	if (edgeY >= board.height)
 	{

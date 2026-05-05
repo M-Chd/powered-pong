@@ -14,7 +14,7 @@ namespace Core
 		int length = l + offsetX;
 
 		Entities::Ball b;
-		//Entities::PlayerStick p1;
+		Entities::PlayerStick p1;
 		//Entities::PlayerStick p2;
 		std::vector<Entities::Item> items;
 

@@ -45,13 +45,20 @@ namespace Core
     void WindowRenderer::init()
     {
  
-        if (!initRenderer())
-        {
-            throw std::runtime_error("Error while initializating renderer...");
-        }
         if (!initWindow())
         {
             throw std::runtime_error("Error while initializating window...");
         }
+        if (!initRenderer())
+        {
+            throw std::runtime_error("Error while initializating renderer...");
+        }
+    }
+
+    void WindowRenderer::quit() const
+    {
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(window);
+        SDL_Quit();
     }
 }

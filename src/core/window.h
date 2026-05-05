@@ -6,16 +6,15 @@ namespace Core
 {
 	struct WindowRenderer
 	{
-	public:
+		SDL_Renderer* renderer = nullptr;
+		SDL_Window* window = nullptr;
 
-		int height = 1920;
-		int length = 1080;
+		float height = 1280;
+		float length = 720;
 
 		bool initRenderer();
 		bool initWindow();
 		void init();
-	private:
-		SDL_Renderer* renderer = nullptr;
-		SDL_Window* window = nullptr;
+		void quit() const;
 	};
 }

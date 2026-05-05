@@ -8,7 +8,10 @@ add_executable(PoweredPong
     src/main.cpp
     src/entities/ball.cpp
     src/entities/player.cpp
- "src/core/window.h" "src/core/window.cpp" "src/core/game.cpp" "src/core/game.h" "src/core/View.h")
+    src/core/window.cpp
+    src/core/view.cpp
+    src/core/game.cpp
+)
 
 target_include_directories(PoweredPong PRIVATE
     src

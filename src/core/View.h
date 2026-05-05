@@ -1,17 +1,11 @@
 #pragma once
-#include "game.h"
+#include <SDL2/SDL.h>
+#include "player.h"
 
-namespace Core
+namespace UI
 {
-	struct View
-	{
-		void displayGame(Game& g);
-		void drawPlayers(Game& g);
-		void drawScore(Game& g);
-		//void drawTime();
-		void drawBall(Entities::Ball& b);
+	void drawBall(Entities::Ball& b);
 
-		void drawRectangle(float length, float height);
-		void drawCircel(float radius);
-	};
+	void drawRectangle(float length, float height);
+	void drawCircle(SDL_Renderer* renderer, float radius, Util::Vec2 position, SDL_Color c);
 }

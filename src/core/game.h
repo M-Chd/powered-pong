@@ -1,10 +1,11 @@
 #pragma once
 #include "window.h"
-#include "player.h"
+#include "view.h"
 
 
 namespace Core
 {
+	struct View;
 
 	enum GameMode
 	{
@@ -16,9 +17,14 @@ namespace Core
 		WindowRenderer windowRenderer;
 		GameMode mode;
 		Entities::Ball ball;
-		Entities::PlayerStick player_one;
+		//Entities::PlayerStick player_one;
 		//Entities::PlayerStick player_two; temporary
 		std::vector<Entities::Item> items;
+
+		Game()
+		{
+			init();
+		}
 
 		void initBoard();
 		void init();

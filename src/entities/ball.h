@@ -2,6 +2,7 @@
 #include "entities/item.h"
 #include <iostream>
 #include "util/Vector2.h"
+#include <SDL2/SDL.h>
 
 namespace Entities {
 
@@ -9,19 +10,19 @@ namespace Entities {
 	{
 	public:
 
-		Ball(Util::Vec2 center, float radius, Util::Vec2 speed, Item effect) :
-			_center(center), _radius(radius), _speed(speed), _effect(effect)
+		Ball() :
+			_center(Util::Vec2{ 640, 360}),
+			_radius(10.0f),
+			_speed(Util::Vec2{ 1.0f, 1.0f }),
+			_effect(Item::NONE)
 		{
-			if (radius <= 0)
-			{
-				throw std::runtime_error("Ball's size cannot be negative or equals to 0...");
-			}
-			this->_size = radius * 2;
-		};
+			_size = _radius * 2;
+		}
 
 		void move(float dx,float dy,float dt);
 
 		void setEffect(Item effect) { this->_effect = effect; }
+		void setColor(SDL_Color c) { this->_color = c; }
 		void setSpeed(Util::Vec2 newSpeed) { this->_speed = newSpeed; }
 		void setPosition(Util::Vec2 newPos) { this->_center = newPos; }
 		void setRadius(float newRadius)
@@ -38,6 +39,7 @@ namespace Entities {
 		Util::Vec2 getSpeed() const { return _speed; }
 		Item getBallEffect() const { return _effect; }
 		float getRadius() const { return _radius; }
+		SDL_Color getColor() const { return _color; }
 
 	private:
 
@@ -46,5 +48,6 @@ namespace Entities {
 		float _size = 0.0f;
 		Util::Vec2 _speed = { 1.0f,1.0f };
 		Item _effect = Item::NONE;
+		SDL_Color _color = { 0,0,0,1 };
 	};
 }

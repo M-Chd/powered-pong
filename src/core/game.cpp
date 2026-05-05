@@ -1,4 +1,5 @@
 #include "game.h"
+#include "game.h"
 
 namespace Core
 {
@@ -19,7 +20,7 @@ namespace Core
 
 	}
 
-	void Game::quit()
+	void Game::quit() const
 	{
 		windowRenderer.quit();
 	}

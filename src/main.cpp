@@ -12,7 +12,7 @@ int main()
 
 
     auto& renderer = g.windowRenderer.renderer;
-    g.ball.setSpeed({ 1000.0f,1000.0f });
+    g.board.b.setSpeed({ 500.0f,500.0f });
 
     while (running)
     {
@@ -38,8 +38,9 @@ int main()
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 
-        g.ball.draw(renderer);
-        g.ball.move(dt);
+        g.board.drawBoard(renderer);
+        g.board.b.draw(renderer);
+        g.board.b.move(dt,g.board);
 
         SDL_RenderPresent(renderer);
     }

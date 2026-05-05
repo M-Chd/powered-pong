@@ -3,9 +3,12 @@
 #include "view.h"
 #include <iostream>
 #include "util/Vector2.h"
+#include "constants.h"
 #include <SDL2/SDL.h>
 
 constexpr SDL_Color WHITE = { 255,255,255,255 };
+
+namespace Core { struct Board; }
 
 namespace Entities {
 
@@ -15,16 +18,16 @@ namespace Entities {
 
 		Ball() :
 			_center(Util::Vec2{ 640, 360}),
-			_radius(5.0f),
-			_speed(Util::Vec2{ 1.0f, 1.0f }),
+			_radius(4.5f),
+			_speed(Util::Vec2{ 0.0f, 0.0f }),
 			_effect(Item::NONE)
 		{
 			_size = _radius * 2;
 		}
 
-		void move(float dt);
+		void move(float dt,const Core::Board& board);
 		void draw(SDL_Renderer* renderer);
-		void checkColisions();
+		void checkColisions(const Core::Board& board);
 
 
 		void setEffect(Item effect) { this->_effect = effect; }

@@ -1,6 +1,7 @@
 #pragma once
 #include "window.h"
 #include "player.h"
+#include "board.h"
 
 
 namespace Core
@@ -16,19 +17,15 @@ namespace Core
 	{
 		WindowRenderer windowRenderer;
 		GameMode mode;
-		Entities::Ball ball;
-		//Entities::PlayerStick player_one;
-		//Entities::PlayerStick player_two; temporary
-		std::vector<Entities::Item> items;
+		Board board;
 
 		Game()
 		{
 			init();
 		}
 
-		void initBoard();
 		void init();
 		bool isGameFinished();
-		void quit();
+		void quit() const;
 	};
 }

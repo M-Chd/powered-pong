@@ -1,6 +1,7 @@
 #include "ball.h"
+#include "board.h"
 
-void Entities::Ball::move(float dt)
+void Entities::Ball::move(float dt,const Core::Board& board)
 {
 	switch (_effect)
 	{
@@ -12,12 +13,12 @@ void Entities::Ball::move(float dt)
 		break;
 	default:
 		_center += _speed * dt;
-		checkColisions();
+		checkColisions(board);
 		break;
 	}
 }
 
-void Entities::Ball::checkColisions()
+void Entities::Ball::checkColisions(const Core::Board& board)
 {
 	float edgeX = _center.x + _radius;
 	float edgeMinusX = _center.x - _radius;
@@ -26,24 +27,24 @@ void Entities::Ball::checkColisions()
 
 	float bounce = -1.0f;
 
-	if (edgeY >= 720)
+	if (edgeY >= board.height)
 	{
-		_center = { _center.x, 720 - _radius };
+		_center = { _center.x, board.height - _radius};
 		_speed.y *= bounce;
 	}
-	if (edgeMinusY <= 0)
+	if (edgeMinusY <= board.offsetY)
 	{
-		_center = { _center.x, _radius };
+		_center = { _center.x, _radius + board.offsetY };
 		_speed.y *= bounce;
 	}
-	if (edgeX >= 1280)
+	if (edgeX >= board.length)
 	{
-		_center = { 1280 - _radius, _center.y };
+		_center = { board.length - _radius, _center.y };
 		_speed.x *= bounce;
 	}
-	if (edgeMinusX <= 0)
+	if (edgeMinusX <= board.offsetX)
 	{
-		_center = { _radius, _center.y };
+		_center = { _radius + board.offsetX , _center.y };
 		_speed.x *= bounce;
 	}
 }

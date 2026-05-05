@@ -4,7 +4,8 @@ namespace Util
 {
 	struct Vec2
 	{
-		float x, y = 0;
+		float x = 0.0f;
+		float y = 0.0f;
 
 		Vec2 operator+(const Vec2& other)
 		{
@@ -16,14 +17,38 @@ namespace Util
 			return { this->x * other.x, this->y * other.y };
 		}
 
+		Vec2 operator*(float n)
+		{
+			return { this->x * n, this->y * n };
+		}
+
 		Vec2 operator-(const Vec2& other)
 		{
 			return { this->x - other.x, this->y - other.y };
 		}
 
-		Vec2 operator=(const Vec2& other)
+		Vec2& operator=(const Vec2& other)
 		{
-			return { this->x = other.x, this->y = other.y };
+			this->x = other.x;
+			this->y = other.y;
+			
+			return *this;
+		}
+
+		Vec2& operator+=(const Vec2& other)
+		{
+			this->x += other.x;
+			this->y += other.y;
+
+			return *this;
+		}
+
+		Vec2& operator*=(float n)
+		{
+			this->x *= n;
+			this->y *= n;
+
+			return *this;
 		}
 	};
 

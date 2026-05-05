@@ -1,6 +1,6 @@
 #pragma once
 #include "window.h"
-#include "view.h"
+#include "player.h"
 
 
 namespace Core

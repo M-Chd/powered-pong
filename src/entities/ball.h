@@ -1,8 +1,11 @@
 #pragma once
 #include "entities/item.h"
+#include "view.h"
 #include <iostream>
 #include "util/Vector2.h"
 #include <SDL2/SDL.h>
+
+constexpr SDL_Color WHITE = { 255,255,255,255 };
 
 namespace Entities {
 
@@ -12,14 +15,17 @@ namespace Entities {
 
 		Ball() :
 			_center(Util::Vec2{ 640, 360}),
-			_radius(10.0f),
+			_radius(5.0f),
 			_speed(Util::Vec2{ 1.0f, 1.0f }),
 			_effect(Item::NONE)
 		{
 			_size = _radius * 2;
 		}
 
-		void move(float dx,float dy,float dt);
+		void move(float dt);
+		void draw(SDL_Renderer* renderer);
+		void checkColisions();
+
 
 		void setEffect(Item effect) { this->_effect = effect; }
 		void setColor(SDL_Color c) { this->_color = c; }
@@ -48,6 +54,6 @@ namespace Entities {
 		float _size = 0.0f;
 		Util::Vec2 _speed = { 1.0f,1.0f };
 		Item _effect = Item::NONE;
-		SDL_Color _color = { 0,0,0,1 };
+		SDL_Color _color = WHITE;
 	};
 }

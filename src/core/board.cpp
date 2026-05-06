@@ -1,4 +1,5 @@
 #include "board.h"
+#include "board.h"
 
 void Core::Board::drawBoard(SDL_Renderer* renderer) const
 
@@ -11,4 +12,10 @@ void Core::Board::drawBoard(SDL_Renderer* renderer) const
 void Core::Board::drawBall(SDL_Renderer* renderer)
 {
 	b.draw(renderer);
+}
+
+void Core::Board::drawPlayers(SDL_Renderer* renderer)
+{
+	p1.draw(renderer);
+	//p2.draw(renderer);
 }

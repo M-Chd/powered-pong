@@ -20,5 +20,6 @@ namespace Core
 
 		void drawBoard(SDL_Renderer* renderer) const;
 		void drawBall(SDL_Renderer* renderer);
+		void drawPlayers(SDL_Renderer* renderer);
 	};
 }

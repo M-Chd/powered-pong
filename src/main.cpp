@@ -12,7 +12,7 @@ int main()
 
 
     auto& renderer = g.windowRenderer.renderer;
-    g.board.b.setSpeed({ 500.0f,500.0f });
+    g.board.b.setSpeed({ 500.0f,0.0f });
 
     while (running)
     {
@@ -26,12 +26,17 @@ int main()
             if (event.type == SDL_QUIT)
                 running = false;
 
-            switch (event.type)
+            if (event.type == SDL_KEYDOWN)
             {
-            case SDL_KEYDOWN:
-                break;
-            default:
-                break;
+                switch (event.key.keysym.sym)
+                {
+                case SDLK_UP:
+                    g.board.p1.move(-1.0f, dt, g.board);
+                    break;
+                case SDLK_DOWN:
+                    g.board.p1.move(1.0f, dt, g.board);
+                    break;
+                }
             }
         }
 
@@ -40,6 +45,7 @@ int main()
 
         g.board.drawBoard(renderer);
         g.board.b.draw(renderer);
+        g.board.drawPlayers(renderer);
         g.board.b.move(dt,g.board);
 
         SDL_RenderPresent(renderer);

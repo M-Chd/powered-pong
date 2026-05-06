@@ -3,6 +3,8 @@
 #include "ball.h"
 #include <vector>
 #include <iostream>
+
+namespace Core { struct Board; }
 	
 namespace Entities
 {
@@ -16,20 +18,22 @@ namespace Entities
 	{
 	public:
 
-		PlayerStick(Util::Vec2 center, float length, float height, Util::Vec2 speed, PlayerType type) :
-			_center(center), _length(length), _height(height), _speed(speed), _type(type)
+		PlayerStick() : 
+			_center(Util::Vec2{210,360}),
+			_length(10.0f),
+			_height(100.0f),
+			_speed(Util::Vec2{ 0.0f,25000.0f }),
+			_type(PlayerType::HUMAN)
 		{
-			if (length <= 0 || height <= 0)
-			{
-				throw std::runtime_error("Lenght or height cannot be negative or equals to 0...");
-			}
 			itemList.reserve(3);
-			_radiusX = length / 2;
-			_radiusY = height / 2;
+			_radiusX = _length / 2;
+			_radiusY = _height / 2;
 		}
 
 		void useItem(Ball* ball);
-		void move(float dy,float dt);
+		void move(float dy,float dt,const Core::Board& board);
+		void draw(SDL_Renderer* renderer);
+		void checkColisions(const Core::Board& board);
 
 	private:
 

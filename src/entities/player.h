@@ -14,41 +14,41 @@ namespace Entities
 		HUMAN,BOT
 	};
 
-	class PlayerStick
+	class Player
 	{
 	public:
-
-		PlayerStick() : 
-			_center(Util::Vec2{210,360}),
-			_length(10.0f),
-			_height(100.0f),
-			_speed(Util::Vec2{ 0.0f,25000.0f }),
-			_type(PlayerType::HUMAN)
-		{
-			itemList.reserve(3);
-			_radiusX = _length / 2;
-			_radiusY = _height / 2;
-		}
 
 		void useItem(Ball* ball);
 		void move(float dy,float dt,const Core::Board& board);
 		void draw(SDL_Renderer* renderer);
 		void checkColisions(const Core::Board& board);
 
+	public:
+
+		Player() : 
+			_center(Util::Vec2{210,360}),
+			_length(10.0f),
+			_height(100.0f),
+			_speed(Util::Vec2{ 0.0f,25000.0f }),
+			_type(PlayerType::HUMAN)
+		{
+			_radiusX = _length / 2;
+			_radiusY = _height / 2;
+		}
+
 	private:
 
 		Util::Vec2 _center = {};
-		std::vector<Item> itemList = {};
-		const int itemlistSize = 3;
+		Item* _currentItem = nullptr;
 
 		float _length = 0.0f;
 		float _radiusX = 0.0f;
 		float _radiusY = 0.0f;
 		float _height = 0.0f;
 		float _power = 1.0f;
-		Item _effect = Item::NONE;
+		PlayerEffect _effect = PlayerEffect::NONE;
 		Util::Vec2 _speed = { 0.0f,1.0f };
-		int _score = 0;
+		unsigned int _score = 0;
 		PlayerType _type = HUMAN;
 
 	public:
@@ -76,7 +76,7 @@ namespace Entities
 			}
 		}
 		void setSpeed(Util::Vec2 newS) { this->_speed = newS; }
-		void setEffect(Item e) { this->_effect = e; }
+		void setEffect(PlayerEffect e) { this->_effect = e; }
 		
 
 		float getLength() const { return _length; }
@@ -85,11 +85,11 @@ namespace Entities
 		float getRadiusY() const { return _radiusY; }
 		Util::Vec2 getSpeed() const { return _speed; }
 		int getScore() const { return _score; }
-		Item getEffect() const { return _effect; }
+		PlayerEffect getEffect() const { return _effect; }
 		float getPower() const { return _power; }
 
 		Util::Vec2 getCenter() const { return _center; }
-		std::vector<Item> getItems() const { if (!itemList.empty()) return itemList; }
+		Item* getItem() const { if (_currentItem) return _currentItem; }
 	};
 }
 

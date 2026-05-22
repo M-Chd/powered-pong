@@ -7,15 +7,15 @@ void Entities::Ball::move(float dt,const Core::Board& board)
 
 	switch (_effect)
 	{
-	case Item::EXPLOSIVE_BALL:
+	case BallEffect::EXPLOSIVE_BALL:
 		_center += _speed * dt;
 		checkColisions(board, bounce * 2);
 		break;
-	case Item::SPEED_BALL:
+	case BallEffect::SPEED_BALL:
 		_center += _speed * 2 * dt;
 		checkColisions(board, bounce);
 		break;
-	case Item::TELEPORT_BALL:
+	case BallEffect::TELEPORT_BALL:
 		break;
 	default:
 		_center += _speed * dt;

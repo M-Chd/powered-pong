@@ -3,10 +3,7 @@
 #include "view.h"
 #include <iostream>
 #include "util/Vector2.h"
-#include "constants.h"
 #include <SDL2/SDL.h>
-
-constexpr SDL_Color WHITE = { 255,255,255,255 };
 
 namespace Core { struct Board; }
 
@@ -16,21 +13,21 @@ namespace Entities {
 	{
 	public:
 
-		Ball() :
-			_center(Util::Vec2{ 640, 360}),
-			_radius(4.5f),
-			_speed(Util::Vec2{ 0.0f, 0.0f }),
-			_effect(Item::NONE)
-		{
-			_size = _radius * 2;
-		}
-
 		void move(float dt,const Core::Board& board);
 		void draw(SDL_Renderer* renderer);
 		void checkColisions(const Core::Board& board, float bounce);
 
+	public:
+		Ball() :
+			_center(Util::Vec2{ 640, 360}),
+			_radius(4.5f),
+			_speed(Util::Vec2{ 0.0f, 0.0f }),
+			_effect(BallEffect::NONE)
+		{
+			_size = _radius * 2;
+		}
 
-		void setEffect(Item effect) { this->_effect = effect; }
+		void setEffect(BallEffect effect) { this->_effect = effect; }
 		void setColor(SDL_Color c) { this->_color = c; }
 		void setSpeed(Util::Vec2 newSpeed) { this->_speed = newSpeed; }
 		void setPosition(Util::Vec2 newPos) { this->_center = newPos; }
@@ -46,7 +43,7 @@ namespace Entities {
 		Util::Vec2 getCenter() const { return _center; }
 		float getSize() const { return _size; }
 		Util::Vec2 getSpeed() const { return _speed; }
-		Item getBallEffect() const { return _effect; }
+		BallEffect getBallEffect() const { return _effect; }
 		float getRadius() const { return _radius; }
 		SDL_Color getColor() const { return _color; }
 
@@ -56,7 +53,7 @@ namespace Entities {
 		float _radius = 0.0f;
 		float _size = 0.0f;
 		Util::Vec2 _speed = { 1.0f,1.0f };
-		Item _effect = Item::NONE;
+		BallEffect _effect = BallEffect::NONE;
 		SDL_Color _color = WHITE;
 	};
 }

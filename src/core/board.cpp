@@ -1,8 +1,6 @@
 #include "board.h"
-#include "board.h"
 
 void Core::Board::drawBoard(SDL_Renderer* renderer) const
-
 {
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 	SDL_Rect rect = { offsetX,offsetY,l,h };

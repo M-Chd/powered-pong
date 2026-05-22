@@ -8,15 +8,9 @@ namespace Core
 {
 	struct View;
 
-	enum GameMode
-	{
-		SINGLEPLAYER,MULTIPLAYER
-	};
-
 	struct Game
 	{
 		WindowRenderer windowRenderer;
-		GameMode mode;
 		Board board;
 
 		Game()

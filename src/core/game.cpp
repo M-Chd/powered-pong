@@ -1,5 +1,6 @@
 #include "game.h"
 #include "game.h"
+#include "game.h"
 
 namespace Core
 {
@@ -18,6 +19,11 @@ namespace Core
 
 		//TODO
 
+	}
+
+	bool Game::isGameFinished() const
+	{
+		return board.p1.getScore() > board.winscore; // return (board.p1.getScore() > board.winscore) || (board.p2.getScore() > board.winscore); 
 	}
 
 	void Game::quit() const

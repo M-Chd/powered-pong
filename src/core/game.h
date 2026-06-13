@@ -19,7 +19,8 @@ namespace Core
 		}
 
 		void init();
-		bool isGameFinished();
+		void run();
+		bool isGameFinished() const ;
 		void quit() const;
 	};
 }

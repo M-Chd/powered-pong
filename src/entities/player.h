@@ -9,7 +9,7 @@ namespace Core { struct Board; }
 namespace Entities
 {
 
-	enum PlayerType
+	enum class PlayerType
 	{
 		HUMAN,BOT
 	};
@@ -22,6 +22,7 @@ namespace Entities
 		void move(float dy,float dt,const Core::Board& board);
 		void draw(SDL_Renderer* renderer);
 		void checkColisions(const Core::Board& board);
+		void AcquireItem(Item i);
 
 	public:
 
@@ -41,15 +42,15 @@ namespace Entities
 		Util::Vec2 _center = {};
 		Item* _currentItem = nullptr;
 
-		float _length = 0.0f;
-		float _radiusX = 0.0f;
-		float _radiusY = 0.0f;
-		float _height = 0.0f;
-		float _power = 1.0f;
+		float _length{ 0.0f };
+		float _radiusX{ 0.0f };
+		float _radiusY{ 0.0f };
+		float _height{ 0.0f };
+		float _power{ 1.0f };
 		PlayerEffect _effect = PlayerEffect::NONE;
 		Util::Vec2 _speed = { 0.0f,1.0f };
-		unsigned int _score = 0;
-		PlayerType _type = HUMAN;
+		unsigned int _score{ 0 };
+		PlayerType _type = PlayerType::HUMAN;
 
 	public:
 		void setLength(float newL)

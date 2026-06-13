@@ -20,9 +20,6 @@ namespace Entities
 				case ItemType::POWER:
 					_effect = PlayerEffect::PLAYER_POWER;
 					break;
-				case ItemType::FIRE:
-					_currentItem->setOnBallEffect(BallEffect::FIRE_BALL, b);
-					break;
 				case ItemType::SPEED:
 					_currentItem->setOnBallEffect(BallEffect::SPEED_BALL, b);
 					break;
@@ -75,5 +72,13 @@ namespace Entities
 	{
 		if (_center.y + _radiusY >= board.height) _center = { _center.x, board.height - _radiusY };
 		if (_center.y - _radiusY <= board.offsetY) _center = { _center.x,board.offsetY + _radiusY};
+	}
+
+	void Player::AcquireItem(Item i)
+	{
+#ifdef DEBUG
+		printf("new Item collected");
+#endif // DEBUG
+		if (!_currentItem) _currentItem = &i;
 	}
 }

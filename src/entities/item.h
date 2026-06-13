@@ -3,7 +3,7 @@
 //##################################################################|
 #define WHITE      { 255, 255, 255, 255 } // Ball default color
 #define CYAN       {   0, 255, 255, 255 } // Speed ball effect color
-#define RED        { 255,   0,   0, 255 } // Fire ball color
+#define RED        { 255,   0,   0, 255 } // unused
 #define DEEP_RED   { 139,   0,   0, 255 } // Explosive ball color
 #define PURPLE     { 128,   0, 128, 255 } // Teleport effect color
 #define ORANGE     { 255, 165,   0, 255 } // Player power color
@@ -17,24 +17,22 @@ namespace Entities {
 
 	enum class PlayerEffect
 	{
+		NONE,
 		PLAYER_SPEED,
 		PLAYER_SLOWNESS,
 		PLAYER_POWER,
-		NONE
 	};
 
 	enum class BallEffect
 	{
-		FIRE_BALL,
+		NONE,
 		SPEED_BALL,
 		TELEPORT_BALL,
 		EXPLOSIVE_BALL,
-		NONE,
 	};
 
 	enum class ItemType
 	{
-		FIRE,
 		SPEED,
 		TELEPORT,
 		EXPLOSIVE,
@@ -47,13 +45,12 @@ namespace Entities {
 	{
 	public:
 
-		Item(ItemType type) : _type(type)
+		Item(ItemType type,unsigned int duration) : _type(type), _duration(duration)
 		{
+			if (duration > 15) return;
+
 			switch (type)
 			{
-			case ItemType::FIRE:
-				_color = RED;
-				break;
 			case ItemType::SPEED:
 				_color = CYAN;
 				break;
@@ -84,5 +81,6 @@ namespace Entities {
 	private:
 		ItemType _type;
 		SDL_Color _color = {};
+		unsigned int _duration{}; // in second
 	};
 }

@@ -36,6 +36,12 @@ int main()
                 case SDLK_DOWN:
                     g.board.p1.move(1.0f, dt, g.board);
                     break;
+                case SDLK_e:
+                    g.board.p1.useItem(&g.board.b);
+                    break;
+                case SDLK_f:
+                    g.board.p1.AcquireItem(Entities::Item(Entities::ItemType::SPEED, 10));
+                    break;
                 }
             }
         }

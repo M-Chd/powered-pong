@@ -50,8 +50,8 @@ namespace Entities {
 	private:
 
 		Util::Vec2 _center = {};
-		float _radius = 0.0f;
-		float _size = 0.0f;
+		float _radius{ 0.0f };
+		float _size{ 0.0f };
 		Util::Vec2 _speed = { 1.0f,1.0f };
 		BallEffect _effect = BallEffect::NONE;
 		SDL_Color _color = WHITE;

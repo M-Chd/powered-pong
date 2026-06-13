@@ -2,6 +2,7 @@
 #include "window.h"
 #include "player.h"
 #include "board.h"
+#include "gameConfig.h"
 
 
 namespace Core
@@ -11,9 +12,10 @@ namespace Core
 	struct Game
 	{
 		WindowRenderer windowRenderer;
+		GameConfig config;
 		Board board;
 
-		Game()
+		Game(const GameConfig& config)
 		{
 			init();
 		}
@@ -22,5 +24,6 @@ namespace Core
 		void run();
 		bool isGameFinished() const ;
 		void quit() const;
+
 	};
 }

@@ -22,6 +22,7 @@ namespace Core
 
 		board.p1.setCenter(PlayerOnePos);
 		board.p2.setCenter(PlayerTwoPos);
+		board.b.setSpeed({ 500.0f,0.0f });
 
 	}
 

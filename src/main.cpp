@@ -1,4 +1,3 @@
-#define SDL_MAIN_HANDLED
 #include "game.h"
 
 
@@ -6,9 +5,11 @@
 //TODO regler la physique des joueurs (positions inconstantes ect...)
 //TODO Collisions avec les joueurs
 
-int main()
+int main(int argc, char* argv[])
 {
-	Core::Game g;
+    Core::GameConfig config = Core::parseArgs(argc, argv);
+
+	Core::Game g(config);
 
     bool running = true;
     SDL_Event event;
@@ -16,7 +17,6 @@ int main()
 
 
     auto& renderer = g.windowRenderer.renderer;
-    g.board.b.setSpeed({ 500.0f,0.0f });
 
     while (running)
     {

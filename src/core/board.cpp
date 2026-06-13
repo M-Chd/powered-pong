@@ -15,5 +15,5 @@ void Core::Board::drawBall(SDL_Renderer* renderer)
 void Core::Board::drawPlayers(SDL_Renderer* renderer)
 {
 	p1.draw(renderer);
-	//p2.draw(renderer);
+	p2.draw(renderer);
 }

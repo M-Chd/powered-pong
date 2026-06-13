@@ -64,7 +64,7 @@ namespace Entities
 	void Player::draw(SDL_Renderer* renderer)
 	{
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-		SDL_Rect rect = { _center.x - _radiusX,_center.y - _radiusY,_length,_height };
+		SDL_Rect rect = { (int)(_center.x) - (int)_radiusX,(int)_center.y - (int)_radiusY,(int)_length,(int)_height };
 		SDL_RenderFillRect(renderer, &rect);
 	}
 

@@ -1,6 +1,10 @@
 #define SDL_MAIN_HANDLED
-#include <iostream>
 #include "game.h"
+
+
+//TODO Faire un systeme qui prend en compte en meme temps les inputs des joueurs
+//TODO regler la physique des joueurs (positions inconstantes ect...)
+//TODO Collisions avec les joueurs
 
 int main()
 {
@@ -31,13 +35,19 @@ int main()
                 switch (event.key.keysym.sym)
                 {
                 case SDLK_UP:
-                    g.board.p1.move(-1.0f, dt, g.board);
+                    g.board.p2.move(-1.0f, dt, g.board);
                     break;
                 case SDLK_DOWN:
+                    g.board.p2.move(1.0f, dt, g.board);
+                    break;
+                case SDLK_z:
+                    g.board.p1.move(-1.0f, dt, g.board);
+                    break;
+                case SDLK_s:
                     g.board.p1.move(1.0f, dt, g.board);
                     break;
                 case SDLK_e:
-                    g.board.p1.useItem(&g.board.b);
+                    g.board.p2.useItem(&g.board.b);
                     break;
                 case SDLK_f:
                     g.board.p1.AcquireItem(Entities::Item(Entities::ItemType::SPEED, 10));

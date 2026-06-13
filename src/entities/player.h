@@ -53,6 +53,11 @@ namespace Entities
 		PlayerType _type = PlayerType::HUMAN;
 
 	public:
+
+		void setCenter(Util::Vec2 pos)
+		{
+			_center = pos;
+		}
 		void setLength(float newL)
 		{
 			if (newL > 0)
@@ -85,7 +90,7 @@ namespace Entities
 		float getRadiusX() const { return _radiusX; }
 		float getRadiusY() const { return _radiusY; }
 		Util::Vec2 getSpeed() const { return _speed; }
-		int getScore() const { return _score; }
+		unsigned int getScore() const { return _score; }
 		PlayerEffect getEffect() const { return _effect; }
 		float getPower() const { return _power; }
 

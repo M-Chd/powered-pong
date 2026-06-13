@@ -3,7 +3,7 @@
 //##################################################################|
 #define WHITE      { 255, 255, 255, 255 } // Ball default color
 #define CYAN       {   0, 255, 255, 255 } // Speed ball effect color
-#define RED        { 255,   0,   0, 255 } // unused
+#define RED        { 255,   0,   0, 255 } // UNUSED
 #define DEEP_RED   { 139,   0,   0, 255 } // Explosive ball color
 #define PURPLE     { 128,   0, 128, 255 } // Teleport effect color
 #define ORANGE     { 255, 165,   0, 255 } // Player power color

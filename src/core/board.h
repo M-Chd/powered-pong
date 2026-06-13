@@ -17,7 +17,7 @@ namespace Core
 		std::vector<Entities::Item> items;
 		Entities::Ball b;
 		Entities::Player p1;
-		//Entities::PlayerStick p2;
+		Entities::Player p2;
 
 		void drawBoard(SDL_Renderer* renderer) const;
 		void drawBall(SDL_Renderer* renderer);

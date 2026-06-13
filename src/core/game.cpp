@@ -1,6 +1,6 @@
 #include "game.h"
-#include "game.h"
-#include "game.h"
+
+using namespace Util;
 
 namespace Core
 {
@@ -17,13 +17,17 @@ namespace Core
 			printf("%s", e.what());
 		}
 
-		//TODO
+		auto PlayerOnePos = Vec2{ 210.0f, 360.0f };
+		auto PlayerTwoPos = Vec2{ 1045.0f, 360.0f };
+
+		board.p1.setCenter(PlayerOnePos);
+		board.p2.setCenter(PlayerTwoPos);
 
 	}
 
 	bool Game::isGameFinished() const
 	{
-		return board.p1.getScore() > board.winscore; // return (board.p1.getScore() > board.winscore) || (board.p2.getScore() > board.winscore); 
+		return (board.p1.getScore() > board.winscore) || (board.p2.getScore() > board.winscore);
 	}
 
 	void Game::quit() const

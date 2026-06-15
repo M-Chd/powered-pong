@@ -22,8 +22,9 @@ namespace Entities
 		void move(float dy,float dt,const Core::Board& board);
 		void draw(SDL_Renderer* renderer);
 		void checkColisions(const Core::Board& board);
+		bool isInside(const Util::Vec2& p) const;
 		void AcquireItem(Item i);
-
+		
 	public:
 
 		Player() : 

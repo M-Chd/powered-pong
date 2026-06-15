@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
                     g.board.p2.useItem(&g.board.b);
                     break;
                 case SDLK_f:
-                    g.board.p1.AcquireItem(Entities::Item(Entities::ItemType::SPEED, 10));
+                    g.board.p1.AcquireItem(Entities::Item(Entities::ItemType::EXPLOSIVE, 10));
                     break;
                 }
             }

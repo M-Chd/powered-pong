@@ -1,6 +1,6 @@
 #pragma once
 #include <SDL2/SDL.h>
-#include "vector2.h"
+#include "vector2.hpp"
 
 namespace UI
 {

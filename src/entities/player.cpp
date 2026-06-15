@@ -61,6 +61,14 @@ namespace Entities
 		}
 	}
 
+	bool Player::isInside(const Util::Vec2& p) const
+	{
+		return p.x >= _center.x - _radiusX &&
+			   p.x <= _center.x + _radiusX &&
+			   p.y >= _center.y - _radiusY &&
+			   p.y <= _center.y + _radiusY;
+	}
+
 	void Player::draw(SDL_Renderer* renderer)
 	{
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);

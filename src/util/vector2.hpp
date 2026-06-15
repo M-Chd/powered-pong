@@ -1,4 +1,5 @@
 #pragma once
+#include <math.h>
 
 namespace Util
 {
@@ -50,6 +51,19 @@ namespace Util
 
 			return *this;
 		}
+
+		bool operator>(const Vec2& other) const
+		{
+			return this->x > other.x && this->y > other.y;
+		}
+
+		bool operator<(const Vec2& other) const
+		{
+			return this->x < other.x && this->y < other.y;
+		}
 	};
+
+	double distanceFrom(const Vec2& src, const Vec2& dst);
+	double getLength(const Vec2& vec);
 
 }

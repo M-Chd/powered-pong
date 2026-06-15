@@ -17,8 +17,8 @@ namespace Core
 			printf("%s", e.what());
 		}
 
-		auto PlayerOnePos = Vec2{ 210.0f, 360.0f };
-		auto PlayerTwoPos = Vec2{ 1045.0f, 360.0f };
+		auto PlayerOnePos = Vec2{ 207.0f, 360.0f };
+		auto PlayerTwoPos = Vec2{ 1047.0f, 360.0f };
 
 		board.p1.setCenter(PlayerOnePos);
 		board.p2.setCenter(PlayerTwoPos);

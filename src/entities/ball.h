@@ -2,10 +2,12 @@
 #include "entities/item.h"
 #include "view.h"
 #include <iostream>
-#include "util/Vector2.h"
+#include "util/Vector2.hpp"
 #include <SDL2/SDL.h>
 
 namespace Core { struct Board; }
+
+constexpr double MAX_BOUNCE_ANGLE = 30.f * M_PI / 180.f;
 
 namespace Entities {
 
@@ -16,6 +18,7 @@ namespace Entities {
 		void move(float dt,const Core::Board& board);
 		void draw(SDL_Renderer* renderer);
 		void checkColisions(const Core::Board& board, float bounce);
+		bool isInside(const Util::Vec2& p) const;
 
 	public:
 		Ball() :
@@ -46,6 +49,10 @@ namespace Entities {
 		BallEffect getBallEffect() const { return _effect; }
 		float getRadius() const { return _radius; }
 		SDL_Color getColor() const { return _color; }
+
+	private:
+
+		void checkPlayerCollisions(const Core::Board& b, float bounce);
 
 	private:
 

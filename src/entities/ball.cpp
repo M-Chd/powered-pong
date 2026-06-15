@@ -1,6 +1,8 @@
 #include "ball.h"
 #include "board.h"
 
+#include <algorithm>
+
 namespace Entities
 {
 
@@ -34,6 +36,8 @@ namespace Entities
 		float edgeY = _center.y + _radius;
 		float edgeMinusY = _center.y - _radius;
 
+		checkPlayerCollisions(board, bounce);
+
 		if (edgeY >= board.height)
 		{
 			_center = { _center.x, board.height - _radius };
@@ -54,6 +58,41 @@ namespace Entities
 			_center = { _radius + board.offsetX , _center.y };
 			_speed.x *= bounce;
 		}
+	}
+
+	void Ball::checkPlayerCollisions(const Core::Board& b, float bounce)
+	{
+		float edgeMinusX = _center.x - _radius;
+		float edgeX = _center.x + _radius;
+
+		if (b.p1.isInside({ edgeX, _center.y }))
+		{
+			float relative = (_center.y - b.p1.getCenter().y) / b.p1.getRadiusY();
+			relative = std::clamp(relative, -1.0f, 1.0f);
+			double angle = relative * MAX_BOUNCE_ANGLE;
+
+			auto speed = Util::getLength(_speed) * bounce;
+
+			_speed.x = static_cast<float>(std::abs(speed * std::cos(angle)));
+			_speed.y = static_cast<float>(speed * std::sin(angle));
+		}
+		
+		if (b.p2.isInside({ edgeMinusX, _center.y }))
+		{
+			float relative = (_center.y - b.p1.getCenter().y) / b.p1.getRadiusY();
+			relative = std::clamp(relative, -1.0f, 1.0f);
+			double angle = relative * MAX_BOUNCE_ANGLE;
+
+			auto speed = Util::getLength(_speed) * bounce;
+
+			_speed.x = static_cast<float>(- std::abs(speed * std::cos(angle)));
+			_speed.y = static_cast<float>(speed * std::sin(angle));
+		}
+	}
+
+	bool Ball::isInside(const Util::Vec2& p) const
+	{
+		return Util::distanceFrom(p,_center) <= _radius;
 	}
 
 	void Ball::draw(SDL_Renderer* renderer)

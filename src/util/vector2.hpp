@@ -64,6 +64,6 @@ namespace Util
 	};
 
 	double distanceFrom(const Vec2& src, const Vec2& dst);
-	double getLength(const Vec2& vec);
+	float getLength(const Vec2& vec);
 
 }

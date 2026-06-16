@@ -31,7 +31,7 @@ namespace Entities
 			_center(Util::Vec2{210,360}),
 			_length(10.0f),
 			_height(100.0f),
-			_speed(Util::Vec2{ 0.0f,25000.0f }),
+			_speed(Util::Vec2{ 0.0f,350.0f }),
 			_type(PlayerType::HUMAN)
 		{
 			_radiusX = _length / 2;

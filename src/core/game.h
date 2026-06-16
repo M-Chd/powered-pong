@@ -3,7 +3,7 @@
 #include "player.h"
 #include "board.h"
 #include "gameConfig.h"
-
+#include "inputManager.h"
 
 namespace Core
 {
@@ -13,6 +13,7 @@ namespace Core
 	{
 		WindowRenderer windowRenderer;
 		GameConfig config;
+		InputManager inputmngr;
 		Board board;
 
 		Game(const GameConfig& config)

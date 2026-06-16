@@ -11,7 +11,7 @@ add_executable(PoweredPong
     src/core/window.cpp
     src/core/view.cpp
     src/core/game.cpp
-  "src/core/board.h" "src/core/board.cpp" "src/entities/item.cpp" "src/core/gameConfig.h" "src/core/gameConfig.cpp" "src/util/vector2.cpp")
+  "src/core/board.h" "src/core/board.cpp" "src/entities/item.cpp" "src/core/gameConfig.h" "src/core/gameConfig.cpp" "src/util/vector2.cpp" "src/core/inputManager.h" "src/core/inputManager.cpp")
 
 target_include_directories(PoweredPong PRIVATE
     src

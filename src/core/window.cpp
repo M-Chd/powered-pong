@@ -6,7 +6,7 @@ namespace Core
 	{
         if (SDL_Init(SDL_INIT_VIDEO) != 0) return false;
 
-        renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+        renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
         if (!renderer)
         {

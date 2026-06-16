@@ -62,31 +62,44 @@ namespace Entities
 
 	void Ball::checkPlayerCollisions(const Core::Board& b, float bounce)
 	{
-		float edgeMinusX = _center.x - _radius;
-		float edgeX = _center.x + _radius;
+		const auto& p1 = b.p1;
+		float closestX = std::clamp(_center.x, p1.getCenter().x - p1.getRadiusX(), p1.getCenter().x + p1.getRadiusX());
+		float closestY = std::clamp(_center.y, p1.getCenter().y - p1.getRadiusY(), p1.getCenter().y + p1.getRadiusY());
 
-		if (b.p1.isInside({ edgeX, _center.y }))
+		float dx = _center.x - closestX;
+		float dy = _center.y - closestY;
+
+		if (dx * dx + dy * dy <= _radius * _radius && _speed.x < 0)
 		{
-			float relative = (_center.y - b.p1.getCenter().y) / b.p1.getRadiusY();
+			float relative = (_center.y - p1.getCenter().y) / p1.getRadiusY();
 			relative = std::clamp(relative, -1.0f, 1.0f);
 			double angle = relative * MAX_BOUNCE_ANGLE;
+			float speed = Util::getLength(_speed) * std::abs(bounce);
 
-			auto speed = Util::getLength(_speed) * bounce;
+			_speed.x = std::abs(speed * static_cast<float>(std::cos(angle)));
+			_speed.y = speed * static_cast<float>(std::sin(angle));
 
-			_speed.x = static_cast<float>(std::abs(speed * std::cos(angle)));
-			_speed.y = static_cast<float>(speed * std::sin(angle));
+			_center.x = p1.getCenter().x + p1.getRadiusX() + _radius;
 		}
-		
-		if (b.p2.isInside({ edgeMinusX, _center.y }))
+
+		const auto& p2 = b.p2;
+		float closestX2 = std::clamp(_center.x, p2.getCenter().x - p2.getRadiusX(), p2.getCenter().x + p2.getRadiusX());
+		float closestY2 = std::clamp(_center.y, p2.getCenter().y - p2.getRadiusY(), p2.getCenter().y + p2.getRadiusY());
+
+		float dx2 = _center.x - closestX2;
+		float dy2 = _center.y - closestY2;
+
+		if (dx2 * dx2 + dy2 * dy2 <= _radius * _radius && _speed.x > 0)
 		{
-			float relative = (_center.y - b.p1.getCenter().y) / b.p1.getRadiusY();
+			float relative = (_center.y - p2.getCenter().y) / p2.getRadiusY();
 			relative = std::clamp(relative, -1.0f, 1.0f);
 			double angle = relative * MAX_BOUNCE_ANGLE;
+			float speed = Util::getLength(_speed) * std::abs(bounce);
 
-			auto speed = Util::getLength(_speed) * bounce;
+			_speed.x = -std::abs(speed * static_cast<float>(std::cos(angle)));
+			_speed.y = speed * static_cast<float>(std::sin(angle));
 
-			_speed.x = static_cast<float>(- std::abs(speed * std::cos(angle)));
-			_speed.y = static_cast<float>(speed * std::sin(angle));
+			_center.x = p2.getCenter().x - p2.getRadiusX() - _radius;
 		}
 	}
 

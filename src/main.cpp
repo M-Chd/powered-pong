@@ -1,5 +1,7 @@
 #include "game.h"
 
+const int FPS = 60;
+
 
 //TODO Faire un systeme qui prend en compte en meme temps les inputs des joueurs
 //TODO regler la physique des joueurs (positions inconstantes ect...)
@@ -15,12 +17,11 @@ int main(int argc, char* argv[])
     SDL_Event event;
     Uint64 lastTime = SDL_GetPerformanceCounter();
 
-
+    auto& inputMngr = g.inputmngr;
     auto& renderer = g.windowRenderer.renderer;
 
     while (running)
     {
-
         Uint64 now = SDL_GetPerformanceCounter();
         float dt = (now - lastTime) / (float)SDL_GetPerformanceFrequency();
         lastTime = now;
@@ -34,18 +35,6 @@ int main(int argc, char* argv[])
             {
                 switch (event.key.keysym.sym)
                 {
-                case SDLK_UP:
-                    g.board.p2.move(-1.0f, dt, g.board);
-                    break;
-                case SDLK_DOWN:
-                    g.board.p2.move(1.0f, dt, g.board);
-                    break;
-                case SDLK_z:
-                    g.board.p1.move(-1.0f, dt, g.board);
-                    break;
-                case SDLK_s:
-                    g.board.p1.move(1.0f, dt, g.board);
-                    break;
                 case SDLK_e:
                     g.board.p2.useItem(&g.board.b);
                     break;
@@ -55,6 +44,17 @@ int main(int argc, char* argv[])
                 }
             }
         }
+
+        inputMngr.update();
+
+        if (inputMngr.isKeyDown(SDL_SCANCODE_UP))
+                    g.board.p2.move(-1.0f, dt, g.board);
+                else if (inputMngr.isKeyDown(SDL_SCANCODE_DOWN))
+                    g.board.p2.move(1.0f, dt, g.board);
+                else if (inputMngr.isKeyDown(SDL_SCANCODE_Z) || inputMngr.isKeyDown(SDL_SCANCODE_W))
+                    g.board.p1.move(-1.0f, dt, g.board);
+                else if (inputMngr.isKeyDown(SDL_SCANCODE_S))
+                    g.board.p1.move(1.0f, dt, g.board);
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);

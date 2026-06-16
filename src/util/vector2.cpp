@@ -7,8 +7,8 @@ namespace Util
 		return sqrt(pow(src.x - dst.x, 2) + pow(src.y - dst.y, 2));
 	}
 
-	double getLength(const Vec2& vec)
+	float getLength(const Vec2& vec)
 	{
-		return sqrt(pow(vec.x, 2) + pow(vec.y, 2));
+		return static_cast<float>(sqrt(pow(vec.x, 2) + pow(vec.y, 2)));
 	}
 }

@@ -69,6 +69,11 @@ namespace Entities
 			   p.y <= _center.y + _radiusY;
 	}
 
+	void Player::addPoint()
+	{
+		_score++;
+	}
+
 	void Player::draw(SDL_Renderer* renderer)
 	{
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);

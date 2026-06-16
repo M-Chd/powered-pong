@@ -4,8 +4,6 @@ const int FPS = 60;
 
 
 //TODO Faire un systeme qui prend en compte en meme temps les inputs des joueurs
-//TODO regler la physique des joueurs (positions inconstantes ect...)
-//TODO Collisions avec les joueurs
 
 int main(int argc, char* argv[])
 {

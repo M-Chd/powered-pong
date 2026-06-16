@@ -7,7 +7,7 @@
 
 namespace Core { struct Board; }
 
-constexpr double MAX_BOUNCE_ANGLE = 30.f * M_PI / 180.f;
+constexpr double MAX_BOUNCE_ANGLE{ 30.f * M_PI / 180.f };
 
 namespace Entities {
 
@@ -21,6 +21,7 @@ namespace Entities {
 		bool isInside(const Util::Vec2& p) const;
 
 	public:
+
 		Ball() :
 			_center(Util::Vec2{ 640, 360}),
 			_radius(4.5f),

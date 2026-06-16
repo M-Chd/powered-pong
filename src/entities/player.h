@@ -5,6 +5,9 @@
 #include <iostream>
 
 namespace Core { struct Board; }
+
+constexpr Util::Vec2 PlayerOneDefaultPos{ 207.0f, 360.0f };
+constexpr Util::Vec2 PlayerTwoDefaultPos{ 1047.0f, 360.0f };
 	
 namespace Entities
 {
@@ -24,14 +27,16 @@ namespace Entities
 		void checkColisions(const Core::Board& board);
 		bool isInside(const Util::Vec2& p) const;
 		void AcquireItem(Item i);
+
+		void addPoint();
 		
 	public:
 
 		Player() : 
-			_center(Util::Vec2{210,360}),
+			_center(Util::Vec2{0.0f,0.0f}),
 			_length(10.0f),
 			_height(100.0f),
-			_speed(Util::Vec2{ 0.0f,350.0f }),
+			_speed(Util::Vec2{ 0.0f,230.0f }),
 			_type(PlayerType::HUMAN)
 		{
 			_radiusX = _length / 2;

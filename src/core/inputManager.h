@@ -14,7 +14,6 @@ namespace Core
 		bool isKeyDown(SDL_Scancode key);
 
 	private:
-
 		const Uint8* _keyBoardState = nullptr;
 	};
 }

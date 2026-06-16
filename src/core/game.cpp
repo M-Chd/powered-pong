@@ -28,7 +28,7 @@ namespace Core
 
 	bool Game::isGameFinished() const
 	{
-		return (board.p1.getScore() > board.winscore) || (board.p2.getScore() > board.winscore);
+		return (board.p1.getScore() > winscore) || (board.p2.getScore() > winscore);
 	}
 
 	void Game::quit() const

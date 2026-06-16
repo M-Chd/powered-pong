@@ -2,6 +2,8 @@
 #include "ball.h"
 #include "player.h"
 
+constexpr int winscore{ 5 };
+
 namespace Core
 {
 	struct Board
@@ -12,7 +14,6 @@ namespace Core
 		int offsetY{ 100 };
 		int height = h + offsetY;
 		int length = l + offsetX;
-		unsigned int winscore{ 5 };
 
 		std::vector<Entities::Item> items;
 		Entities::Ball b;

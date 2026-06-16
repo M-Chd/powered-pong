@@ -5,7 +5,6 @@
 
 namespace Entities
 {
-
 	void Ball::move(float dt, const Core::Board& board)
 	{
 		float bounce = -1.0f;
@@ -110,7 +109,6 @@ namespace Entities
 
 	void Ball::draw(SDL_Renderer* renderer)
 	{
-
 		auto& c = _color;
 
 		SDL_SetRenderDrawColor(renderer, c.r, c.g, c.b, c.a);

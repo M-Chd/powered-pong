@@ -11,10 +11,20 @@ namespace Core
 
 	struct Game
 	{
+		enum class GameState
+		{
+			PAUSE,
+			POINT,
+			PLAY
+		};
+
 		WindowRenderer windowRenderer;
 		GameConfig config;
-		InputManager inputmngr;
 		Board board;
+		System::InputManager inputmngr;
+		GameState state;
+		float pauseTimer = 0.f;
+
 
 		Game(const GameConfig& config)
 		{
@@ -25,6 +35,7 @@ namespace Core
 		void run();
 		bool isGameFinished() const ;
 		void quit() const;
+		void checkPoint();
 
 	};
 }

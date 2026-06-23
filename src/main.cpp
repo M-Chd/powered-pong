@@ -54,13 +54,25 @@ int main(int argc, char* argv[])
                 else if (inputMngr.isKeyDown(SDL_SCANCODE_S))
                     g.board.p1.move(1.0f, dt, g.board);
 
+        g.checkPoint();
+
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
+
 
         g.board.drawBoard(renderer);
         g.board.b.draw(renderer);
         g.board.drawPlayers(renderer);
-        g.board.b.move(dt,g.board);
+
+        if (g.state == Core::Game::GameState::POINT)
+        {
+            g.pauseTimer -= dt;
+
+        if (g.pauseTimer <= 0)
+            g.state = Core::Game::GameState::PLAY;
+        } else
+            g.board.b.move(dt,g.board);
+
 
         SDL_RenderPresent(renderer);
     }

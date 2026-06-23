@@ -24,5 +24,7 @@ namespace Core
 		void drawBall(SDL_Renderer* renderer);
 		void drawPlayers(SDL_Renderer* renderer);
 		void drawItems(SDL_Renderer* renderer);
+		int checkBallPoint();
+		void setupRound(Entities::Player& p, Util::Vec2 speed);
 	};
 }

@@ -69,9 +69,9 @@ namespace Entities
 			   p.y <= _center.y + _radiusY;
 	}
 
-	void Player::addPoint()
+	void Player::addPoint(int n)
 	{
-		_score++;
+		_score += n;
 	}
 
 	void Player::draw(SDL_Renderer* renderer)

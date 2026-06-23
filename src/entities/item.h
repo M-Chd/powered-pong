@@ -3,7 +3,7 @@
 //##################################################################|
 #define WHITE      { 255, 255, 255, 255 } // Ball default color
 #define CYAN       {   0, 255, 255, 255 } // Speed ball effect color
-#define RED        { 255,   0,   0, 255 } // UNUSED
+#define RED        { 255,   0,   0, 255 } // Multiplicator
 #define DEEP_RED   { 139,   0,   0, 255 } // Explosive ball color
 #define PURPLE     { 128,   0, 128, 255 } // Teleport effect color
 #define ORANGE     { 255, 165,   0, 255 } // Player power color
@@ -28,6 +28,7 @@ namespace Entities {
 		NONE,
 		SPEED_BALL,
 		TELEPORT_BALL,
+		MULTIPLICATOR,
 		EXPLOSIVE_BALL,
 	};
 
@@ -38,7 +39,8 @@ namespace Entities {
 		EXPLOSIVE,
 		SLOWNESS,
 		POWER,
-		PLAYER_SPEED
+		PLAYER_SPEED,
+		MULTIPLICATOR
 	};
 
 	class Item
@@ -69,6 +71,8 @@ namespace Entities {
 			case ItemType::PLAYER_SPEED:
 				_color = BLUE;
 				break;
+			case ItemType::MULTIPLICATOR:
+				_color = RED;
 			default:
 				_color = WHITE;
 				break;

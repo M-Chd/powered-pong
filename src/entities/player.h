@@ -28,7 +28,7 @@ namespace Entities
 		bool isInside(const Util::Vec2& p) const;
 		void AcquireItem(Item i);
 
-		void addPoint();
+		void addPoint(int n = 1);
 		
 	public:
 

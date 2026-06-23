@@ -1,6 +1,6 @@
 #include "inputManager.h"
 
-namespace Core
+namespace System
 {
 	void InputManager::update()
 	{

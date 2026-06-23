@@ -17,6 +17,9 @@ namespace Entities
 			case BallEffect::TELEPORT_BALL:
 				b->setColor(PURPLE);
 				break;
+			case BallEffect::MULTIPLICATOR:
+				b->setColor(RED);
+				break;
 			default:
 				b->setColor(WHITE);
 				break;

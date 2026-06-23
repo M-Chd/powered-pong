@@ -4,7 +4,7 @@
 
 constexpr int NUM_KEYS = 8;
 
-namespace Core
+namespace System
 {
 	class InputManager
 	{

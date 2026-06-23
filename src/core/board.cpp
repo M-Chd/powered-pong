@@ -20,7 +20,7 @@ namespace Core
 		p2.draw(renderer);
 	}
 
-	int Board::checkBallPoint()
+	int Board::checkBallPoint() const
 	{
 		if (b.getCenter().x < p1.getCenter().x + p1.getRadiusX())
 		{
@@ -36,6 +36,8 @@ namespace Core
 	void Board::setupRound(Entities::Player& p, Util::Vec2 speed)
 	{
 		b.setPosition(BALL_INITIAL_POS);
+		p1.setCenter(PlayerOneDefaultPos);
+		p2.setCenter(PlayerTwoDefaultPos);
 		
 		if (b.getBallEffect() == Entities::BallEffect::MULTIPLICATOR)
 			p.addPoint(2);

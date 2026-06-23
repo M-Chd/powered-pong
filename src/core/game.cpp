@@ -1,16 +1,5 @@
 #include "game.h"
 
-#ifdef _WIN32
-	
-#include <Windows.h>
-
-#elif __linux__
-
-#include <unistd.h>
-
-#endif
-
-
 using namespace Util;
 
 namespace Core
@@ -42,17 +31,13 @@ namespace Core
 		switch (board.checkBallPoint())
 		{
 		case 1:
-			board.setupRound(board.p1, DEFAULT_BALL_SPEED);
-			board.p1.setCenter(PlayerOneDefaultPos);
-			board.p2.setCenter(PlayerTwoDefaultPos);
+			board.setupRound(board.p1, DEFAULT_BALL_SPEED_MINUS);
 			//update all the UI
 			state = GameState::POINT;
 			pauseTimer = 1.0f;
 			break;
 		case -1:
-			board.setupRound(board.p2, DEFAULT_BALL_SPEED_MINUS);
-			board.p1.setCenter(PlayerOneDefaultPos);
-			board.p2.setCenter(PlayerTwoDefaultPos);
+			board.setupRound(board.p2, DEFAULT_BALL_SPEED);
 			//update all the UI
 			state = GameState::POINT;
 			pauseTimer = 1.0f;

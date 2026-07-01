@@ -15,6 +15,11 @@ namespace Core
             return false;
         }
 
+        if (TTF_Init() < 0) {
+            std::cout << "Couldn't initialize TTF lib: " << TTF_GetError() << std::endl;
+            return false;
+        }
+
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
         SDL_RenderClear(renderer);
         SDL_RenderPresent(renderer);
@@ -59,6 +64,7 @@ namespace Core
     {
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
+        TTF_Quit();
         SDL_Quit();
     }
 }

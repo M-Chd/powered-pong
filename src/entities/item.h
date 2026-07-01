@@ -73,6 +73,7 @@ namespace Entities {
 				break;
 			case ItemType::MULTIPLICATOR:
 				_color = RED;
+				break;
 			default:
 				_color = WHITE;
 				break;

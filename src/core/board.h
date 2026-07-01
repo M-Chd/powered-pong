@@ -20,10 +20,11 @@ namespace Core
 		Entities::Player p1;
 		Entities::Player p2;
 
-		void drawBoard(SDL_Renderer* renderer) const;
+		void drawBoard(SDL_Renderer* renderer) const; //TODO View methods in a View class
 		void drawBall(SDL_Renderer* renderer);
 		void drawPlayers(SDL_Renderer* renderer);
 		void drawItems(SDL_Renderer* renderer);
+		void drawPlayerUI(SDL_Renderer* r, Entities::Player& p, int x, int y);
 		int checkBallPoint() const;
 		void setupRound(Entities::Player& p, Util::Vec2 speed);
 	};

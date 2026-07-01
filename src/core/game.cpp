@@ -33,12 +33,14 @@ namespace Core
 		case 1:
 			board.setupRound(board.p1, DEFAULT_BALL_SPEED_MINUS);
 			//update all the UI
+			view.updateAllScoreUI(windowRenderer.renderer);
 			state = GameState::POINT;
 			pauseTimer = 1.0f;
 			break;
 		case -1:
 			board.setupRound(board.p2, DEFAULT_BALL_SPEED);
 			//update all the UI
+			view.updateAllScoreUI(windowRenderer.renderer);
 			state = GameState::POINT;
 			pauseTimer = 1.0f;
 			break;

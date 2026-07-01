@@ -1,6 +1,5 @@
 #pragma once
 #include "entities/item.h"
-#include "view.h"
 #include <iostream>
 #include "util/Vector2.hpp"
 #include <SDL2/SDL.h>

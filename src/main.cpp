@@ -63,6 +63,7 @@ int main(int argc, char* argv[])
         g.board.drawBoard(renderer);
         g.board.b.draw(renderer);
         g.board.drawPlayers(renderer);
+        g.view.drawPlayerUI(g.board.p1, renderer);
 
         if (g.state == Core::Game::GameState::POINT)
         {

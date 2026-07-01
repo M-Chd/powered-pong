@@ -9,9 +9,9 @@ add_executable(PoweredPong
     src/entities/ball.cpp
     src/entities/player.cpp
     src/core/window.cpp
-    src/core/view.cpp
+    
     src/core/game.cpp
-  "src/core/board.h" "src/core/board.cpp" "src/entities/item.cpp" "src/core/gameConfig.h" "src/core/gameConfig.cpp" "src/util/vector2.cpp" "src/core/inputManager.h" "src/core/inputManager.cpp" )
+  "src/core/board.h" "src/core/board.cpp" "src/entities/item.cpp" "src/core/gameConfig.h" "src/core/gameConfig.cpp" "src/util/vector2.cpp" "src/core/inputManager.h" "src/core/inputManager.cpp"  "src/ui/infoLayer.h" "src/ui/infoLayer.cpp" "src/ui/view.h" "src/ui/view.cpp")
 
 target_include_directories(PoweredPong PRIVATE
     src
@@ -21,5 +21,6 @@ target_include_directories(PoweredPong PRIVATE
 )
 
 find_package(SDL2 CONFIG REQUIRED)
+find_package(SDL2_ttf CONFIG REQUIRED)
 
-target_link_libraries(PoweredPong PRIVATE SDL2::SDL2 SDL2::SDL2main)
+target_link_libraries(PoweredPong PRIVATE SDL2::SDL2 SDL2::SDL2main SDL2_ttf::SDL2_ttf)

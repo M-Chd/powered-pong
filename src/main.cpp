@@ -2,9 +2,6 @@
 
 const int FPS = 60;
 
-
-//TODO Faire un systeme qui prend en compte en meme temps les inputs des joueurs
-
 int main(int argc, char* argv[])
 {
     Core::GameConfig config = Core::parseArgs(argc, argv);
@@ -46,13 +43,14 @@ int main(int argc, char* argv[])
         inputMngr.update();
 
         if (inputMngr.isKeyDown(SDL_SCANCODE_UP))
-                    g.board.p2.move(-1.0f, dt, g.board);
-                else if (inputMngr.isKeyDown(SDL_SCANCODE_DOWN))
-                    g.board.p2.move(1.0f, dt, g.board);
-                else if (inputMngr.isKeyDown(SDL_SCANCODE_Z) || inputMngr.isKeyDown(SDL_SCANCODE_W))
-                    g.board.p1.move(-1.0f, dt, g.board);
-                else if (inputMngr.isKeyDown(SDL_SCANCODE_S))
-                    g.board.p1.move(1.0f, dt, g.board);
+            g.board.p2.move(-1.0f, dt, g.board);
+        else if (inputMngr.isKeyDown(SDL_SCANCODE_DOWN))
+            g.board.p2.move(1.0f, dt, g.board);
+
+        if (inputMngr.isKeyDown(SDL_SCANCODE_Z) || inputMngr.isKeyDown(SDL_SCANCODE_W))
+            g.board.p1.move(-1.0f, dt, g.board);
+        else if (inputMngr.isKeyDown(SDL_SCANCODE_S))
+            g.board.p1.move(1.0f, dt, g.board);
 
         g.checkPoint();
 
@@ -63,7 +61,8 @@ int main(int argc, char* argv[])
         g.board.drawBoard(renderer);
         g.board.b.draw(renderer);
         g.board.drawPlayers(renderer);
-        g.view.drawPlayerUI(g.board.p1, renderer);
+        g.view.drawAllUI(renderer);
+        
 
         if (g.state == Core::Game::GameState::POINT)
         {

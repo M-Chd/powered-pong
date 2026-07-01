@@ -20,7 +20,7 @@ namespace UI
 		void setPosition(float x, float y);
 		std::string getText() const;
 
-		virtual void setText() = 0;
+		virtual void setText(std::string* text) = 0;
 
 	protected:
 
@@ -28,7 +28,7 @@ namespace UI
         SDL_Rect destRect{};
 		std::string path{};
         SDL_Texture* texture{nullptr};
-        TTF_Font* font{nullptr};
+        std::shared_ptr<TTF_Font> font{nullptr};
 		std::string text{};
         SDL_Color color{};
 	};
@@ -37,9 +37,9 @@ namespace UI
 	{
 	public:
 
-		ScoreLayer(const std::string& fontPath, int fontSize, float x, float y, SDL_Color c, Entities::Player& playerPtr);
+		ScoreLayer(const std::string& fontPath, int fontSize, float x, float y, SDL_Color c, Entities::Player* playerPtr);
 		
-		void setText() override;
+		void setText(std::string* text) override;
 
 	private:
 		Entities::Player* playerPtr{ nullptr };

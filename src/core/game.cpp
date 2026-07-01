@@ -24,6 +24,9 @@ namespace Core
 		board.p2.setCenter(PlayerTwoPos);
 		board.b.setSpeed(DEFAULT_BALL_SPEED);
 
+		view.initDrawPlayerUI(board.p1,windowRenderer.renderer, 10, 20);
+		view.initDrawPlayerUI(board.p2,windowRenderer.renderer, 1100, 20);
+
 	}
 
 	void Game::checkPoint()
@@ -31,14 +34,14 @@ namespace Core
 		switch (board.checkBallPoint())
 		{
 		case 1:
-			board.setupRound(board.p1, DEFAULT_BALL_SPEED_MINUS);
+			board.setupRound(board.p2, DEFAULT_BALL_SPEED_MINUS);
 			//update all the UI
 			view.updateAllScoreUI(windowRenderer.renderer);
 			state = GameState::POINT;
 			pauseTimer = 1.0f;
 			break;
 		case -1:
-			board.setupRound(board.p2, DEFAULT_BALL_SPEED);
+			board.setupRound(board.p1, DEFAULT_BALL_SPEED);
 			//update all the UI
 			view.updateAllScoreUI(windowRenderer.renderer);
 			state = GameState::POINT;
@@ -54,8 +57,9 @@ namespace Core
 		return (board.p1.getScore() > winscore) || (board.p2.getScore() > winscore);
 	}
 
-	void Game::quit() const
+	void Game::quit()
 	{
+		view.clear();
 		windowRenderer.quit();
 	}
 }

@@ -36,7 +36,7 @@ namespace Core
 		void init();
 		void run();
 		bool isGameFinished() const ;
-		void quit() const;
+		void quit();
 		void checkPoint();
 
 	};

@@ -2,16 +2,20 @@
 
 namespace UI
 {
-	void View::drawPlayerUI(Entities::Player& player, SDL_Renderer* renderer)
+	void View::initDrawPlayerUI(Entities::Player& player, SDL_Renderer* renderer, float x , float y)
 	{
-		ScoreLayer layer = {"C:\\Users\\mouad\\Desktop\\powered-pong\\assets\\fonts\\Beach-Ball.ttf",20,10,20,WHITE,player};
-		layers.emplace_back(std::make_unique<ScoreLayer>(layer));
-		layer.setText();
-		layer.Render(renderer);
+		std::unique_ptr<ScoreLayer> newLayer(new ScoreLayer(
+        "../../../assets/fonts/Beach-Ball.ttf", 
+        30, x, y, WHITE, &player
+		));
+		
+		newLayer->updateTexture(renderer);
+		layers.emplace_back(std::move(newLayer));
 	}
 
 	void View::updateScoreUI(ScoreLayer& layer, SDL_Renderer* renderer)
 	{
+		layer.setText(nullptr);
 		layer.updateTexture(renderer);
 	}
 
@@ -21,8 +25,31 @@ namespace UI
 		{
 			for (auto& l : layers)
 			{
+				ScoreLayer* scoreLayer = dynamic_cast<ScoreLayer*>(l.get());
+				
+				if (scoreLayer)
+				{
+					scoreLayer->setText(nullptr);
+				}
+				
 				l->updateTexture(renderer);
 			}
 		}
+	}
+
+	void View::drawAllUI(SDL_Renderer* renderer) const
+	{
+		if (!layers.empty())
+		{
+			for (auto& l : layers)
+			{
+				l->Render(renderer);
+			}
+		}
+	}
+
+	void View::clear()
+	{
+		layers.clear();
 	}
 }

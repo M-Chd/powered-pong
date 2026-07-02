@@ -31,10 +31,7 @@
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\inputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\infoLayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\view.cpp">
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\scoreBoard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -48,10 +45,10 @@
     <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\inputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\ui\infoLayer.h">
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\ui\view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\ui\view.h">
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\textureCache.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

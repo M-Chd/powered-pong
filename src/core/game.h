@@ -5,6 +5,8 @@
 #include "gameConfig.h"
 #include "inputManager.h"
 #include "ui/view.h"
+#include "ui/scoreBoard.h"
+#include "textureCache.h"
 
 namespace UI { struct View; }
 
@@ -23,6 +25,8 @@ namespace Core
 		GameConfig config;
 		Board board;
 		UI::View view;
+		UI::ScoreBoard scoreboard;
+		System::TextureCache cache;
 		System::InputManager inputmngr;
 		GameState state;
 		float pauseTimer = 0.f;

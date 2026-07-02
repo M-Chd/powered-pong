@@ -6,8 +6,8 @@ namespace Core
 {
 	void Game::init()
 	{
-		float height = windowRenderer.height;
-		float length = windowRenderer.length;
+		int height = windowRenderer.height;
+		int length = windowRenderer.length;
 
 		try {
 			windowRenderer.init();
@@ -17,16 +17,16 @@ namespace Core
 			printf("%s", e.what());
 		}
 
-		auto PlayerOnePos = Vec2{ 207.0f, 360.0f };
-		auto PlayerTwoPos = Vec2{ 1047.0f, 360.0f };
+		auto PlayerOnePos = Vec2{PlayerOneDefaultPos};
+		auto PlayerTwoPos = Vec2{PlayerTwoDefaultPos};
 
 		board.p1.setCenter(PlayerOnePos);
 		board.p2.setCenter(PlayerTwoPos);
 		board.b.setSpeed(DEFAULT_BALL_SPEED);
 
-		view.initDrawPlayerUI(board.p1,windowRenderer.renderer, 10, 20);
-		view.initDrawPlayerUI(board.p2,windowRenderer.renderer, 1100, 20);
-
+		scoreboard.init(view, windowRenderer.renderer,
+			"../../../assets/fonts/Beach-Ball.ttf", 30, WHITE,
+			{ 10,20 }, { 1100, 20 });
 	}
 
 	void Game::checkPoint()
@@ -35,15 +35,13 @@ namespace Core
 		{
 		case 1:
 			board.setupRound(board.p2, DEFAULT_BALL_SPEED_MINUS);
-			//update all the UI
-			view.updateAllScoreUI(windowRenderer.renderer);
+			scoreboard.update(windowRenderer.renderer, board.p1.getScore(), board.p2.getScore());
 			state = GameState::POINT;
 			pauseTimer = 1.0f;
 			break;
 		case -1:
 			board.setupRound(board.p1, DEFAULT_BALL_SPEED);
-			//update all the UI
-			view.updateAllScoreUI(windowRenderer.renderer);
+			scoreboard.update(windowRenderer.renderer, board.p1.getScore(), board.p2.getScore());
 			state = GameState::POINT;
 			pauseTimer = 1.0f;
 			break;

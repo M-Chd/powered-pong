@@ -1,9 +1,8 @@
 #pragma once
 
-#include "infoLayer.h"
+#include "uiElement.h"
 
 #include <vector>
-#include <functional>
 #include <memory>
 
 namespace UI
@@ -15,12 +14,24 @@ namespace UI
 			layers.reserve(5);
 		}
 
-		std::vector<std::unique_ptr<InfoLayer>> layers;
+		std::vector<std::unique_ptr<UILayer>> layers;
 
-		void initDrawPlayerUI(Entities::Player& player, SDL_Renderer* renderer, float x, float y);
-		void updateScoreUI(ScoreLayer& layer, SDL_Renderer* renderer);
-		void updateAllScoreUI(SDL_Renderer* renderer);
-		void drawAllUI(SDL_Renderer* renderer) const;
-		void clear();
+		UILayer* addLayer(std::unique_ptr<UILayer> layer)
+		{
+			layers.push_back(std::move(layer));
+			return layers.back().get();
+		}
+
+		void drawAllUI(SDL_Renderer* renderer) const
+		{
+			for (auto& l : layers)
+				l->render(renderer);
+		}
+
+		void clear()
+		{
+			layers.clear();
+		}
+
 	};
 }

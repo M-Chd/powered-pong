@@ -11,6 +11,12 @@ namespace UI
 	class DebugOverlay
 	{
 	public:
+
+		DebugOverlay()
+		{
+			layers.reserve(8);
+		}
+
 		void init(View& view,
 			const std::string& fontPath, int fontSize, SDL_Color color,
 			float x, float y, int lineCount);

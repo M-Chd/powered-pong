@@ -10,8 +10,8 @@ namespace Core
 		SDL_Renderer* renderer = nullptr;
 		SDL_Window* window = nullptr;
 
-		int height{ 1280 };
-		int length{ 720 };
+		int width{ 1280 };
+		int height{ 720 };
 
 		bool initRenderer();
 		bool initWindow();

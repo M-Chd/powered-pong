@@ -7,6 +7,8 @@
 #include "ui/view.h"
 #include "ui/scoreBoard.h"
 #include "textureCache.h"
+#include "util.h"
+#include "debugOverlay.h"
 
 namespace UI { struct View; }
 
@@ -26,6 +28,7 @@ namespace Core
 		Board board;
 		UI::View view;
 		UI::ScoreBoard scoreboard;
+		UI::DebugOverlay debugOverlay;
 		System::TextureCache cache;
 		System::InputManager inputmngr;
 		GameState state;
@@ -42,6 +45,11 @@ namespace Core
 		bool isGameFinished() const ;
 		void quit();
 		void checkPoint();
+
+#ifdef _DEBUG
+		void updateDebug(float dt);
+#endif
+
 
 	};
 }

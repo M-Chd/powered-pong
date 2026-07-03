@@ -29,13 +29,13 @@ namespace Core
 
     bool WindowRenderer::initWindow()
     {
-        if (height <= 0 || length <= 0) return false;
+        if (width <= 0 || height <= 0) return false;
 
         window = SDL_CreateWindow("Powered Pong",
             SDL_WINDOWPOS_CENTERED,
             SDL_WINDOWPOS_CENTERED,
+            width,
             height,
-            length,
             0);
 
         if (!window)

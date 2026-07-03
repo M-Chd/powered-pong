@@ -13,10 +13,10 @@ namespace Entities
 		{
 		case BallEffect::EXPLOSIVE_BALL:
 			_center += _speed * dt;
-			checkColisions(board, bounce * 2);
+			checkColisions(board, bounce * 1.1);
 			break;
 		case BallEffect::SPEED_BALL:
-			_center += _speed * 2 * dt;
+			_center += _speed * 1.5 * dt;
 			checkColisions(board, bounce);
 			break;
 		case BallEffect::TELEPORT_BALL:

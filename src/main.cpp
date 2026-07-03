@@ -54,6 +54,13 @@ int main(int argc, char* argv[])
 
         g.checkPoint();
 
+#ifdef _DEBUG
+
+        g.updateDebug(dt);
+
+#endif
+
+
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 

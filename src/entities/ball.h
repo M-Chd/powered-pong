@@ -8,8 +8,8 @@ namespace Core { struct Board; }
 
 constexpr double MAX_BOUNCE_ANGLE{ 30.f * M_PI / 180.f };
 constexpr Util::Vec2 BALL_INITIAL_POS{ 640,360 };
-constexpr Util::Vec2 DEFAULT_BALL_SPEED{ 500.0f,0.0f };
-constexpr Util::Vec2 DEFAULT_BALL_SPEED_MINUS{ -500.0f,0.0f };
+constexpr Util::Vec2 DEFAULT_BALL_SPEED{ 630.0f,0.0f };
+constexpr Util::Vec2 DEFAULT_BALL_SPEED_MINUS{ -630.0f,0.0f };
 
 namespace Entities {
 

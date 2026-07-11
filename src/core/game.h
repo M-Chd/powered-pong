@@ -1,4 +1,5 @@
 #pragma once
+
 #include "window.h"
 #include "player.h"
 #include "board.h"
@@ -9,6 +10,7 @@
 #include "textureCache.h"
 #include "util.h"
 #include "debugOverlay.h"
+#include "menuManager.h"
 
 namespace UI { struct View; }
 
@@ -28,12 +30,16 @@ namespace Core
 		Board board;
 		UI::View view;
 		UI::ScoreBoard scoreboard;
+		UI::MenuManager menuManager;
+
+#ifdef _DEBUG
 		UI::DebugOverlay debugOverlay;
+#endif
+
 		System::TextureCache cache;
 		System::InputManager inputmngr;
 		GameState state;
 		float pauseTimer = 0.f;
-
 
 		Game(const GameConfig& config)
 		{
@@ -49,7 +55,5 @@ namespace Core
 #ifdef _DEBUG
 		void updateDebug(float dt);
 #endif
-
-
 	};
 }

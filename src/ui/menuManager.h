@@ -10,10 +10,26 @@ namespace UI
 	{
 	public:
 
-		GameAction activate();
+		void init(SDL_Renderer*,
+			TTF_Font*,
+			SDL_Color);
+
+		void render(SDL_Renderer*);
+
+		void moveUp();
+		void moveDown();
+
+		Action activate();
+
 		void setCurrentMenu(MenuID id);
 
 		Menu* getCurrentMenu() { if (currentMenu) return currentMenu; }
+
+	private:
+
+		void createButtons(SDL_Renderer*,
+			TTF_Font*,
+			SDL_Color);
 
 	private:
 		Menu* currentMenu{ nullptr };

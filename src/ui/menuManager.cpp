@@ -2,7 +2,7 @@
 
 namespace UI
 {
-	GameAction MenuManager::activate()
+	Action MenuManager::activate()
 	{
 		if (currentMenu)
 		{
@@ -40,6 +40,31 @@ namespace UI
 			break;
 		default:
 			break;
+		}
+	}
+
+	void MenuManager::createButtons(SDL_Renderer* r, TTF_Font* font, SDL_Color c)
+	{
+		for (auto& desc : mainMenuButtons)
+		{	
+			mainMenu.addBtn(Button(desc, r, font, c));
+		}
+
+		for (auto& desc : multiPlayerButtons)
+		{
+			multiMenu.addBtn(Button(desc, r, font, c));
+		}
+
+		for (auto& desc : soloMenuButtons)
+		{
+			soloMenu.addBtn(Button(desc, r, font, c));
+		}
+
+		ipMenu.addBtn(Button(IpMenuButtons[0], r, font, c));
+
+		for (auto& desc : optionsButtons)
+		{
+			optionsMenu.addBtn(Button(desc, r, font, c));
 		}
 	}
 }

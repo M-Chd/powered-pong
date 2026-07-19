@@ -32,6 +32,8 @@ namespace Core
 		debugOverlay.init(view,
 			"../../../assets/fonts/Beach-Ball.ttf", 14, SDL_Color{200,200,200,255},
 			10, static_cast<float>(windowRenderer.height) - 15, 8);
+
+		state = GameState::MENU;
 	}
 
 	void Game::checkPoint()

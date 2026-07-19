@@ -2,21 +2,24 @@
 
 namespace UI
 {
-	GameAction Menu::activate()
+	Action Menu::activate()
 	{
+		auto& btn = buttonList[selectedIndex];
+
 		if (selectedIndex < buttonList.size() && selectedIndex >= 0)
-			return buttonList[selectedIndex].getAction();
+			return { btn.getAction().menuid,btn.getAction().action };
 		else
-			return GameAction::None;
+			return { MenuID::None,GameAction::None };
 	}
 
 	void Menu::moveDown()
 	{
 		selectedIndex++;
-		if (selectedIndex > buttonList.size())
+		if (selectedIndex >= buttonList.size())
 		{
 			selectedIndex = 0;
 		}
+		updateSelection();
 	}
 
 	void Menu::moveUp()
@@ -26,6 +29,7 @@ namespace UI
 		{
 			selectedIndex = static_cast<short>(buttonList.size());
 		}
+		updateSelection();
 	}
 
 	void Button::render(SDL_Renderer* renderer)

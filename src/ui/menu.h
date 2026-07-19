@@ -1,46 +1,38 @@
 #pragma once
 
 #include "uiElement.h"
+#include "buttonList.hpp"
 
 #include <vector>
 
 namespace UI
 {
-	enum class MenuID
+	struct Action
 	{
-		Main,
-		Solo,
-		Multiplayer,
-		OnlineIP,
-		Options,
-		Rules
-	};
-
-	enum class GameAction
-	{
-		None,
-
-		StartSoloEasy,
-		StartSoloMedium,
-		StartSoloHard,
-
-		StartLocalMultiplayer,
-
-		Quit
+		MenuID menuid;
+		GameAction action;
 	};
 
 	class Button
 	{
 	public:
 
-		GameAction getAction() const { return action; }
-		MenuID getMenuID() const { return actionMenu; }
+		Button(const ButtonDescription& desc,
+			SDL_Renderer* r,
+			TTF_Font* font,
+			SDL_Color color);
+
+		Action getAction() const { return action; }
 		void render(SDL_Renderer* renderer);
+
+		void setSelected(bool selected);
 
 	private:
 		UILayer txt;
-		MenuID actionMenu;
-		GameAction action;
+		Action action{};
+		SDL_Color normalColor{};
+		SDL_Color selectedColor{};
+		bool selected{ false };
 	};
 
 	class Menu
@@ -57,7 +49,9 @@ namespace UI
 		void render(SDL_Renderer* renderer);
 		void moveUp();
 		void moveDown();
-		GameAction activate();
+		Action activate();
+
+		void updateSelection();
 
 	private:
 		std::vector<Button> buttonList;

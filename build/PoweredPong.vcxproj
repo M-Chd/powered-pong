@@ -445,6 +445,13 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\ui\view.h" />
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\scoreBoard.cpp" />
     <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\textureCache.h" />
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\util\util.h" />
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\ui\debugOverlay.h" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\debugOverlay.cpp" />
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menu.h" />
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menuManager.h" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menu.cpp" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menuManager.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -34,6 +34,15 @@
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\scoreBoard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\debugOverlay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menuManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\board.h">
@@ -49,6 +58,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\textureCache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\util\util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\ui\debugOverlay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menuManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

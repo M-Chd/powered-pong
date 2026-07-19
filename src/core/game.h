@@ -21,6 +21,7 @@ namespace Core
 		enum class GameState
 		{
 			PAUSE,
+			MENU,
 			POINT,
 			PLAY
 		};

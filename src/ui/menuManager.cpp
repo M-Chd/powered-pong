@@ -11,6 +11,7 @@ namespace UI
 			buildMenus(r, font, c);
 			TTF_CloseFont(font);
 			currentMenu = &mainMenu;
+			currentMenu->getButtonAt(0)->setSelected(true);
 		}
 		else
 			return;

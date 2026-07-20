@@ -1,4 +1,5 @@
 #include "game.h"
+#include "layout.hpp"
 
 using namespace Util;
 using namespace UI;
@@ -19,7 +20,7 @@ namespace Core
 			printf("%s", e.what());
 		}
 
-		menuManager.init(windowRenderer.renderer,"../../../assets/fonts/IMPACT.ttf",40,WHITE);
+		menuManager.init(windowRenderer.renderer,"../../../assets/fonts/IMPACT.ttf",50,WHITE);
 
 		/////// LOCAL MULTIPLAYER LAYOUT ////////
 		auto PlayerOnePos = Vec2{ PlayerOneDefaultPos };

@@ -20,8 +20,8 @@ namespace UI
 		Button(const ButtonDescription& desc,
 			SDL_Renderer* r,
 			TTF_Font* font,
-			SDL_Color color) : txt(desc.position), 
-			action{ desc.menuID,desc.action }, normalColor(color), selectedColor({ 255,255,0,255 })
+			SDL_Color color) : txt(desc.position), action{ desc.menuID,desc.action }, 
+			normalColor(color), selectedColor({ 255,255,0,255 })
 		{
 			setLayerText(txt, r, font, desc.txt.data(), color);
 		}
@@ -50,6 +50,15 @@ namespace UI
 		}
 
 		void addBtn(Button&& b) { buttonList.emplace_back(std::move(b)); }
+		std::vector<Button>& getButtonsList() { return buttonList; }
+
+		Button* getButtonAt(int x)
+		{ 
+			if (x >= 0 && x < buttonList.size())
+				return &buttonList[x];
+			else
+				return nullptr;
+		}
 
 		void render(SDL_Renderer* renderer);
 		void moveUp();

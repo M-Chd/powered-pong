@@ -20,12 +20,17 @@ namespace UI
 		Button(const ButtonDescription& desc,
 			SDL_Renderer* r,
 			TTF_Font* font,
-			SDL_Color color);
+			SDL_Color color) : txt(desc.position), 
+			action{ desc.menuID,desc.action }, normalColor(color), selectedColor({ 255,255,0,255 })
+		{
+			setLayerText(txt, r, font, desc.txt.data(), color);
+		}
+
 
 		Action getAction() const { return action; }
 		void render(SDL_Renderer* renderer);
 
-		void setSelected(bool selected);
+		void setSelected(bool selected) { this->selected = selected; }
 
 	private:
 		UILayer txt;

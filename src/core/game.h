@@ -14,6 +14,8 @@
 
 namespace UI { struct View; }
 
+constexpr float MENU_REPEAT_DELAY = 0.15f;
+
 namespace Core
 {
 	struct Game
@@ -41,6 +43,8 @@ namespace Core
 		System::InputManager inputmngr;
 		GameState state;
 		float pauseTimer = 0.f;
+		float menuInputTimer = 0.f;
+		bool running{ true };
 
 		Game(const GameConfig& config)
 		{
@@ -48,11 +52,23 @@ namespace Core
 		}
 
 		void init();
-		void run();
+		void update(float dt);
+		void render();
+		void handleMenuAction(UI::Action a);
 		bool isGameFinished() const ;
 		void quit();
 		void checkPoint();
 
+	private:
+
+		void updateMenu(float dt);
+		void updatePlay(float dt);
+		void updatePoint(float dt);
+
+		void renderMenu();
+		void renderPlay();
+
+	public:
 #ifdef _DEBUG
 		void updateDebug(float dt);
 #endif

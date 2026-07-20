@@ -12,8 +12,10 @@ namespace System
 
 		void update();
 		bool isKeyDown(SDL_Scancode key);
+		bool isKeyPressed(SDL_Scancode key);
 
 	private:
-		const Uint8* _keyBoardState = nullptr;
+		const Uint8* currentKeys{ nullptr };
+		Uint8 previousKeys[SDL_NUM_SCANCODES]{};
 	};
 }

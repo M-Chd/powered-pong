@@ -5,6 +5,9 @@
 #include <string_view>
 #include <array>
 
+constexpr int MENU_FIRST_Y = 180;
+constexpr int MENU_SPACING = 60;
+
 namespace UI
 {
 	enum class MenuID
@@ -42,35 +45,35 @@ namespace UI
 
 	constexpr std::array<ButtonDescription,4> mainMenuButtons
 	{ {
-		{"Solo",{100,50},MenuID::Solo,GameAction::None},
-		{"Multiplayer",{100,60},MenuID::Multiplayer,GameAction::None},
-		{"Options",{100,70},MenuID::Options,GameAction::None},
-		{"Quit",{100,80},MenuID::None,GameAction::Quit}
+		{"Solo",{600,MENU_FIRST_Y + MENU_SPACING * 0},MenuID::Solo,GameAction::None},
+		{"Multiplayer",{550,MENU_FIRST_Y + MENU_SPACING * 1},MenuID::Multiplayer,GameAction::None},
+		{"Options",{580,MENU_FIRST_Y + MENU_SPACING * 2},MenuID::Options,GameAction::None},
+		{"Quit",{600,MENU_FIRST_Y + MENU_SPACING * 3},MenuID::None,GameAction::Quit}
 	} };
 
 	constexpr std::array<ButtonDescription,4> soloMenuButtons
 	{{
-		{"Easy",{100,50},MenuID::None,GameAction::StartSoloEasy},
-		{"Medium",{100,60},MenuID::None,GameAction::StartSoloMedium},
-		{"Hard",{100,70},MenuID::None,GameAction::StartSoloHard},
-		{"Back",{100,80},MenuID::None,GameAction::Back}
+		{"Easy",{600,MENU_FIRST_Y + MENU_SPACING * 0},MenuID::None,GameAction::StartSoloEasy},
+		{"Medium",{580,MENU_FIRST_Y + MENU_SPACING * 1},MenuID::None,GameAction::StartSoloMedium},
+		{"Hard",{600,MENU_FIRST_Y + MENU_SPACING * 2},MenuID::None,GameAction::StartSoloHard},
+		{"Back",{600,MENU_FIRST_Y + MENU_SPACING * 3},MenuID::None,GameAction::Back}
 	}};
 
 	constexpr std::array<ButtonDescription,1> IpMenuButtons
 	{
-		{"Back",{100,70},MenuID::None,GameAction::Back}
+		{"Back",{600,MENU_FIRST_Y + MENU_SPACING * 1},MenuID::None,GameAction::Back}
 	};
 
 	constexpr std::array<ButtonDescription,3> multiPlayerButtons
 	{ {
-		{"Local Multiplayer",{100,50},MenuID::None,GameAction::StartLocalMultiplayer},
-		{"Online MultiPlayer",{100,60},MenuID::OnlineIP,GameAction::None},
-		{"Back",{100,70},MenuID::None,GameAction::Back}
+		{"Local Multiplayer",{500,MENU_FIRST_Y + MENU_SPACING * 0},MenuID::None,GameAction::StartLocalMultiplayer},
+		{"Online MultiPlayer",{500,MENU_FIRST_Y + MENU_SPACING * 1},MenuID::OnlineIP,GameAction::None},
+		{"Back",{600,MENU_FIRST_Y + MENU_SPACING * 2},MenuID::None,GameAction::Back}
 	} };
 
 	constexpr std::array<ButtonDescription,2> optionsButtons
 	{ {
-		{"Rules",{100,50},MenuID::Rules,GameAction::None },
-		{"Back",{100,60},MenuID::None,GameAction::Back}
+		{"Rules",{600,MENU_FIRST_Y + MENU_SPACING * 0},MenuID::Rules,GameAction::None },
+		{"Back",{600,MENU_FIRST_Y + MENU_SPACING * 1},MenuID::None,GameAction::Back}
 	} };
 }

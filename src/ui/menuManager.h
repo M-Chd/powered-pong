@@ -11,7 +11,8 @@ namespace UI
 	public:
 
 		void init(SDL_Renderer*,
-			TTF_Font*,
+			const std::string& fontpath,
+			int fontsize,
 			SDL_Color);
 
 		void render(SDL_Renderer*);
@@ -20,6 +21,7 @@ namespace UI
 		void moveDown();
 
 		Action activate();
+		void returnBack();
 
 		void setCurrentMenu(MenuID id);
 
@@ -27,7 +29,7 @@ namespace UI
 
 	private:
 
-		void createButtons(SDL_Renderer*,
+		void buildMenus(SDL_Renderer*,
 			TTF_Font*,
 			SDL_Color);
 

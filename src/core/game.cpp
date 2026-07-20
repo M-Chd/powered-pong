@@ -1,6 +1,7 @@
 #include "game.h"
 
 using namespace Util;
+using namespace UI;
 
 namespace Core
 {
@@ -18,6 +19,9 @@ namespace Core
 			printf("%s", e.what());
 		}
 
+		menuManager.init(windowRenderer.renderer,"../../../assets/fonts/IMPACT.ttf",40,WHITE);
+
+		/////// LOCAL MULTIPLAYER LAYOUT ////////
 		auto PlayerOnePos = Vec2{ PlayerOneDefaultPos };
 		auto PlayerTwoPos = Vec2{ PlayerTwoDefaultPos };
 
@@ -34,6 +38,124 @@ namespace Core
 			10, static_cast<float>(windowRenderer.height) - 15, 8);
 
 		state = GameState::MENU;
+	}
+
+	void Game::update(float dt)
+	{
+		switch (state)
+		{
+		case Core::Game::GameState::PAUSE:
+			//TODO
+			break;
+		case Core::Game::GameState::MENU:
+			updateMenu(dt);
+			break;
+		case Core::Game::GameState::POINT:
+			updatePoint(dt);
+			break;
+		case Core::Game::GameState::PLAY:
+			updatePlay(dt);
+			break;
+		default:
+			break;
+		}
+
+#ifdef _DEBUG
+		updateDebug(dt);
+#endif
+	}
+
+	void Game::updateMenu(float dt)
+	{
+		menuInputTimer -= dt;
+
+		if (menuInputTimer <= 0.f)
+		{
+			if (inputmngr.isKeyDown(SDL_SCANCODE_UP))
+			{
+				menuManager.moveUp();
+				menuInputTimer = MENU_REPEAT_DELAY;
+			}
+			else if (inputmngr.isKeyDown(SDL_SCANCODE_DOWN))
+			{
+				menuManager.moveDown();
+				menuInputTimer = MENU_REPEAT_DELAY;
+			}
+			else if (inputmngr.isKeyDown(SDL_SCANCODE_RETURN))
+			{
+				 handleMenuAction(menuManager.activate());
+				 menuInputTimer = MENU_REPEAT_DELAY;
+			}
+		}
+	}
+
+	void Game::updatePlay(float dt)
+	{
+		if (inputmngr.isKeyDown(SDL_SCANCODE_UP))
+			board.p2.move(-1.f, dt, board);
+		else if (inputmngr.isKeyDown(SDL_SCANCODE_DOWN))
+			board.p2.move(1.f, dt, board);
+
+		if (inputmngr.isKeyDown(SDL_SCANCODE_Z) ||
+			inputmngr.isKeyDown(SDL_SCANCODE_W))
+			board.p1.move(-1.f, dt, board);
+
+		else if (inputmngr.isKeyDown(SDL_SCANCODE_S))
+			board.p1.move(1.f, dt, board);
+
+		board.b.move(dt, board);
+
+		checkPoint();
+	}
+
+	void Game::updatePoint(float dt)
+	{
+		pauseTimer -= dt;
+
+		if (pauseTimer <= 0.f)
+			state = GameState::PLAY;
+	}
+
+	void Game::render()
+	{
+		SDL_SetRenderDrawColor(windowRenderer.renderer, 0, 0, 0, 255);
+		SDL_RenderClear(windowRenderer.renderer);
+
+		switch (state)
+		{
+		case GameState::MENU:
+			renderMenu();
+			break;
+
+		case GameState::PLAY:
+			renderPlay();
+			break;
+
+		case GameState::POINT:
+			renderPlay();
+			break;
+
+		default:
+			break;
+		}
+
+		SDL_RenderPresent(windowRenderer.renderer);
+	}
+
+	void Game::renderMenu()
+	{
+		menuManager.render(windowRenderer.renderer);
+	}
+
+	void Game::renderPlay()
+	{
+		board.drawBoard(windowRenderer.renderer);
+
+		board.b.draw(windowRenderer.renderer);
+
+		board.drawPlayers(windowRenderer.renderer);
+
+		view.drawAllUI(windowRenderer.renderer);
 	}
 
 	void Game::checkPoint()
@@ -54,6 +176,44 @@ namespace Core
 			break;
 		default:
 			break;
+		}
+	}
+
+	void Game::handleMenuAction(UI::Action a)
+	{
+		if (a.menuid != MenuID::None)
+		{
+			menuManager.setCurrentMenu(a.menuid);
+		}
+		else
+		{
+			switch (a.action)
+			{
+			case GameAction::StartSoloEasy:
+				// creer une partie Easy;
+				state = GameState::PLAY;
+				break;
+			case GameAction::StartSoloMedium:
+				// creer une partie Medium;
+				state = GameState::PLAY;
+				break;
+			case GameAction::StartSoloHard:
+				// creer une partie hard;
+				state = GameState::PLAY;
+				break;
+			case GameAction::StartLocalMultiplayer:
+				// creer une partie standard;
+				state = GameState::PLAY;
+				break;
+			case GameAction::Back:
+				menuManager.returnBack();
+				break;
+			case GameAction::Quit:
+				running = false;
+				break;
+			default:
+				break;
+			}
 		}
 	}
 

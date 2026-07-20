@@ -26,13 +26,47 @@ namespace UI
 
 		UILayer(const UILayer&) = delete;
 		UILayer& operator=(const UILayer&) = delete;
-		UILayer(UILayer&&) = default;
-		UILayer& operator=(UILayer&&) = default;
+		
+		UILayer(UILayer&& other) noexcept
+			: position(other.position),
+			  destRect(other.destRect),
+			  texture(other.texture),
+			  ownsTexture(other.ownsTexture)
+		{
+			other.texture = nullptr;
+			other.ownsTexture = false;
+		}
+		UILayer& operator=(UILayer&& other) noexcept
+		{
+			if (this != &other)
+			{
+				if (texture && ownsTexture)
+					SDL_DestroyTexture(texture);
+
+				position = other.position;
+				destRect = other.destRect;
+				texture = other.texture;
+				ownsTexture = other.ownsTexture;
+
+				other.texture = nullptr;
+				other.ownsTexture = false;
+			}
+
+			return *this;
+		}
 
 		void render(SDL_Renderer* r) const
 		{
-			if (!texture) return;
-			SDL_RenderCopy(r, texture, nullptr, &destRect);
+			if (!texture)
+			{
+				printf("Texture nullptr\n");
+				return;
+			}
+
+			if (SDL_RenderCopy(r, texture, nullptr, &destRect) != 0)
+			{
+				printf("%s\n", SDL_GetError());
+			}
 		}
 
 		void setTexture(SDL_Texture* tex, bool ownerShip = true)
@@ -42,10 +76,17 @@ namespace UI
 			ownsTexture = ownerShip;
  
 			if (texture)
+			{
 				SDL_QueryTexture(texture, nullptr, nullptr, &destRect.w, &destRect.h);
- 
+			}
 			destRect.x = static_cast<int>(position.x);
 			destRect.y = static_cast<int>(position.y);
+		}
+
+		void setColor(SDL_Color c)
+		{
+			if (texture)
+				SDL_SetTextureColorMod(texture, c.r, c.g, c.b);
 		}
 
 		void setPosition(Util::Vec2 pos)

@@ -17,6 +17,14 @@ namespace Entities
 		HUMAN,BOT
 	};
 
+	enum class AILevel
+	{
+		NONE,
+		EASY,
+		MEDIUM,
+		HARD
+	};
+
 	class Player
 	{
 	public:
@@ -57,6 +65,7 @@ namespace Entities
 		Util::Vec2 _speed = { 0.0f,1.0f };
 		unsigned int _score{ 0 };
 		PlayerType _type = PlayerType::HUMAN;
+		AILevel aiLevel = AILevel::NONE;
 
 	public:
 
@@ -89,6 +98,7 @@ namespace Entities
 		}
 		void setSpeed(Util::Vec2 newS) { this->_speed = newS; }
 		void setEffect(PlayerEffect e) { this->_effect = e; }
+		void setType(PlayerType type) { this->_type = type; }
 		
 
 		float getLength() const { return _length; }
@@ -99,6 +109,7 @@ namespace Entities
 		unsigned int getScore() const { return _score; }
 		PlayerEffect getEffect() const { return _effect; }
 		float getPower() const { return _power; }
+		PlayerType getType() const { return _type; }
 
 		Util::Vec2 getCenter() const { return _center; }
 		Item* getItem() const { if (_currentItem) return _currentItem; }

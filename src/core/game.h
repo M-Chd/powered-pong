@@ -11,6 +11,7 @@
 #include "util.h"
 #include "debugOverlay.h"
 #include "menuManager.h"
+#include "match.h"
 
 namespace UI { struct View; }
 
@@ -28,28 +29,14 @@ namespace Core
 			PLAY
 		};
 
-		WindowRenderer windowRenderer;
-		GameConfig config;
-		Board board;
-		UI::View view;
-		UI::ScoreBoard scoreboard;
-		UI::MenuManager menuManager;
-
-#ifdef _DEBUG
-		UI::DebugOverlay debugOverlay;
-#endif
-
-		System::TextureCache cache;
-		System::InputManager inputmngr;
-		GameState state;
-		float pauseTimer = 0.f;
-		float menuInputTimer = 0.f;
-		bool running{ true };
-
-		Game(const GameConfig& config)
+		enum class GameDifficulty
 		{
-			init();
-		}
+			EASY,
+			MEDIUM,
+			HARD
+		};
+
+		Game(const GameConfig& config) { init(); }
 
 		void init();
 		void update(float dt);
@@ -64,13 +51,30 @@ namespace Core
 		void updateMenu(float dt);
 		void updatePlay(float dt);
 		void updatePoint(float dt);
-
 		void renderMenu();
 		void renderPlay();
 
 	public:
+		WindowRenderer windowRenderer;
+		GameConfig config;
+		Match currentmatch;
+		UI::View view;
+		UI::ScoreBoard scoreboard;
+		UI::MenuManager menuManager;
+#ifdef _DEBUG
+		UI::DebugOverlay debugOverlay;
+#endif
+		System::TextureCache cache;
+		System::InputManager inputmngr;
+		GameState state;
+		float pauseTimer = 0.f;
+		float menuInputTimer = 0.f;
+		bool running{ true };
+
 #ifdef _DEBUG
 		void updateDebug(float dt);
 #endif
 	};
+
+	inline Game::GameDifficulty actionToDifficulty(UI::GameAction&);
 }

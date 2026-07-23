@@ -1,5 +1,4 @@
 #include "game.h"
-#include "layout.hpp"
 
 using namespace Util;
 using namespace UI;
@@ -180,6 +179,25 @@ namespace Core
 		}
 	}
 
+	inline Game::GameDifficulty actionToDifficulty(GameAction& a)
+	{
+		switch (a)
+		{
+		case GameAction::StartSoloEasy:
+			return Game::GameDifficulty::EASY;
+			break;
+		case GameAction::StartSoloMedium:
+			return Game::GameDifficulty::MEDIUM;
+			break;
+		case GameAction::StartSoloHard:
+			return Game::GameDifficulty::HARD;
+			break;
+		default:
+			return Game::GameDifficulty::EASY;
+			break;
+		}
+	}
+
 	void Game::handleMenuAction(UI::Action a)
 	{
 		if (a.menuid != MenuID::None)
@@ -191,7 +209,7 @@ namespace Core
 			switch (a.action)
 			{
 			case GameAction::StartSoloEasy:
-				// creer une partie Easy;
+				currentmatch = Match(GameAction::StartSoloEasy);
 				state = GameState::PLAY;
 				break;
 			case GameAction::StartSoloMedium:
@@ -242,7 +260,6 @@ namespace Core
 		});
 	}
 #endif 
-
 
 	void Game::quit()
 	{

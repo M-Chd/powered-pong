@@ -43,6 +43,9 @@
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menuManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\match.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\board.h">
@@ -70,6 +73,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menuManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\difficulty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\matchEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

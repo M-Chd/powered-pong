@@ -12,6 +12,8 @@
 #include "debugOverlay.h"
 #include "menuManager.h"
 #include "match.h"
+#include "difficulty.h"
+#include "matchEvent.h"
 
 namespace UI { struct View; }
 
@@ -29,22 +31,13 @@ namespace Core
 			PLAY
 		};
 
-		enum class GameDifficulty
-		{
-			EASY,
-			MEDIUM,
-			HARD
-		};
-
 		Game(const GameConfig& config) { init(); }
 
 		void init();
 		void update(float dt);
 		void render();
 		void handleMenuAction(UI::Action a);
-		bool isGameFinished() const ;
 		void quit();
-		void checkPoint();
 
 	private:
 
@@ -76,5 +69,5 @@ namespace Core
 #endif
 	};
 
-	inline Game::GameDifficulty actionToDifficulty(UI::GameAction&);
+	inline GameDifficulty actionToDifficulty(UI::GameAction&);
 }

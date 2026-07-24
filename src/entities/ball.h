@@ -4,7 +4,7 @@
 #include "util/Vector2.hpp"
 #include <SDL2/SDL.h>
 
-namespace Core { struct Board; }
+namespace Core { struct Board; class Match; }
 
 constexpr double MAX_BOUNCE_ANGLE{ 30.f * M_PI / 180.f };
 constexpr Util::Vec2 BALL_INITIAL_POS{ 640,360 };
@@ -13,13 +13,15 @@ constexpr Util::Vec2 DEFAULT_BALL_SPEED_MINUS{ -580.0f,0.0f };
 
 namespace Entities {
 
+	class Player;
+
 	class Ball
 	{
 	public:
 
-		void move(float dt,const Core::Board& board);
+		void move(float dt, Core::Match&);
 		void draw(SDL_Renderer* renderer);
-		void checkColisions(const Core::Board& board, float bounce);
+		void checkColisions(Core::Match&, float bounce);
 		bool isInside(const Util::Vec2& p) const;
 
 	public:
@@ -55,7 +57,7 @@ namespace Entities {
 
 	private:
 
-		void checkPlayerCollisions(const Core::Board& b, float bounce);
+		void checkPlayerCollisions(const Player&, const Player&, float bounce);
 
 	private:
 

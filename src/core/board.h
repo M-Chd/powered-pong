@@ -16,11 +16,7 @@ namespace Core
 		int length = l + offsetX;
 
 		void drawBoard(SDL_Renderer* renderer) const;
-		void drawBall(SDL_Renderer* renderer);
-		void drawPlayers(SDL_Renderer* renderer);
-		void drawItems(SDL_Renderer* renderer);
-		void drawPlayerUI(SDL_Renderer* r, Entities::Player& p, int x, int y);
-		int checkBallPoint() const;
-		void setupRound(Entities::Player& p, Util::Vec2 speed);
+		int checkBallPoint(Entities::Ball&,Entities::Player&,
+			Entities::Player&) const;
 	};
 }

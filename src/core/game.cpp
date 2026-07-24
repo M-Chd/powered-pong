@@ -21,14 +21,6 @@ namespace Core
 
 		menuManager.init(windowRenderer.renderer,"../../../assets/fonts/IMPACT.ttf",50,WHITE);
 
-		/////// LOCAL MULTIPLAYER LAYOUT ////////
-		auto PlayerOnePos = Vec2{ PlayerOneDefaultPos };
-		auto PlayerTwoPos = Vec2{ PlayerTwoDefaultPos };
-
-		board.p1.setCenter(PlayerOnePos);
-		board.p2.setCenter(PlayerTwoPos);
-		board.b.setSpeed(DEFAULT_BALL_SPEED);
-
 		scoreboard.init(view, windowRenderer.renderer,
 			"../../../assets/fonts/Beach-Ball.ttf", 30, WHITE,
 			{ 10,20 }, { 1100, 20 });
@@ -91,21 +83,34 @@ namespace Core
 
 	void Game::updatePlay(float dt)
 	{
-		if (inputmngr.isKeyDown(SDL_SCANCODE_UP))
-			board.p2.move(-1.f, dt, board);
-		else if (inputmngr.isKeyDown(SDL_SCANCODE_DOWN))
-			board.p2.move(1.f, dt, board);
+		MatchEvent e = currentmatch.update(dt, inputmngr);
 
-		if (inputmngr.isKeyDown(SDL_SCANCODE_Z) ||
-			inputmngr.isKeyDown(SDL_SCANCODE_W))
-			board.p1.move(-1.f, dt, board);
+		switch(e)
+		{
+		case MatchEvent::PointScored:
 
-		else if (inputmngr.isKeyDown(SDL_SCANCODE_S))
-			board.p1.move(1.f, dt, board);
+			scoreboard.update(
+				windowRenderer.renderer,
+				currentmatch.getPlayerOne().getScore(),
+				currentmatch.getPlayerTwo().getScore());
 
-		board.b.move(dt, board);
+			pauseTimer = 1.f;
+			state = GameState::POINT;
+			break;
 
-		checkPoint();
+		case MatchEvent::MatchFinished:
+
+			scoreboard.update(
+				windowRenderer.renderer,
+				currentmatch.getPlayerOne().getScore(),
+				currentmatch.getPlayerTwo().getScore());
+
+			state = GameState::MENU;
+			break;
+
+		default:
+			break;
+		}
 	}
 
 	void Game::updatePoint(float dt)
@@ -149,51 +154,26 @@ namespace Core
 
 	void Game::renderPlay()
 	{
-		board.drawBoard(windowRenderer.renderer);
-
-		board.b.draw(windowRenderer.renderer);
-
-		board.drawPlayers(windowRenderer.renderer);
+		currentmatch.render(windowRenderer.renderer);
 
 		view.drawAllUI(windowRenderer.renderer);
 	}
 
-	void Game::checkPoint()
-	{
-		switch (board.checkBallPoint())
-		{
-		case 1:
-			board.setupRound(board.p2, DEFAULT_BALL_SPEED_MINUS);
-			scoreboard.update(windowRenderer.renderer, board.p1.getScore(), board.p2.getScore());
-			state = GameState::POINT;
-			pauseTimer = 1.0f;
-			break;
-		case -1:
-			board.setupRound(board.p1, DEFAULT_BALL_SPEED);
-			scoreboard.update(windowRenderer.renderer, board.p1.getScore(), board.p2.getScore());
-			state = GameState::POINT;
-			pauseTimer = 1.0f;
-			break;
-		default:
-			break;
-		}
-	}
-
-	inline Game::GameDifficulty actionToDifficulty(GameAction& a)
+	inline GameDifficulty actionToDifficulty(GameAction& a)
 	{
 		switch (a)
 		{
 		case GameAction::StartSoloEasy:
-			return Game::GameDifficulty::EASY;
+			return GameDifficulty::EASY;
 			break;
 		case GameAction::StartSoloMedium:
-			return Game::GameDifficulty::MEDIUM;
+			return GameDifficulty::MEDIUM;
 			break;
 		case GameAction::StartSoloHard:
-			return Game::GameDifficulty::HARD;
+			return GameDifficulty::HARD;
 			break;
 		default:
-			return Game::GameDifficulty::EASY;
+			return GameDifficulty::EASY;
 			break;
 		}
 	}
@@ -209,19 +189,35 @@ namespace Core
 			switch (a.action)
 			{
 			case GameAction::StartSoloEasy:
-				currentmatch = Match(GameAction::StartSoloEasy);
+				currentmatch = Match(
+					Match::MatchSettings{
+						.type = Match::MatchType::Solo,
+						.difficulty = GameDifficulty::EASY
+					});
 				state = GameState::PLAY;
 				break;
 			case GameAction::StartSoloMedium:
-				// creer une partie Medium;
+				currentmatch = Match(
+					Match::MatchSettings{
+						.type = Match::MatchType::Solo,
+						.difficulty = GameDifficulty::MEDIUM
+					});
 				state = GameState::PLAY;
 				break;
 			case GameAction::StartSoloHard:
-				// creer une partie hard;
+				currentmatch = Match(
+					Match::MatchSettings{
+						.type = Match::MatchType::Solo,
+						.difficulty = GameDifficulty::HARD
+					});
 				state = GameState::PLAY;
 				break;
 			case GameAction::StartLocalMultiplayer:
-				// creer une partie standard;
+				currentmatch = Match(
+					Match::MatchSettings{
+						.type = Match::MatchType::Multi,
+						.difficulty = GameDifficulty::NONE
+					});
 				state = GameState::PLAY;
 				break;
 			case GameAction::Back:
@@ -236,27 +232,26 @@ namespace Core
 		}
 	}
 
-	bool Game::isGameFinished() const
-	{
-		return (board.p1.getScore() > winscore) || (board.p2.getScore() > winscore);
-	}
-
 #ifdef _DEBUG
 	void Game::updateDebug(float dt)
 	{
-		auto ballPos = board.b.getCenter();
-		auto p1Pos = board.p1.getCenter();
-		auto p2Pos = board.p2.getCenter();
+		auto& ball = currentmatch.getBall();
+		auto& p_one = currentmatch.getPlayerOne();
+		auto& p_two = currentmatch.getPlayerTwo();
+
+		auto ballPos = ball.getCenter();
+		auto p1Pos = p_one.getCenter();
+		auto p2Pos = p_two.getCenter();
 
 		debugOverlay.update(windowRenderer.renderer, {
 			"Ball pos: (" + fmt(ballPos.x) + ", " + fmt(ballPos.y) + ")",
-			"Ball speed X: " + fmt(board.b.getSpeed().x),
-			"Ball speed Y: " + fmt(board.b.getSpeed().y),
+			"Ball speed X: " + fmt(ball.getSpeed().x),
+			"Ball speed Y: " + fmt(ball.getSpeed().y),
 			"P1 pos: (" + fmt(p1Pos.x) + ", " + fmt(p1Pos.y) + ")",
 			"P2 pos: (" + fmt(p2Pos.x) + ", " + fmt(p2Pos.y) + ")",
 			"State: " + std::to_string(static_cast<int>(state)),
-			"frame time: " + fmt(1.0 / static_cast<float>(dt)),
-			"Current Ball effect: " + std::to_string(static_cast<int>(board.b.getBallEffect()))
+			"frame time: " + fmt(1.0f / static_cast<float>(dt)),
+			"Current Ball effect: " + std::to_string(static_cast<int>(ball.getBallEffect()))
 		});
 	}
 #endif 

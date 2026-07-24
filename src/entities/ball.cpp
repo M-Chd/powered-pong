@@ -1,11 +1,12 @@
 #include "ball.h"
-#include "board.h"
+#include "match.h"
+#include "player.h"
 
 #include <algorithm>
 
 namespace Entities
 {
-	void Ball::move(float dt, const Core::Board& board)
+	void Ball::move(float dt, Core::Match& match)
 	{
 		float bounce = -1.0f;
 
@@ -13,29 +14,31 @@ namespace Entities
 		{
 		case BallEffect::EXPLOSIVE_BALL:
 			_center += _speed * dt;
-			checkColisions(board, bounce * 1.1);
+			checkColisions(match, bounce * 1.1f);
 			break;
 		case BallEffect::SPEED_BALL:
 			_center += _speed * 1.5 * dt;
-			checkColisions(board, bounce);
+			checkColisions(match, bounce);
 			break;
 		case BallEffect::TELEPORT_BALL:
 			break;
 		default:
 			_center += _speed * dt;
-			checkColisions(board, bounce);
+			checkColisions(match, bounce);
 			break;
 		}
 	}
 
-	void Ball::checkColisions(const Core::Board& board, float bounce)
+	void Ball::checkColisions(Core::Match& match, float bounce)
 	{
 		float edgeX = _center.x + _radius;
 		float edgeMinusX = _center.x - _radius;
 		float edgeY = _center.y + _radius;
 		float edgeMinusY = _center.y - _radius;
 
-		checkPlayerCollisions(board, bounce);
+		auto& board = match.getBoard();
+
+		checkPlayerCollisions(match.getPlayerOne(),match.getPlayerTwo(), bounce);
 
 		if (edgeY >= board.height)
 		{
@@ -59,9 +62,8 @@ namespace Entities
 		}
 	}
 
-	void Ball::checkPlayerCollisions(const Core::Board& b, float bounce)
+	void Ball::checkPlayerCollisions(const Player& p1, const Player& p2, float bounce)
 	{
-		const auto& p1 = b.p1;
 		float closestX = std::clamp(_center.x, p1.getCenter().x - p1.getRadiusX(), p1.getCenter().x + p1.getRadiusX());
 		float closestY = std::clamp(_center.y, p1.getCenter().y - p1.getRadiusY(), p1.getCenter().y + p1.getRadiusY());
 
@@ -81,7 +83,6 @@ namespace Entities
 			_center.x = p1.getCenter().x + p1.getRadiusX() + _radius;
 		}
 
-		const auto& p2 = b.p2;
 		float closestX2 = std::clamp(_center.x, p2.getCenter().x - p2.getRadiusX(), p2.getCenter().x + p2.getRadiusX());
 		float closestY2 = std::clamp(_center.y, p2.getCenter().y - p2.getRadiusY(), p2.getCenter().y + p2.getRadiusY());
 

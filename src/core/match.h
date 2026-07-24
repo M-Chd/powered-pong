@@ -1,6 +1,11 @@
 #pragma once
 
-#include "game.h"
+#include "player.h"
+#include "ball.h"
+#include "board.h"
+#include "inputManager.h"
+#include "difficulty.h"
+#include "matchEvent.h"
 
 namespace Core
 {	
@@ -14,10 +19,10 @@ namespace Core
 			maxItemCount(maxItCnt), numberOfPlayers(nbrPlayers), numberOfBalls(nbrBalls),
 			itemRdmRate(itemRdRate), allowPowerUps(allowPwUps) { }
 
-		int getWinScore() const { return winScore; }
-		int getMaxItemCount() const { return maxItemCount; }
-		int getNumberOfPlayer() const { return numberOfPlayers; }
-		int getNumberOfBalls() const { return numberOfBalls; }
+		unsigned int getWinScore() const { return winScore; }
+		unsigned int getMaxItemCount() const { return maxItemCount; }
+		unsigned int getNumberOfPlayer() const { return numberOfPlayers; }
+		unsigned int getNumberOfBalls() const { return numberOfBalls; }
 		float getItemRndmRate() const { return itemRdmRate; }
 		bool isPowerUpsAllowed() const { return allowPowerUps; }
 
@@ -34,10 +39,27 @@ namespace Core
 	{
 	public:
 
-		Match(UI::GameAction&);
+		enum class MatchType
+		{
+			Solo,Multi
+		};
 
-		void update(int);
+		struct MatchSettings
+		{
+			MatchType type{};
+			GameDifficulty difficulty{};
+		};
+
+	public:
+
+		Match(){}
+		Match(MatchSettings);
+
+		MatchEvent update(float, System::InputManager&);
 		void render(SDL_Renderer*);
+		bool isFinished();
+		void updateAI(float);
+		MatchEvent checkPoint();
 
 		void setPlayerTwoType(Entities::PlayerType type) { playerTwo.setType(type); }
 		std::vector<Entities::Item>& getItems() { return items; }
@@ -45,9 +67,12 @@ namespace Core
 		Entities::Player& getPlayerOne() { return playerOne; }
 		Entities::Player& getPlayerTwo() { return playerTwo; }
 		Entities::Ball& getBall() { return ball; }
+		Board& getBoard() { return board; }
 		void setRules(Rules& r) { rules = r; }
 		Rules& getRules() { return rules; }
-		Board& getBoard() { return board; }
+	private:
+
+		void setupRound(Entities::Player&,const Util::Vec2&);
 
 	private:
 		Entities::Player playerOne;

@@ -13,7 +13,7 @@ add_executable(PoweredPong
     src/core/game.cpp
   "src/core/board.h" "src/core/board.cpp" "src/entities/item.cpp" "src/core/gameConfig.h" 
   "src/core/gameConfig.cpp" "src/util/vector2.cpp" "src/core/inputManager.h" 
-  "src/core/inputManager.cpp" "src/ui/view.h" "src/ui/scoreBoard.cpp" "src/core/textureCache.h" "src/util/util.h" "src/ui/debugOverlay.h" "src/ui/debugOverlay.cpp" "src/ui/menu.h" "src/ui/menuManager.h" "src/ui/menu.cpp" "src/ui/menuManager.cpp" "src/core/match.cpp" )
+  "src/core/inputManager.cpp" "src/ui/view.h" "src/ui/scoreBoard.cpp" "src/core/textureCache.h" "src/util/util.h" "src/ui/debugOverlay.h" "src/ui/debugOverlay.cpp" "src/ui/menu.h" "src/ui/menuManager.h" "src/ui/menu.cpp" "src/ui/menuManager.cpp" "src/core/match.cpp"  "src/core/difficulty.h" "src/core/matchEvent.h")
 
 target_include_directories(PoweredPong PRIVATE
     src

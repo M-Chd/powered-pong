@@ -1,11 +1,11 @@
 #include "match.h"
 
-using namespace UI;
 using namespace Entities;
+using namespace System;
 
 namespace Core
 {
-	Match::Match(GameAction& gameAction)
+	Match::Match(MatchSettings settings)
 	{
 		ball.setPosition(BALL_INITIAL_POS);
 		playerOne.setCenter(PlayerOneDefaultPos);
@@ -15,35 +15,126 @@ namespace Core
 
 		items.reserve(3);
 
-		auto difficulty = actionToDifficulty(gameAction);
-
-		switch (difficulty)
+		switch (settings.type)
 		{
-		case Game::GameDifficulty::EASY:
-			setPlayerTwoType(PlayerType::BOT);
-			//Ai player wip
+		case MatchType::Solo:
+
+			switch (settings.difficulty)
+			{
+			case GameDifficulty::EASY:
+				setPlayerTwoType(PlayerType::BOT);
+				//Ai player wip
+				break;
+			case GameDifficulty::MEDIUM:
+				setPlayerTwoType(PlayerType::BOT);
+				//AI player wip
+				break;
+			case GameDifficulty::HARD:
+				setPlayerTwoType(PlayerType::BOT);
+				//AI player wip
+				break;
+			default:
+				break;
+			}
 			break;
-		case Game::GameDifficulty::MEDIUM:
-			setPlayerTwoType(PlayerType::BOT);
-			//AI player wip
-			break;
-		case Game::GameDifficulty::HARD:
-			setPlayerTwoType(PlayerType::BOT);
-			//AI player wip
-			break;
-		default:
+		case MatchType::Multi:
 			break;
 		}
+	}
 
-		if (gameAction == GameAction::StartLocalMultiplayer)
+	MatchEvent Match::update(float dt, System::InputManager& inputmngr)
+	{
+		if (inputmngr.isKeyDown(SDL_SCANCODE_Z) ||
+			inputmngr.isKeyDown(SDL_SCANCODE_W))
 		{
-			//TODO
+			playerOne.move(-1.0f, dt, board);
 		}
+		else if (inputmngr.isKeyDown(SDL_SCANCODE_S))
+		{
+			playerOne.move(1.0f, dt, board);
+		}
+
+		if (playerTwo.getType() == PlayerType::HUMAN)
+		{
+			if (inputmngr.isKeyDown(SDL_SCANCODE_UP))
+				playerTwo.move(-1.0f, dt, board);
+			else if (inputmngr.isKeyDown(SDL_SCANCODE_DOWN))
+				playerTwo.move(1.0f, dt, board);
+		}
+		else if (playerTwo.getType() == PlayerType::BOT)
+		{
+			updateAI(dt);
+		}
+
+		ball.move(dt, *this);
+
+		return checkPoint();
+	}
+
+	MatchEvent Match::checkPoint()
+	{
+		switch(board.checkBallPoint(ball, playerOne, playerTwo))
+		{
+        case 1:
+            setupRound(playerTwo, DEFAULT_BALL_SPEED_MINUS);
+
+            if (isFinished())
+                return MatchEvent::MatchFinished;
+
+            return MatchEvent::PointScored;
+
+        case -1:
+            setupRound(playerOne, DEFAULT_BALL_SPEED);
+
+            if (isFinished())
+                return MatchEvent::MatchFinished;
+
+            return MatchEvent::PointScored;
+		}
+
+		return MatchEvent::None;
+	}
+
+	void Match::setupRound(Player& p, const Util::Vec2& ballSpeed)
+	{
+		ball.setPosition(BALL_INITIAL_POS);
+		playerOne.setCenter(PlayerOneDefaultPos);
+		playerTwo.setCenter(PlayerTwoDefaultPos);
+		
+		if (ball.getBallEffect() == Entities::BallEffect::MULTIPLICATOR)
+			p.addPoint(2);
+		else
+			p.addPoint();
+
+		ball.setSpeed(ballSpeed);
+	}
+
+	void Match::updateAI(float dt)
+	{
+
+	}
+
+	void Match::render(SDL_Renderer* r)
+	{
+		board.drawBoard(r);
+		ball.draw(r);
+
+		//for (auto& i : items)
+			//i.draw(r);
+
+		playerOne.draw(r);
+		playerTwo.draw(r);
+	}
+
+	bool Match::isFinished()
+	{
+		return (playerOne.getScore() >= rules.getWinScore()) ||
+			(playerTwo.getScore() >= rules.getWinScore());
 	}
 
 	Entities::Item* Core::Match::getItemAt(int index)
 	{
-		if (!items.empty() && index < items.size())
+		if (!items.empty() && index < items.size() && index > 0)
 		{
 			return &items[index];
 		}

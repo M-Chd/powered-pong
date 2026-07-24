@@ -452,6 +452,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menuManager.h" />
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menu.cpp" />
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menuManager.cpp" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\match.cpp" />
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\difficulty.h" />
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\matchEvent.h" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

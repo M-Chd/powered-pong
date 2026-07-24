@@ -6,6 +6,7 @@
 #include "inputManager.h"
 #include "difficulty.h"
 #include "matchEvent.h"
+#include "aiController.h"
 
 namespace Core
 {	
@@ -27,8 +28,8 @@ namespace Core
 		bool isPowerUpsAllowed() const { return allowPowerUps; }
 
 	private:
-		unsigned int	winScore{5};
-		unsigned int	maxItemCount{1};
+		unsigned int	winScore{ 5 };
+		unsigned int	maxItemCount{ 1 };
 		unsigned int	numberOfPlayers{ 2 };
 		unsigned int	numberOfBalls{ 1 };
 		float			itemRdmRate{ 0.10f };
@@ -70,6 +71,7 @@ namespace Core
 		Board& getBoard() { return board; }
 		void setRules(Rules& r) { rules = r; }
 		Rules& getRules() { return rules; }
+
 	private:
 
 		void setupRound(Entities::Player&,const Util::Vec2&);
@@ -81,5 +83,6 @@ namespace Core
 		Board board;
 		std::vector<Entities::Item> items;
 		Rules rules;
+		AIController aiController;
 	};
 }

@@ -74,9 +74,9 @@ namespace Entities
 		_score += n;
 	}
 
-	void Player::draw(SDL_Renderer* renderer)
+	void Player::draw(SDL_Renderer* renderer) const
 	{
-		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+		SDL_SetRenderDrawColor(renderer, _color.r, _color.g, _color.b, _color.a);
 		SDL_Rect rect = { (int)(_center.x) - (int)_radiusX,(int)_center.y - (int)_radiusY,(int)_length,(int)_height };
 		SDL_RenderFillRect(renderer, &rect);
 	}
@@ -89,7 +89,7 @@ namespace Entities
 
 	void Player::AcquireItem(Item i)
 	{
-#ifdef DEBUG
+#ifdef _DEBUG
 		printf("new Item collected");
 #endif // DEBUG
 		if (!_currentItem) _currentItem = &i;

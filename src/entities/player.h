@@ -31,7 +31,7 @@ namespace Entities
 
 		void useItem(Ball* ball);
 		void move(float dy,float dt,const Core::Board& board);
-		void draw(SDL_Renderer* renderer);
+		void draw(SDL_Renderer* renderer) const;
 		void checkColisions(const Core::Board& board);
 		bool isInside(const Util::Vec2& p) const;
 		void AcquireItem(Item i);
@@ -65,7 +65,8 @@ namespace Entities
 		Util::Vec2 _speed = { 0.0f,1.0f };
 		unsigned int _score{ 0 };
 		PlayerType _type = PlayerType::HUMAN;
-		AILevel aiLevel = AILevel::NONE;
+		AILevel _aiLevel = AILevel::NONE;
+		SDL_Color _color = WHITE;
 
 	public:
 
@@ -99,12 +100,14 @@ namespace Entities
 		void setSpeed(Util::Vec2 newS) { this->_speed = newS; }
 		void setEffect(PlayerEffect e) { this->_effect = e; }
 		void setType(PlayerType type) { this->_type = type; }
+		void setColor(SDL_Color color) { this->_color = color;  }
 		
 
 		float getLength() const { return _length; }
 		float getHeight() const { return _height; }
 		float getRadiusX() const { return _radiusX; }
 		float getRadiusY() const { return _radiusY; }
+		SDL_Color getColor() const { return _color; }
 		Util::Vec2 getSpeed() const { return _speed; }
 		unsigned int getScore() const { return _score; }
 		PlayerEffect getEffect() const { return _effect; }

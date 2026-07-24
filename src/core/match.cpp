@@ -23,21 +23,22 @@ namespace Core
 			{
 			case GameDifficulty::EASY:
 				setPlayerTwoType(PlayerType::BOT);
-				//Ai player wip
+				aiController.setDifficulty(settings.difficulty);
 				break;
 			case GameDifficulty::MEDIUM:
 				setPlayerTwoType(PlayerType::BOT);
-				//AI player wip
+				aiController.setDifficulty(settings.difficulty);
 				break;
 			case GameDifficulty::HARD:
 				setPlayerTwoType(PlayerType::BOT);
-				//AI player wip
+				aiController.setDifficulty(settings.difficulty);
 				break;
 			default:
 				break;
 			}
 			break;
 		case MatchType::Multi:
+			playerTwo.setColor(GRAY);
 			break;
 		}
 	}
@@ -111,7 +112,19 @@ namespace Core
 
 	void Match::updateAI(float dt)
 	{
+		aiController.update(dt, ball, playerTwo, board);
 
+		switch (aiController.getDecision())
+		{
+		case Decision::MoveUp:
+			playerTwo.move(-1.0f, dt, board);
+			break;
+		case Decision::MoveDown:
+			playerTwo.move(1.0f, dt, board);
+			break;
+		default:
+			break;
+		}
 	}
 
 	void Match::render(SDL_Renderer* r)

@@ -97,6 +97,13 @@ namespace Entities
 				this->_power = newP;
 			}
 		}
+		void setScore(int score)
+		{
+			if (score > 0)
+			{
+				this->_score = score;
+			}
+		}
 		void setSpeed(Util::Vec2 newS) { this->_speed = newS; }
 		void setEffect(PlayerEffect e) { this->_effect = e; }
 		void setType(PlayerType type) { this->_type = type; }

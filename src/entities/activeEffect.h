@@ -26,9 +26,4 @@ namespace Entities
 		std::variant<Ball*, Player*> target{};
 		bool isFinished{ false };	
 	};
-
-	constexpr Util::Vec2 yAxisItemSpawns[6] =
-	{
-		//TODO
-	};
 }

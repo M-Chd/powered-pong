@@ -1,6 +1,9 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include "vector2.hpp"
+
+#include <array>
+
 //##################################################################|
 #define WHITE      { 255, 255, 255, 255 } // Ball default color
 #define CYAN       {   0, 255, 255, 255 } // Speed ball effect color
@@ -12,7 +15,30 @@
 #define GRAY       { 128, 128, 128, 255 } // Slowness player color
 //##################################################################|
 
-namespace Entities {
+namespace Entities
+{
+	constexpr std::array<Util::Vec2,8> ITEM_SPAWNS =
+	{
+		Util::Vec2{400.f, 150.f},
+		Util::Vec2{400.f, 250.f},
+		Util::Vec2{400.f, 350.f},
+		Util::Vec2{550.f, 180.f},
+		Util::Vec2{550.f, 320.f},
+		Util::Vec2{700.f, 150.f},
+		Util::Vec2{700.f, 250.f},
+		Util::Vec2{700.f, 350.f},
+	};
+
+	constexpr std::array<float, 7> ITEM_DURATIONS =
+	{
+		5.f,  // SPEED
+		5.f,  // TELEPORT
+		4.f,  // EXPLOSIVE
+		5.f,  // SLOWNESS
+		8.f,  // POWER
+		7.f,  // PLAYER_SPEED
+		10.f  // MULTIPLICATOR
+	};
 
 	enum class PlayerEffect
 	{
@@ -83,12 +109,15 @@ namespace Entities {
 		float getDuration() const { return _duration; }
 		Util::Vec2 getPosition() const { return _position; }
 		void setPosition(Util::Vec2 pos) { _position = pos; }
+		void draw(SDL_Renderer*);
+		bool isInside(Util::Vec2);
 
 	private:
 		ItemType _type;
 		SDL_Color _color = {};
-		Util::Vec2 _position{};
-		float _radiusEffectSize{ 1.0f };
+		Util::Vec2 _position{}; //upperLeft point
+		float _size{ 20.0f };
 		float _duration{}; // in second
+		SDL_Texture* _icon = nullptr;
 	};
 }

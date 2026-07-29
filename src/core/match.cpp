@@ -1,5 +1,7 @@
 #include "match.h"
 
+#include <random>
+
 using namespace Entities;
 using namespace System;
 
@@ -10,6 +12,9 @@ namespace Core
 		ball.setPosition(BALL_INITIAL_POS);
 		playerOne.setCenter(PlayerOneDefaultPos);
 		playerTwo.setCenter(PlayerTwoDefaultPos);
+
+		playerOne.setScore(0);
+		playerTwo.setScore(0);
 
 		ball.setSpeed(DEFAULT_BALL_SPEED);
 
@@ -67,6 +72,19 @@ namespace Core
 			updateAI(dt);
 		}
 
+		rules.reduceItemSpawnTimer(dt);
+
+		if (items.empty())
+		{
+			if (rules.getItemSpawnTimer() <= 0.f)
+			{
+				itemSpawn();
+				rules.resetItemSpwnTimer();
+			}
+		}
+
+		updateItems(dt);
+
 		ball.move(dt, *this);
 		checkItemCollisions();
 
@@ -77,7 +95,7 @@ namespace Core
 	{
 		for (auto it = items.begin(); it != items.end();)
 		{
-			if (!ball.isInside(it->getPosition()))
+			if (!it->isInside(ball.getCenter()))
 			{
 				++it;
 				continue;
@@ -203,13 +221,17 @@ namespace Core
 	{
 		if (!activeEffects.empty())
 		{
-			for (auto it = activeEffects.begin(); it != activeEffects.end(); it++)
+			for (auto it = activeEffects.begin(); it != activeEffects.end();)
 			{
 				it->update(dt);
 
 				if (it->isEffectFinished())
 				{
-					activeEffects.erase(it);
+					it = activeEffects.erase(it);
+				}
+				else
+				{
+					++it;
 				}
 			}
 		}
@@ -217,7 +239,27 @@ namespace Core
 
 	void Match::itemSpawn()
 	{
+		if (!rules.isPowerUpsAllowed())
+        return;
 
+		if (items.size() >= rules.getMaxItemCount())
+			return;
+
+		static std::random_device rd;
+		static std::mt19937 gen(rd());
+
+		std::uniform_int_distribution<size_t> spawnDist(0, ITEM_SPAWNS.size() - 1);
+		std::uniform_int_distribution<size_t> typeDist(0, ITEM_DURATIONS.size() - 1);
+
+		size_t typeIndex = typeDist(gen);
+
+		ItemType type = static_cast<ItemType>(typeIndex);
+
+		items.emplace_back(
+			type,
+			ITEM_DURATIONS[typeIndex],
+			ITEM_SPAWNS[spawnDist(gen)]
+		);
 	}
 
 	void Match::render(SDL_Renderer* r)
@@ -225,8 +267,8 @@ namespace Core
 		board.drawBoard(r);
 		ball.draw(r);
 
-		//for (auto& i : items)
-			//i.draw(r);
+		for (auto& i : items)
+			i.draw(r);
 
 		playerOne.draw(r);
 		playerTwo.draw(r);

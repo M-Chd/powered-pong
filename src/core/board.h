@@ -2,8 +2,6 @@
 #include "ball.h"
 #include "player.h"
 
-constexpr int winscore{ 5 };
-
 namespace Core
 {
 	struct Board

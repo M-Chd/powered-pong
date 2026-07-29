@@ -13,7 +13,7 @@ namespace Core
 
 		ball.setSpeed(DEFAULT_BALL_SPEED);
 
-		items.reserve(3);
+		items.reserve(4);
 
 		switch (settings.type)
 		{
@@ -68,8 +68,79 @@ namespace Core
 		}
 
 		ball.move(dt, *this);
+		checkItemCollisions();
 
 		return checkPoint();
+	}
+
+	void Match::checkItemCollisions()
+	{
+		for (auto it = items.begin(); it != items.end();)
+		{
+			if (!ball.isInside(it->getPosition()))
+			{
+				++it;
+				continue;
+			}
+
+			ActiveEffect* effect = nullptr;
+
+			switch (it->getType())
+			{
+			case ItemType::SPEED:
+			case ItemType::TELEPORT:
+			case ItemType::EXPLOSIVE:
+			case ItemType::MULTIPLICATOR:
+			{
+				activeEffects.emplace_back(
+					it->getType(),
+					it->getDuration(),
+					&ball);
+
+				effect = &activeEffects.back();
+				break;
+			}
+			case ItemType::PLAYER_SPEED:
+			case ItemType::POWER:
+			{
+				Player* target =
+					(ball.getLastHit() == LastHit::PlayerOne)
+					? &playerOne
+					: &playerTwo;
+
+				activeEffects.emplace_back(
+					it->getType(),
+					it->getDuration(),
+					target);
+
+				effect = &activeEffects.back();
+				break;
+			}
+			case ItemType::SLOWNESS:
+			{
+				Player* target =
+					(ball.getLastHit() == LastHit::PlayerOne)
+					? &playerTwo
+					: &playerOne;
+
+				activeEffects.emplace_back(
+					it->getType(),
+					it->getDuration(),
+					target);
+
+				effect = &activeEffects.back();
+				break;
+			}
+
+			default:
+				break;
+			}
+
+			if (effect)
+				effect->apply();
+
+			it = items.erase(it);
+		}
 	}
 
 	MatchEvent Match::checkPoint()
@@ -99,6 +170,7 @@ namespace Core
 	void Match::setupRound(Player& p, const Util::Vec2& ballSpeed)
 	{
 		ball.setPosition(BALL_INITIAL_POS);
+		ball.resetLastHit();
 		playerOne.setCenter(PlayerOneDefaultPos);
 		playerTwo.setCenter(PlayerTwoDefaultPos);
 		
@@ -125,6 +197,27 @@ namespace Core
 		default:
 			break;
 		}
+	}
+
+	void Match::updateItems(float dt)
+	{
+		if (!activeEffects.empty())
+		{
+			for (auto it = activeEffects.begin(); it != activeEffects.end(); it++)
+			{
+				it->update(dt);
+
+				if (it->isEffectFinished())
+				{
+					activeEffects.erase(it);
+				}
+			}
+		}
+	}
+
+	void Match::itemSpawn()
+	{
+
 	}
 
 	void Match::render(SDL_Renderer* r)

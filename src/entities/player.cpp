@@ -3,45 +3,6 @@
 
 namespace Entities
 {
-	void Player::useItem(Ball* b)
-	{
-		if (b)
-		{
-			if (_currentItem)
-			{
-				switch (_currentItem->getType())
-				{
-				case ItemType::PLAYER_SPEED:
-					_effect = PlayerEffect::PLAYER_SPEED;
-					break;
-				case ItemType::SLOWNESS:
-					_effect = PlayerEffect::PLAYER_SLOWNESS;
-					break;
-				case ItemType::POWER:
-					_effect = PlayerEffect::PLAYER_POWER;
-					break;
-				case ItemType::SPEED:
-					_currentItem->setOnBallEffect(BallEffect::SPEED_BALL, b);
-					break;
-				case ItemType::TELEPORT:
-					_currentItem->setOnBallEffect(BallEffect::TELEPORT_BALL, b);
-					break;
-				case ItemType::EXPLOSIVE:
-					_currentItem->setOnBallEffect(BallEffect::EXPLOSIVE_BALL, b);
-					break;
-				default:
-					_effect = PlayerEffect::NONE;
-					b->setEffect(BallEffect::NONE);
-					break;
-				}
-			}
-			else
-			{
-				std::cerr << "Player haves no Item..." << "\n";
-			}
-		}
-	}
-
 	void Player::move(float dy, float dt,const Core::Board& board)
 	{
 		switch (_effect)

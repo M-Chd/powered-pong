@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL2/SDL.h>
+#include "vector2.hpp"
 //##################################################################|
 #define WHITE      { 255, 255, 255, 255 } // Ball default color
 #define CYAN       {   0, 255, 255, 255 } // Speed ball effect color
@@ -12,8 +13,6 @@
 //##################################################################|
 
 namespace Entities {
-
-	class Ball;
 
 	enum class PlayerEffect
 	{
@@ -29,7 +28,7 @@ namespace Entities {
 		SPEED_BALL,
 		TELEPORT_BALL,
 		MULTIPLICATOR,
-		EXPLOSIVE_BALL,
+		EXPLOSIVE_BALL
 	};
 
 	enum class ItemType
@@ -47,7 +46,7 @@ namespace Entities {
 	{
 	public:
 
-		Item(ItemType type,unsigned int duration) : _type(type), _duration(duration)
+		Item(ItemType type,float duration, Util::Vec2 pos) : _type(type), _duration(duration), _position(pos)
 		{
 			if (duration > 15) return;
 
@@ -80,12 +79,16 @@ namespace Entities {
 			}
 		}
 
-		void setOnBallEffect(BallEffect be, Ball* b);
 		ItemType getType() const { return _type; }
+		float getDuration() const { return _duration; }
+		Util::Vec2 getPosition() const { return _position; }
+		void setPosition(Util::Vec2 pos) { _position = pos; }
 
 	private:
 		ItemType _type;
 		SDL_Color _color = {};
-		unsigned int _duration{}; // in second
+		Util::Vec2 _position{};
+		float _radiusEffectSize{ 1.0f };
+		float _duration{}; // in second
 	};
 }

@@ -2,6 +2,7 @@
 #include "entities/item.h"
 #include <iostream>
 #include "util/Vector2.hpp"
+#include "matchEvent.h"
 #include <SDL2/SDL.h>
 
 namespace Core { struct Board; class Match; }
@@ -54,6 +55,8 @@ namespace Entities {
 		BallEffect getBallEffect() const { return _effect; }
 		float getRadius() const { return _radius; }
 		SDL_Color getColor() const { return _color; }
+		Core::LastHit getLastHit() const { return _lastHit; }
+		void resetLastHit() { _lastHit = Core::LastHit::None; }
 
 	private:
 
@@ -67,5 +70,6 @@ namespace Entities {
 		Util::Vec2 _speed = { 1.0f,1.0f };
 		BallEffect _effect = BallEffect::NONE;
 		SDL_Color _color = WHITE;
+		Core::LastHit _lastHit{ Core::LastHit::None };
 	};
 }

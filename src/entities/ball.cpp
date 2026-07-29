@@ -81,6 +81,8 @@ namespace Entities
 			_speed.y = speed * static_cast<float>(std::sin(angle));
 
 			_center.x = p1.getCenter().x + p1.getRadiusX() + _radius;
+
+			_lastHit = Core::LastHit::PlayerOne;
 		}
 
 		float closestX2 = std::clamp(_center.x, p2.getCenter().x - p2.getRadiusX(), p2.getCenter().x + p2.getRadiusX());
@@ -100,6 +102,8 @@ namespace Entities
 			_speed.y = speed * static_cast<float>(std::sin(angle));
 
 			_center.x = p2.getCenter().x - p2.getRadiusX() - _radius;
+
+			_lastHit = Core::LastHit::PlayerTwo;
 		}
 	}
 
@@ -110,6 +114,27 @@ namespace Entities
 
 	void Ball::draw(SDL_Renderer* renderer)
 	{
+		switch (_effect)
+		{
+		case Entities::BallEffect::NONE:
+			_color = WHITE;
+			break;
+		case Entities::BallEffect::SPEED_BALL:
+			_color = BLUE;
+			break;
+		case Entities::BallEffect::TELEPORT_BALL:
+			_color = PURPLE;
+			break;
+		case Entities::BallEffect::MULTIPLICATOR:
+			_color = RED;
+			break;
+		case Entities::BallEffect::EXPLOSIVE_BALL:
+			_color = DEEP_RED;
+			break;
+		default:
+			break;
+		}
+
 		auto& c = _color;
 
 		SDL_SetRenderDrawColor(renderer, c.r, c.g, c.b, c.a);

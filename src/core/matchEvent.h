@@ -8,4 +8,11 @@ namespace Core
 		PointScored,
 		MatchFinished
 	};
+
+	enum class LastHit
+	{
+		None,
+		PlayerOne,
+		PlayerTwo
+	};
 }

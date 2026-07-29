@@ -7,6 +7,7 @@
 #include "difficulty.h"
 #include "matchEvent.h"
 #include "aiController.h"
+#include "activeEffect.h"
 
 namespace Core
 {	
@@ -60,7 +61,10 @@ namespace Core
 		void render(SDL_Renderer*);
 		bool isFinished();
 		void updateAI(float);
+		void updateItems(float);
 		MatchEvent checkPoint();
+		void checkItemCollisions();
+		void itemSpawn();
 
 		void setPlayerTwoType(Entities::PlayerType type) { playerTwo.setType(type); }
 		std::vector<Entities::Item>& getItems() { return items; }
@@ -82,6 +86,7 @@ namespace Core
 		Entities::Ball	 ball;
 		Board board;
 		std::vector<Entities::Item> items;
+		std::vector<Entities::ActiveEffect> activeEffects;
 		Rules rules;
 		AIController aiController;
 	};

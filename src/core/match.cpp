@@ -188,6 +188,9 @@ namespace Core
 	void Match::setupRound(Player& p, const Util::Vec2& ballSpeed)
 	{
 		ball.setPosition(BALL_INITIAL_POS);
+		playerOne.setEffect(PlayerEffect::NONE);
+		playerTwo.setEffect(PlayerEffect::NONE);
+
 		ball.resetLastHit();
 		playerOne.setCenter(PlayerOneDefaultPos);
 		playerTwo.setCenter(PlayerTwoDefaultPos);
@@ -197,7 +200,12 @@ namespace Core
 		else
 			p.addPoint();
 
+		ball.setEffect(BallEffect::NONE);
 		ball.setSpeed(ballSpeed);
+
+		rules.resetItemSpwnTimer();
+		items.clear();
+		activeEffects.clear();
 	}
 
 	void Match::updateAI(float dt)

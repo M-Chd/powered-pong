@@ -32,7 +32,7 @@ namespace Entities
 	constexpr std::array<float, 7> ITEM_DURATIONS =
 	{
 		5.f,  // SPEED
-		5.f,  // TELEPORT
+		0.01f,  // TELEPORT
 		4.f,  // EXPLOSIVE
 		5.f,  // SLOWNESS
 		8.f,  // POWER

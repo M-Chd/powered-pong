@@ -21,6 +21,9 @@ namespace Entities
 			checkColisions(match, bounce);
 			break;
 		case BallEffect::TELEPORT_BALL:
+			_center = BALL_INITIAL_POS;
+			_center += _speed * dt * -1;
+			checkColisions(match, bounce);
 			break;
 		default:
 			_center += _speed * dt;

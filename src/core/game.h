@@ -14,6 +14,7 @@
 #include "match.h"
 #include "difficulty.h"
 #include "matchEvent.h"
+#include "net/networkManager.h"
 
 namespace UI { struct View; }
 
@@ -54,6 +55,7 @@ namespace Core
 		UI::View view;
 		UI::ScoreBoard scoreboard;
 		UI::MenuManager menuManager;
+		Network::NetworkManager networkManager;
 #ifdef _DEBUG
 		UI::DebugOverlay debugOverlay;
 #endif

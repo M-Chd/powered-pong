@@ -24,13 +24,9 @@ namespace Core
 {
 	struct Game
 	{
-		enum class GameState
-		{
-			PAUSE,
-			MENU,
-			POINT,
-			PLAY
-		};
+		enum class GameState { PAUSE, MENU, POINT, PLAY, CONNECTING };
+
+		enum class NetRole { Offline, Host, Client };
 
 		Game(const GameConfig& config) { init(); }
 
@@ -45,6 +41,10 @@ namespace Core
 		void updateMenu(float dt);
 		void updatePlay(float dt);
 		void updatePoint(float dt);
+		void updatePlayOffline(float dt);
+		void updatePlayHost(float dt);
+		void updatePlayClient(float dt);
+		void applyMatchEvent(MatchEvent);
 		void renderMenu();
 		void renderPlay();
 
@@ -56,12 +56,14 @@ namespace Core
 		UI::ScoreBoard scoreboard;
 		UI::MenuManager menuManager;
 		Network::NetworkManager networkManager;
+		
 #ifdef _DEBUG
 		UI::DebugOverlay debugOverlay;
 #endif
 		System::TextureCache cache;
 		System::InputManager inputmngr;
 		GameState state;
+		NetRole netRole = NetRole::Offline;
 		float pauseTimer = 0.f;
 		float menuInputTimer = 0.f;
 		bool running{ true };

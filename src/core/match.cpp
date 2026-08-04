@@ -48,24 +48,20 @@ namespace Core
 		}
 	}
 
-	MatchEvent Match::update(float dt, System::InputManager& inputmngr)
+	MatchEvent Match::update(float dt, const PlayerInputState& p1Input, const PlayerInputState& p2Input)
 	{
-		if (inputmngr.isKeyDown(SDL_SCANCODE_Z) ||
-			inputmngr.isKeyDown(SDL_SCANCODE_W))
-		{
+		if (p1Input.moveUp)
 			playerOne.move(-1.0f, dt, board);
-		}
-		else if (inputmngr.isKeyDown(SDL_SCANCODE_S))
-		{
+		else if (p1Input.moveDown)
 			playerOne.move(1.0f, dt, board);
-		}
 
 		if (playerTwo.getType() == PlayerType::HUMAN)
 		{
-			if (inputmngr.isKeyDown(SDL_SCANCODE_UP))
+			if (p2Input.moveUp)
 				playerTwo.move(-1.0f, dt, board);
-			else if (inputmngr.isKeyDown(SDL_SCANCODE_DOWN))
+			else if (p2Input.moveDown)
 				playerTwo.move(1.0f, dt, board);
+
 		}
 		else if (playerTwo.getType() == PlayerType::BOT)
 		{
@@ -290,7 +286,7 @@ namespace Core
 
 	Entities::Item* Core::Match::getItemAt(int index)
 	{
-		if (!items.empty() && index < items.size() && index > 0)
+		if (!items.empty() && index < items.size() && index >= 0)
 		{
 			return &items[index];
 		}

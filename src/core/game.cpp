@@ -83,34 +83,103 @@ namespace Core
 
 	void Game::updatePlay(float dt)
 	{
-		MatchEvent e = currentmatch.update(dt, inputmngr);
+		if (netRole == NetRole::Offline)
+		{
+			PlayerInputState p1 = buildLocalInput(SDL_SCANCODE_Z, SDL_SCANCODE_S, inputmngr); 
+			PlayerInputState p2 = buildLocalInput(SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, inputmngr);
+			MatchEvent e = currentmatch.update(dt, p1, p2);
 
-		switch(e)
+			switch (e)
+			{
+			case MatchEvent::PointScored:
+
+				scoreboard.update(
+					windowRenderer.renderer,
+					currentmatch.getPlayerOne().getScore(),
+					currentmatch.getPlayerTwo().getScore());
+
+				pauseTimer = 1.f;
+				state = GameState::POINT;
+				break;
+
+			case MatchEvent::MatchFinished:
+
+				scoreboard.update(
+					windowRenderer.renderer,
+					currentmatch.getPlayerOne().getScore(),
+					currentmatch.getPlayerTwo().getScore());
+
+				state = GameState::MENU;
+				break;
+
+			default:
+				break;
+			}
+		}
+		else if (netRole == NetRole::Host)
+		{
+
+		}
+		else if (netRole == NetRole::Client)
+		{
+
+		}
+	}
+
+	void Game::applyMatchEvent(MatchEvent e)
+	{
+		switch (e)
 		{
 		case MatchEvent::PointScored:
-
-			scoreboard.update(
-				windowRenderer.renderer,
+			scoreboard.update(windowRenderer.renderer,
 				currentmatch.getPlayerOne().getScore(),
 				currentmatch.getPlayerTwo().getScore());
-
 			pauseTimer = 1.f;
 			state = GameState::POINT;
 			break;
 
 		case MatchEvent::MatchFinished:
-
-			scoreboard.update(
-				windowRenderer.renderer,
+			scoreboard.update(windowRenderer.renderer,
 				currentmatch.getPlayerOne().getScore(),
 				currentmatch.getPlayerTwo().getScore());
-
 			state = GameState::MENU;
+			if (netRole != NetRole::Offline)
+				teardownNetworking();
 			break;
 
 		default:
 			break;
 		}
+	}
+
+	void Game::updatePlayClient(float dt)
+	{
+		PlayerInputState localInput = buildLocalInput(SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, inputmngr);
+		networkManager.sendInput(localInput);
+
+		Network::NetGameState snapshot;
+		if (networkManager.pollGameState(snapshot))
+			applySnapshotToMatch(snapshot);
+
+		if (networkManager.pollMatchFinished())
+		{
+			state = GameState::MENU;
+			teardownNetworking();
+		}
+	}
+
+	void Game::updatePlayHost(float dt)
+	{
+		PlayerInputState localInput = buildLocalInput(SDL_SCANCODE_Z, SDL_SCANCODE_S, inputmngr);
+		MatchEvent e = networkManager.updateServer(dt, localInput, currentmatch);
+		applyMatchEvent(e);
+	}
+
+	void Game::updatePlayOffline(float dt)
+	{
+		PlayerInputState p1 = buildLocalInput(SDL_SCANCODE_Z, SDL_SCANCODE_S, inputmngr);
+		PlayerInputState p2 = buildLocalInput(SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, inputmngr);
+		applyMatchEvent(currentmatch.update(dt, p1, p2));
 	}
 
 	void Game::updatePoint(float dt)

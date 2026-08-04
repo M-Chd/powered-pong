@@ -3,11 +3,11 @@
 #include "player.h"
 #include "ball.h"
 #include "board.h"
-#include "inputManager.h"
 #include "difficulty.h"
 #include "matchEvent.h"
 #include "aiController.h"
 #include "activeEffect.h"
+#include "playerInputState.h"
 
 namespace Core
 {	
@@ -62,7 +62,7 @@ namespace Core
 		Match(){}
 		Match(MatchSettings);
 
-		MatchEvent update(float, System::InputManager&);
+		MatchEvent update(float, const PlayerInputState&, const PlayerInputState&);
 		void render(SDL_Renderer*);
 		bool isFinished();
 		void updateAI(float);

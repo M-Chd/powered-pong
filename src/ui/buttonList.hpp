@@ -31,6 +31,9 @@ namespace UI
 
 		StartLocalMultiplayer,
 
+		HostGame,
+		JoinGame,
+
 		Back,
 		Quit
 	};

@@ -141,6 +141,16 @@ namespace pong
 				}
 			}
 
+			std::shared_ptr<connection<T>>& FindConnectionById(uint32_t id)
+			{
+				for (auto& conn : m_deqConnections)
+				{
+					if (conn && conn->getID() == id)
+						return conn;
+				}
+				return nullptr;
+			}
+
 		protected:
 
 			//function to be implemented

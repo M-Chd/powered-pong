@@ -4,18 +4,29 @@
 
 namespace Network
 {
-	
 	class NetworkManager
 	{
 	public:
-		void connect();
-		void disconnect();
-		void update();
-		void sendPlayerInput();
+		void startHost(uint16_t port);
+		void connectLocalClient();
+		void joinServer(const std::string& ip, uint16_t port);
+		void teardown();
 		void processMessages();
-	private:
-		pong::net::client_interface<MessageType> client;
-		pong::net::server_interface<MessageType> server;
 
+		uint16_t getActivePort() const { return activePort; }
+
+		void sendInput(const Core::PlayerInputState&);
+		bool pollGameState(NetGameState&);
+		bool pollMatchStart(int&);
+		bool pollMatchEnded();
+		ConnectionState getConnectionState() const;
+
+		Core::PlayerInputState getRemoteInput(int slot);
+		void broadcastGameState(const NetGameState&);
+
+	private:
+		std::unique_ptr<GameServer> server;
+		std::unique_ptr<GameClient> client;
+		uint16_t activePort = PONG_PORT;
 	};
 }

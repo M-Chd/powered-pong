@@ -48,6 +48,9 @@ namespace Core
 		case Core::Game::GameState::PLAY:
 			updatePlay(dt);
 			break;
+		case Core::Game::GameState::CONNECTING:
+			updateConnecting(dt);
+			break;
 		default:
 			break;
 		}
@@ -83,46 +86,32 @@ namespace Core
 
 	void Game::updatePlay(float dt)
 	{
-		if (netRole == NetRole::Offline)
+		switch (netRole)
 		{
-			PlayerInputState p1 = buildLocalInput(SDL_SCANCODE_Z, SDL_SCANCODE_S, inputmngr); 
-			PlayerInputState p2 = buildLocalInput(SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, inputmngr);
-			MatchEvent e = currentmatch.update(dt, p1, p2);
-
-			switch (e)
-			{
-			case MatchEvent::PointScored:
-
-				scoreboard.update(
-					windowRenderer.renderer,
-					currentmatch.getPlayerOne().getScore(),
-					currentmatch.getPlayerTwo().getScore());
-
-				pauseTimer = 1.f;
-				state = GameState::POINT;
-				break;
-
-			case MatchEvent::MatchFinished:
-
-				scoreboard.update(
-					windowRenderer.renderer,
-					currentmatch.getPlayerOne().getScore(),
-					currentmatch.getPlayerTwo().getScore());
-
-				state = GameState::MENU;
-				break;
-
-			default:
-				break;
-			}
+		case Core::Game::NetRole::Offline: updatePlayOffline(dt); break;
+		case Core::Game::NetRole::Host:    updatePlayHost(dt);	  break;
+		case Core::Game::NetRole::Client:  updatePlayClient(dt);  break;
+		default:
+			break;
 		}
-		else if (netRole == NetRole::Host)
-		{
+	}
 
+	void Game::updateConnecting(float dt)
+	{
+		networkManager.processMessages();
+
+		if (networkManager.getConnectionState() == Network::ConnectionState::Failed)
+		{
+			netRole = NetRole::Offline;
+			state = GameState::MENU;
+			return;
 		}
-		else if (netRole == NetRole::Client)
-		{
 
+		int slot;
+		if (networkManager.pollMatchStart(slot))
+		{
+			localPlayerSlot = slot;
+			state = GameState::PLAY;
 		}
 	}
 
@@ -144,12 +133,43 @@ namespace Core
 				currentmatch.getPlayerTwo().getScore());
 			state = GameState::MENU;
 			if (netRole != NetRole::Offline)
-				teardownNetworking();
+				networkManager.teardown();
 			break;
 
 		default:
 			break;
 		}
+	}
+
+	void Game::applySnapshotToMatch(const Network::NetGameState& s)
+	{
+		auto x = currentmatch.getPlayerOne().getCenter().x;
+
+		currentmatch.getBall().setPosition({ s.ballX, s.ballY });
+		currentmatch.getPlayerOne().setCenter({ x , s.p1Y });
+		currentmatch.getPlayerTwo().setCenter({ x , s.p2Y });
+		currentmatch.getPlayerOne().setScore(s.p1Score);
+		currentmatch.getPlayerTwo().setScore(s.p2Score);
+	}
+
+	Network::NetGameState& Game::buildNetGameState(Match& match)
+	{
+		auto& ball = match.getBall();
+		auto& p1 = match.getPlayerOne();
+		auto& p2 = match.getPlayerTwo();
+
+		Network::NetGameState state = {
+			.ballX = ball.getCenter().x,
+			.ballY = ball.getCenter().y,
+			.ballSpeedX = ball.getSpeed().x,
+			.ballSpeedY = ball.getSpeed().y,
+			.p1Y = p1.getCenter().y,
+			.p2Y = p2.getCenter().y,
+			.p1Score = p1.getScore(),
+			.p2Score = p2.getScore()
+		};
+
+		return state;
 	}
 
 	void Game::updatePlayClient(float dt)
@@ -161,18 +181,31 @@ namespace Core
 		if (networkManager.pollGameState(snapshot))
 			applySnapshotToMatch(snapshot);
 
-		if (networkManager.pollMatchFinished())
+		if (networkManager.pollMatchEnded())
 		{
 			state = GameState::MENU;
-			teardownNetworking();
+			networkManager.teardown();
+			netRole = NetRole::Offline;
 		}
 	}
 
 	void Game::updatePlayHost(float dt)
 	{
-		PlayerInputState localInput = buildLocalInput(SDL_SCANCODE_Z, SDL_SCANCODE_S, inputmngr);
-		MatchEvent e = networkManager.updateServer(dt, localInput, currentmatch);
-		applyMatchEvent(e);
+		PlayerInputState p1 = buildLocalInput(SDL_SCANCODE_Z, SDL_SCANCODE_S, inputmngr);
+
+		networkManager.processMessages();
+
+		hostTickAccumulator += dt;
+		const float TICK = 1.f / 30.f;
+
+		while (hostTickAccumulator >= TICK)
+		{
+			PlayerInputState p2 = networkManager.getRemoteInput(2);
+			MatchEvent e = currentmatch.update(TICK, p1, p2);
+			networkManager.broadcastGameState(buildNetGameState(currentmatch));
+			applyMatchEvent(e);
+			hostTickAccumulator -= TICK;
+		}
 	}
 
 	void Game::updatePlayOffline(float dt)
@@ -207,6 +240,14 @@ namespace Core
 
 		case GameState::POINT:
 			renderPlay();
+			break;
+
+		case GameState::PAUSE:
+			//renderPause(); TODO
+			break;
+
+		case GameState::CONNECTING:
+			//renderConnecting(); TODO
 			break;
 
 		default:
@@ -289,6 +330,27 @@ namespace Core
 					});
 				state = GameState::PLAY;
 				break;
+
+			case GameAction::HostGame:
+				netRole = NetRole::Host;
+				localPlayerSlot = 1;
+				networkManager.startHost(networkManager.getActivePort());
+				networkManager.connectLocalClient();
+
+				currentmatch = Match(
+					Match::MatchSettings{
+						.type = Match::MatchType::Multi,
+						.difficulty = GameDifficulty::NONE
+					});
+				state = GameState::CONNECTING;
+				break;
+
+			case GameAction::JoinGame:
+				netRole = NetRole::Client;
+				networkManager.joinServer(hostIpFromUI, networkManager.getActivePort());
+				state = GameState::CONNECTING;
+				break;
+
 			case GameAction::Back:
 				menuManager.returnBack();
 				break;

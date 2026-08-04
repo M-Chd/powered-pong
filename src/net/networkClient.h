@@ -7,8 +7,16 @@ namespace Network
 	class GameClient : public pong::net::client_interface<MessageType>
 	{
 	public:
-		void sendInput(bool up, bool down, uint32_t frame);
+		void processIncoming();
+
+		bool pollMatchStart(int& slotOut);
 		bool pollGameState(NetGameState& out);
-		bool pollMatchStart(int& assignedPlayerSlot);
+		bool pollMatchEnded();
+		Network::ConnectionState getConnectionState();
+	private:
+		ConnectionState connState = ConnectionState::NotConnected;
+		std::optional<int> assignedSlot;
+		std::optional<NetGameState> latestState;
+		bool matchEndedFlag = false;
 	};
 }

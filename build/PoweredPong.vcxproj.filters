@@ -81,6 +81,7 @@
     <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\matchEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="networkManager.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\mouad\Desktop\powered-pong\CMakeLists.txt" />

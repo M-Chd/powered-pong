@@ -44,7 +44,10 @@ namespace Core
 		void updatePlayOffline(float dt);
 		void updatePlayHost(float dt);
 		void updatePlayClient(float dt);
+		void updateConnecting(float dt);
 		void applyMatchEvent(MatchEvent);
+		void applySnapshotToMatch(const Network::NetGameState&);
+		Network::NetGameState& buildNetGameState(Match&);
 		void renderMenu();
 		void renderPlay();
 
@@ -64,8 +67,11 @@ namespace Core
 		System::InputManager inputmngr;
 		GameState state;
 		NetRole netRole = NetRole::Offline;
-		float pauseTimer = 0.f;
-		float menuInputTimer = 0.f;
+		float pauseTimer{ 0.f };
+		float menuInputTimer{ 0.f };
+		float hostTickAccumulator{};
+		int localPlayerSlot{ 1 };
+		std::string hostIpFromUI;
 		bool running{ true };
 
 #ifdef _DEBUG

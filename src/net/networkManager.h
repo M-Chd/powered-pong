@@ -2,6 +2,8 @@
 
 #include "netCommon.h"
 
+constexpr uint16_t PONG_PORT{ 6500 };
+
 namespace Network
 {
 	class NetworkManager

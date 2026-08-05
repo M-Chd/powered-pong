@@ -27,7 +27,7 @@ namespace pong
 				return sizeof(message_header<T>) + body.size();
 			}
 
-			friend std::ostream& operator << (std::ostream&, const message<T>& msg)
+			friend std::ostream& operator << (std::ostream& os, const message<T>& msg)
 			{
 				os << "ID: " << int(msg.header.id) << " Size: " << msg.header.size;
 				return os;
@@ -50,7 +50,7 @@ namespace pong
 			}
 
 			template<typename DataType>
-			friend message<T>& operator >> (message<T>& msg, const DataType& data)
+			friend message<T>& operator >> (message<T>& msg, DataType& data)
 			{
 				static_assert(std::is_standard_layout<DataType>::value, "This Data is too complex to be pushed.");
 

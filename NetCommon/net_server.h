@@ -80,7 +80,7 @@ namespace pong
 						}
 
 						WaitForClientConnection();
-					};
+					}
 				);
 			}
 
@@ -119,12 +119,12 @@ namespace pong
 						client.reset();
 						bInvalidClientExists = true;
 					}
-				}
 
-				if (bInvalidClientExists)
-				{
-					m_deqConnection.erase(
-						std::remove(m_deqConnection.begin(), m_deqConnection.end(), client), m_deqConnection.end());
+					if (bInvalidClientExists)
+					{
+						m_deqConnection.erase(
+							std::remove(m_deqConnection.begin(), m_deqConnection.end(), client), m_deqConnection.end());
+					}
 				}
 			}
 
@@ -141,9 +141,9 @@ namespace pong
 				}
 			}
 
-			std::shared_ptr<connection<T>>& FindConnectionById(uint32_t id)
+			std::shared_ptr<connection<T>> FindConnectionById(uint32_t id)
 			{
-				for (auto& conn : m_deqConnections)
+				for (auto& conn : m_deqConnection)
 				{
 					if (conn && conn->getID() == id)
 						return conn;

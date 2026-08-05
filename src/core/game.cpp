@@ -152,7 +152,7 @@ namespace Core
 		currentmatch.getPlayerTwo().setScore(s.p2Score);
 	}
 
-	Network::NetGameState& Game::buildNetGameState(Match& match)
+	Network::NetGameState Game::buildNetGameState(Match& match)
 	{
 		auto& ball = match.getBall();
 		auto& p1 = match.getPlayerOne();
@@ -174,7 +174,10 @@ namespace Core
 
 	void Game::updatePlayClient(float dt)
 	{
-		PlayerInputState localInput = buildLocalInput(SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, inputmngr);
+		PlayerInputState localInput = (localPlayerSlot == 1)
+		? buildLocalInput(SDL_SCANCODE_W, SDL_SCANCODE_S, inputmngr)
+		: buildLocalInput(SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, inputmngr);
+
 		networkManager.sendInput(localInput);
 
 		Network::NetGameState snapshot;
@@ -191,7 +194,7 @@ namespace Core
 
 	void Game::updatePlayHost(float dt)
 	{
-		PlayerInputState p1 = buildLocalInput(SDL_SCANCODE_Z, SDL_SCANCODE_S, inputmngr);
+		PlayerInputState p1 = buildLocalInput(SDL_SCANCODE_W, SDL_SCANCODE_S, inputmngr);
 
 		networkManager.processMessages();
 
@@ -210,7 +213,7 @@ namespace Core
 
 	void Game::updatePlayOffline(float dt)
 	{
-		PlayerInputState p1 = buildLocalInput(SDL_SCANCODE_Z, SDL_SCANCODE_S, inputmngr);
+		PlayerInputState p1 = buildLocalInput(SDL_SCANCODE_W, SDL_SCANCODE_S, inputmngr);
 		PlayerInputState p2 = buildLocalInput(SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, inputmngr);
 		applyMatchEvent(currentmatch.update(dt, p1, p2));
 	}
@@ -288,6 +291,19 @@ namespace Core
 		}
 	}
 
+	inline std::string game_state_to_string(Game::GameState& state)
+	{
+		switch (state)
+		{
+		case Core::Game::GameState::PAUSE:		return "Pause";
+		case Core::Game::GameState::MENU:		return "Menu";
+		case Core::Game::GameState::POINT:		return "Point";
+		case Core::Game::GameState::PLAY:		return "Point";
+		case Core::Game::GameState::CONNECTING: return "Connecting";
+		default: return "Unknown";
+		}
+	}
+
 	void Game::handleMenuAction(UI::Action a)
 	{
 		if (a.menuid != MenuID::None)
@@ -332,6 +348,7 @@ namespace Core
 				break;
 
 			case GameAction::HostGame:
+				hostTickAccumulator = 0.f;
 				netRole = NetRole::Host;
 				localPlayerSlot = 1;
 				networkManager.startHost(networkManager.getActivePort());
@@ -347,6 +364,7 @@ namespace Core
 
 			case GameAction::JoinGame:
 				netRole = NetRole::Client;
+				currentmatch = Match(Match::MatchSettings{ .type = Match::MatchType::Multi });
 				networkManager.joinServer(hostIpFromUI, networkManager.getActivePort());
 				state = GameState::CONNECTING;
 				break;
@@ -380,9 +398,9 @@ namespace Core
 			"Ball speed Y: " + fmt(ball.getSpeed().y),
 			"P1 pos: (" + fmt(p1Pos.x) + ", " + fmt(p1Pos.y) + ")",
 			"P2 pos: (" + fmt(p2Pos.x) + ", " + fmt(p2Pos.y) + ")",
-			"State: " + std::to_string(static_cast<int>(state)),
+			"State: " + game_state_to_string(state),
 			"frame time: " + fmt(1.0f / static_cast<float>(dt)),
-			"Current Ball effect: " + std::to_string(static_cast<int>(ball.getBallEffect()))
+			"Current Ball effect: " + Entities::effect_to_string(ball.getBallEffect())
 		});
 	}
 #endif 

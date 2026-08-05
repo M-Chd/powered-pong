@@ -16,7 +16,22 @@ namespace Entities
 		}
 	}
 
-	bool Item::isInside(Util::Vec2 p)
+	std::string effect_to_string(BallEffect e)
+	{
+		switch (e)
+		{
+		case Entities::BallEffect::NONE:			return "No Effect";
+		case Entities::BallEffect::SPEED_BALL:		return "Speed Effect";
+		case Entities::BallEffect::TELEPORT_BALL:	return "Teleport Effect";
+		case Entities::BallEffect::MULTIPLICATOR:	return "Multiplicator Effect";
+		case Entities::BallEffect::EXPLOSIVE_BALL:	return "Explosive Bounce Effect";
+		default: return "Unknown";
+		}
+	}
+
+
+
+	bool Item::isInside(Util::Vec2 p) const
 	{
 		return p.x >= _position.x && p.y >= _position.y && p.x <= _position.x + _size && p.y <= _position.y + _size;
 	}

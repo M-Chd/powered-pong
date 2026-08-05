@@ -47,7 +47,7 @@ namespace Core
 		void updateConnecting(float dt);
 		void applyMatchEvent(MatchEvent);
 		void applySnapshotToMatch(const Network::NetGameState&);
-		Network::NetGameState& buildNetGameState(Match&);
+		Network::NetGameState buildNetGameState(Match&);
 		void renderMenu();
 		void renderPlay();
 
@@ -71,7 +71,6 @@ namespace Core
 		float menuInputTimer{ 0.f };
 		float hostTickAccumulator{};
 		int localPlayerSlot{ 1 };
-		std::string hostIpFromUI;
 		bool running{ true };
 
 #ifdef _DEBUG
@@ -80,4 +79,5 @@ namespace Core
 	};
 
 	inline GameDifficulty actionToDifficulty(UI::GameAction&);
+	inline std::string game_state_to_string(Game::GameState&);
 }

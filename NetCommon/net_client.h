@@ -22,7 +22,7 @@ namespace pong
 				{
 					asio::ip::tcp::resolver resolver(m_context);
 
-					asio::ip::tcp::resolver::endpoint_type endpoints = resolver.resolve(host, std::to_string(port));
+					asio::ip::tcp::resolver::results_type endpoints = resolver.resolve(host, std::to_string(port));
 
 					m_connection = std::make_unique<connection<T>>(
 						connection<T>::owner::client, m_context, asio::ip::tcp::socket(m_context),

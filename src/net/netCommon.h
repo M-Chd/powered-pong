@@ -4,6 +4,6 @@
 #include "messageType.h"
 #include "netGameState.h"
 #include "playerInputState.h"
+#include "connectionState.h"
 #include "networkClient.h"
 #include "networkServer.h"
-#include "connectionState.h"

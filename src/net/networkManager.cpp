@@ -22,7 +22,7 @@ namespace Network
 	{
 		if (server)
 		{
-			server->Update(-1,true);
+			server->Update(-1,false);
 		}
 		if (client)
 		{
@@ -36,6 +36,11 @@ namespace Network
 		msg.header.id = MessageType::GameState;
 		msg << n;
 		server->MessageAllClients(msg);
+	}
+
+	void NetworkManager::sendInput(const Core::PlayerInputState& input)
+	{
+		if (client) client->sendInput(input);
 	}
 
 	bool NetworkManager::pollMatchStart(int& slotOut)
@@ -74,6 +79,7 @@ namespace Network
 	{
 		client = std::make_unique<GameClient>();
 		client->Connect(ip, port);
+		client->sendJoinMatch();
 	}
 
 	void NetworkManager::connectLocalClient()

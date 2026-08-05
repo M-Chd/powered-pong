@@ -2,7 +2,7 @@
 
 namespace Network
 {
-	enum class MessageType
+	enum class MessageType : uint32_t
 	{
 		// Connexion
         ServerAccept,

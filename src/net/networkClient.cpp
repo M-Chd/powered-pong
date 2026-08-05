@@ -1,5 +1,7 @@
 #include "networkClient.h"
 
+using namespace pong::net;
+
 namespace Network
 {
 	void GameClient::processIncoming()
@@ -71,6 +73,21 @@ namespace Network
 
 		matchEndedFlag = false;
 		return true;
+	}
+
+	void GameClient::sendJoinMatch()
+	{
+		message<MessageType> msg;
+		msg.header.id = MessageType::JoinMatch;
+		m_connection->Send(msg);
+	}
+
+	void GameClient::sendInput(const Core::PlayerInputState& input)
+	{
+		message<MessageType> msg;
+		msg.header.id = MessageType::PlayerInput;
+		msg << input;
+		m_connection->Send(msg);
 	}
 
 	ConnectionState GameClient::getConnectionState()

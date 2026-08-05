@@ -12,6 +12,8 @@ namespace Network
 		bool pollMatchStart(int& slotOut);
 		bool pollGameState(NetGameState& out);
 		bool pollMatchEnded();
+		void sendJoinMatch();
+		void sendInput(const Core::PlayerInputState& input);
 		Network::ConnectionState getConnectionState();
 	private:
 		ConnectionState connState = ConnectionState::NotConnected;

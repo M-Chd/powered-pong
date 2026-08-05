@@ -49,31 +49,37 @@ namespace UI
 			menuHistory.push(currentMenu);
 			currentMenu = &mainMenu;
 			currentMenu->updateSelection();
+			currentMenuID = MenuID::Main;
 			break;
 		case UI::MenuID::Solo:
 			menuHistory.push(currentMenu);
 			currentMenu = &soloMenu;
 			currentMenu->updateSelection();
+			currentMenuID = MenuID::Solo;
 			break;
 		case UI::MenuID::Multiplayer:
 			menuHistory.push(currentMenu);
 			currentMenu = &multiMenu;
 			currentMenu->updateSelection();
+			currentMenuID = MenuID::Multiplayer;
 			break;
 		case UI::MenuID::OnlineIP:
 			menuHistory.push(currentMenu);
 			currentMenu = &ipMenu;
 			currentMenu->updateSelection();
+			currentMenuID = MenuID::OnlineIP;
 			break;
 		case UI::MenuID::Options:
 			menuHistory.push(currentMenu);
 			currentMenu = &optionsMenu;
 			currentMenu->updateSelection();
+			currentMenuID = MenuID::Options;
 			break;
 		case UI::MenuID::Rules:
 			menuHistory.push(currentMenu);
 			currentMenu = &rulesMenu;
 			currentMenu->updateSelection();
+			currentMenuID = MenuID::Rules;
 			break;
 		default:
 			break;

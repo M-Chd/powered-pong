@@ -18,7 +18,7 @@ add_executable(PoweredPong
   "src/ui/debugOverlay.cpp" "src/ui/menu.h" "src/ui/menuManager.h" "src/ui/menu.cpp" "src/ui/menuManager.cpp" 
   "src/core/match.cpp"  "src/core/difficulty.h" "src/core/matchEvent.h" "src/core/aiController.h" "src/core/aiController.cpp" 
   "src/entities/activeEffect.h" "src/entities/activeEffect.cpp" "src/entities/item.cpp" 
-  "src/net/networkManager.h" "src/net/netGameState.h" "src/net/networkClient.h" "src/net/networkServer.h" "src/net/netCommon.h" "src/net/messageType.h" "src/core/playerInputState.h" "src/net/networkManager.cpp" "src/net/networkServer.cpp" "src/net/networkClient.cpp" "src/net/connectionState.h")
+  "src/net/networkManager.h" "src/net/netGameState.h" "src/net/networkClient.h" "src/net/networkServer.h" "src/net/netCommon.h" "src/net/messageType.h" "src/core/playerInputState.h" "src/net/networkManager.cpp" "src/net/networkServer.cpp" "src/net/networkClient.cpp" "src/net/connectionState.h" )
 
 target_include_directories(PoweredPong PRIVATE
     src
@@ -27,6 +27,7 @@ target_include_directories(PoweredPong PRIVATE
     src/core
     src/ui
     src/net
+    ${CMAKE_CURRENT_SOURCE_DIR}/../NetCommon
 )
 
 find_package(SDL2 CONFIG REQUIRED)

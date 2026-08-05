@@ -3,6 +3,7 @@
 #include "vector2.hpp"
 
 #include <array>
+#include <string>
 
 //##################################################################|
 #define WHITE      { 255, 255, 255, 255 } // Ball default color
@@ -57,6 +58,8 @@ namespace Entities
 		EXPLOSIVE_BALL
 	};
 
+	std::string effect_to_string(BallEffect);
+
 	enum class ItemType
 	{
 		SPEED,
@@ -110,7 +113,7 @@ namespace Entities
 		Util::Vec2 getPosition() const { return _position; }
 		void setPosition(Util::Vec2 pos) { _position = pos; }
 		void draw(SDL_Renderer*);
-		bool isInside(Util::Vec2);
+		bool isInside(Util::Vec2) const;
 
 	private:
 		ItemType _type;

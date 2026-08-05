@@ -26,6 +26,7 @@ namespace UI
 		void setCurrentMenu(MenuID id);
 
 		Menu* getCurrentMenu() { if (currentMenu) return currentMenu; }
+		MenuID getCurrentMenuID() const { return currentMenuID; }
 
 	private:
 
@@ -36,6 +37,7 @@ namespace UI
 	private:
 		Menu* currentMenu{ nullptr };
 		std::stack<Menu*> menuHistory{};
+		MenuID currentMenuID{ MenuID::Main };
 
 		Menu mainMenu{};
 		Menu soloMenu{};

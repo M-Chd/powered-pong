@@ -3,6 +3,7 @@
 #include "net_common.h"
 #include "net_tsqueue.h"
 #include "net_message.h"
+#include "net_server.h"
 
 namespace pong
 {
@@ -31,7 +32,7 @@ namespace pong
 			}
 
 		public:
-			void ConnectToClient(uint32_t uid = 0)
+			void ConnectToClient(server_interface<T>* server, uint32_t uid = 0)
 			{
 				if (m_OwnerType == owner::server)
 				{
@@ -47,7 +48,7 @@ namespace pong
 			{
 				if (m_OwnerType == owner::client)
 				{
-					asio::async_connect(m_socker, endpoints,
+					asio::async_connect(m_socket, endpoints,
 						[this](std::error_code ec, asio::ip::tcp::endpoint endpoint)
 						{
 							if (!ec)
@@ -73,8 +74,13 @@ namespace pong
 				return m_socket.is_open();
 			}
 
+			void StartListening()
+			{
+
+			}
+
 		public:
-			bool Send(const message<T>& msg)
+			void Send(const message<T>& msg)
 			{
 				asio::post(m_asioContext,
 					[this, msg]()
@@ -82,7 +88,7 @@ namespace pong
 						bool bWritingMessage = !m_qMessagesOut.empty();
 						m_qMessagesOut.push_back(msg);
 						
-						if (bWritingMessage)
+						if (!bWritingMessage)
 						{
 							WriteHeader();
 						}
@@ -92,14 +98,14 @@ namespace pong
 			void ReadHeader()
 			{
 				asio::async_read(
-					m_socket,asio::buffer(&m_msgTemporaryIn.header, sizeof(message_header<T>)),
+					m_socket, asio::buffer(&m_msgTemporaryIn.header, sizeof(message_header<T>)),
 					[this](std::error_code ec, std::size_t length)
 					{
 						if (!ec)
 						{
-							if (m_msgTempraryIn.header.size > 0)
+							if (m_msgTemporaryIn.header.size > 0)
 							{
-								m_msgTempraryIn.body.resize(m_msgTempraryIn.header.size);
+								m_msgTemporaryIn.body.resize(m_msgTemporaryIn.header.size);
 								ReadBody();
 							}
 							else
@@ -113,12 +119,12 @@ namespace pong
 							m_socket.close();
 						}
 					}
-				)
+				);
 			}
 
 			void ReadBody()
 			{
-				asio::async_read(m_socket, asio::buffer(m_msgTempraryIn.body.data(), m_msgTempraryIn.body.size()),
+				asio::async_read(m_socket, asio::buffer(m_msgTemporaryIn.body.data(), m_msgTemporaryIn.body.size()),
 					[this](std::error_code ec, std::size_t length)
 					{
 						if (!ec)
@@ -164,7 +170,7 @@ namespace pong
 
 			void WriteBody()
 			{
-				asio::async_write(m_socket, asio::buffer(m_msgTempraryIn.body.data(), m_msgTempraryIn.body.size()),
+				asio::async_write(m_socket, asio::buffer(m_msgTemporaryIn.body.data(), m_msgTemporaryIn.body.size()),
 					[this](std::error_code ec, std::size_t length)
 					{
 						if (!ec)
@@ -188,11 +194,11 @@ namespace pong
 			{
 				if (m_OwnerType == owner::server)
 				{
-					m_qMessagesIn.push_back({ this->shared_from_this(),m_msgTempraryIn });
+					m_qMessagesIn.push_back({ this->shared_from_this(),m_msgTemporaryIn });
 				}
 				else
 				{
-					m_qMessagesIn.push_back({ nullptr,m_msgTempraryIn });
+					m_qMessagesIn.push_back({ nullptr,m_msgTemporaryIn });
 				}
 
 				ReadHeader();
@@ -203,8 +209,8 @@ namespace pong
 			asio::io_context& m_asioContext;
 
 			tsqueue<message<T>> m_qMessagesOut;
-			tsqueue<owned_message>& m_qMessagesIn;
-			message<T> m_msgTempraryIn;
+			tsqueue<owned_message<T>>& m_qMessagesIn;
+			message<T> m_msgTemporaryIn;
 
 			owner m_OwnerType = owner::server;
 			uint32_t id = 0;

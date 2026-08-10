@@ -11,7 +11,12 @@ namespace UI
 	{
 		View()
 		{
-			layers.reserve(5);
+			layers.reserve(6);
+		}
+
+		~View()
+		{
+			clear();
 		}
 
 		std::vector<std::unique_ptr<UILayer>> layers;
@@ -22,10 +27,22 @@ namespace UI
 			return layers.back().get();
 		}
 
-		void drawAllUI(SDL_Renderer* renderer) const
+		void drawAllUI(SDL_Renderer* renderer, LayerType ignoreFlag) const
 		{
 			for (auto& l : layers)
-				l->render(renderer);
+			{
+				if(l->getType() != ignoreFlag)
+					l->render(renderer);
+			}
+		}
+
+		void drawThisType(SDL_Renderer* r, LayerType type)
+		{
+			for (auto& l : layers)
+			{
+				if (l->getType() == type)
+					l->render(r);
+			}
 		}
 
 		void clear()

@@ -5,409 +5,530 @@ using namespace UI;
 
 namespace Core
 {
-	void Game::init()
-	{
-		int width = windowRenderer.width;
-		int height = windowRenderer.height;
 
-		try
-		{
-			windowRenderer.init();
-		}
-		catch (std::runtime_error e)
-		{
-			printf("%s", e.what());
-		}
+    void Game::init()
+    {
+        int width = windowRenderer.width;
+        int height = windowRenderer.height;
 
-		menuManager.init(windowRenderer.renderer,"../../../assets/fonts/IMPACT.ttf",50,WHITE);
+        try
+        {
+            windowRenderer.init();
+        }
+        catch (std::runtime_error e)
+        {
+            printf("%s", e.what());
+        }
 
-		scoreboard.init(view, windowRenderer.renderer,
-			"../../../assets/fonts/Beach-Ball.ttf", 30, WHITE,
-			{ 10,20 }, { 1100, 20 });
+        menuManager.init(
+            windowRenderer.renderer,
+            "../../../assets/fonts/IMPACT.ttf",
+            50,
+            WHITE
+        );
 
-		debugOverlay.init(view,
-			"../../../assets/fonts/Beach-Ball.ttf", 14, SDL_Color{200,200,200,255},
-			10, static_cast<float>(windowRenderer.height) - 15, 8);
+        scoreboard.init(
+            view,
+            windowRenderer.renderer,
+            "../../../assets/fonts/Beach-Ball.ttf",
+            30,
+            WHITE,
+            { 10, 20 },
+            { 1100, 20 }
+        );
 
-		state = GameState::MENU;
-	}
+        debugOverlay.init(
+            view,
+            "../../../assets/fonts/Beach-Ball.ttf",
+            14,
+            SDL_Color{ 200, 200, 200, 255 },
+            10,
+            static_cast<float>(windowRenderer.height) - 15,
+            8
+        );
 
-	void Game::update(float dt)
-	{
-		switch (state)
-		{
-		case Core::Game::GameState::PAUSE:
-			//TODO
-			break;
-		case Core::Game::GameState::MENU:
-			updateMenu(dt);
-			break;
-		case Core::Game::GameState::POINT:
-			updatePoint(dt);
-			break;
-		case Core::Game::GameState::PLAY:
-			updatePlay(dt);
-			break;
-		case Core::Game::GameState::CONNECTING:
-			updateConnecting(dt);
-			break;
-		default:
-			break;
-		}
+        connectUI.init(
+            view,
+            windowRenderer.renderer,
+            "../../../assets/fonts/Beach-Ball.ttf",
+            50,
+            WHITE,
+            { (float)windowRenderer.height / 2, (float)windowRenderer.width / 2 }
+        );
+
+        state = GameState::MENU;
+    }
+
+    void Game::update(float dt)
+    {
+        switch (state)
+        {
+        case GameState::PAUSE:
+            // TODO
+            break;
+
+        case GameState::MENU:
+            updateMenu(dt);
+            break;
+
+        case GameState::POINT:
+            updatePoint(dt);
+            break;
+
+        case GameState::PLAY:
+            updatePlay(dt);
+            break;
+
+        case GameState::CONNECTING:
+            updateConnecting(dt);
+            break;
+
+        default:
+            break;
+        }
 
 #ifdef _DEBUG
-		updateDebug(dt);
+        updateDebug(dt);
 #endif
-	}
+    }
 
-	void Game::updateMenu(float dt)
-	{
-		menuInputTimer -= dt;
+    void Game::updateMenu(float dt)
+    {
+        menuInputTimer -= dt;
 
-		if (menuInputTimer <= 0.f)
-		{
-			if (inputmngr.isKeyDown(SDL_SCANCODE_UP))
-			{
-				menuManager.moveUp();
-				menuInputTimer = MENU_REPEAT_DELAY;
-			}
-			else if (inputmngr.isKeyDown(SDL_SCANCODE_DOWN))
-			{
-				menuManager.moveDown();
-				menuInputTimer = MENU_REPEAT_DELAY;
-			}
-			else if (inputmngr.isKeyDown(SDL_SCANCODE_RETURN))
-			{
-				 handleMenuAction(menuManager.activate());
-				 menuInputTimer = MENU_REPEAT_DELAY;
-			}
-		}
-	}
+        if (menuInputTimer <= 0.f)
+        {
+            if (inputmngr.isKeyDown(SDL_SCANCODE_UP))
+            {
+                menuManager.moveUp();
+                menuInputTimer = MENU_REPEAT_DELAY;
+            }
+            else if (inputmngr.isKeyDown(SDL_SCANCODE_DOWN))
+            {
+                menuManager.moveDown();
+                menuInputTimer = MENU_REPEAT_DELAY;
+            }
+            else if (inputmngr.isKeyDown(SDL_SCANCODE_RETURN))
+            {
+                handleMenuAction(menuManager.activate());
+                menuInputTimer = MENU_REPEAT_DELAY;
+            }
+        }
+    }
 
-	void Game::updatePlay(float dt)
-	{
-		switch (netRole)
-		{
-		case Core::Game::NetRole::Offline: updatePlayOffline(dt); break;
-		case Core::Game::NetRole::Host:    updatePlayHost(dt);	  break;
-		case Core::Game::NetRole::Client:  updatePlayClient(dt);  break;
-		default:
-			break;
-		}
-	}
+    void Game::updatePoint(float dt)
+    {
+        pauseTimer -= dt;
 
-	void Game::updateConnecting(float dt)
-	{
-		networkManager.processMessages();
+        if (pauseTimer <= 0.f)
+            state = GameState::PLAY;
+    }
 
-		if (networkManager.getConnectionState() == Network::ConnectionState::Failed)
-		{
-			netRole = NetRole::Offline;
-			state = GameState::MENU;
-			return;
-		}
+    void Game::updatePlay(float dt)
+    {
+        switch (netRole)
+        {
+        case NetRole::Offline:
+            updatePlayOffline(dt);
+            break;
 
-		int slot;
-		if (networkManager.pollMatchStart(slot))
-		{
-			localPlayerSlot = slot;
-			state = GameState::PLAY;
-		}
-	}
+        case NetRole::Host:
+            updatePlayHost(dt);
+            break;
 
-	void Game::applyMatchEvent(MatchEvent e)
-	{
-		switch (e)
-		{
-		case MatchEvent::PointScored:
-			scoreboard.update(windowRenderer.renderer,
-				currentmatch.getPlayerOne().getScore(),
-				currentmatch.getPlayerTwo().getScore());
-			pauseTimer = 1.f;
-			state = GameState::POINT;
-			break;
+        case NetRole::Client:
+            updatePlayClient(dt);
+            break;
 
-		case MatchEvent::MatchFinished:
-			scoreboard.update(windowRenderer.renderer,
-				currentmatch.getPlayerOne().getScore(),
-				currentmatch.getPlayerTwo().getScore());
-			state = GameState::MENU;
-			if (netRole != NetRole::Offline)
-				networkManager.teardown();
-			break;
+        default:
+            break;
+        }
+    }
 
-		default:
-			break;
-		}
-	}
+    void Game::updatePlayOffline(float dt)
+    {
+        PlayerInputState p1 =
+            buildLocalInput(SDL_SCANCODE_W, SDL_SCANCODE_S, inputmngr);
 
-	void Game::applySnapshotToMatch(const Network::NetGameState& s)
-	{
-		auto x = currentmatch.getPlayerOne().getCenter().x;
+        PlayerInputState p2 =
+            buildLocalInput(SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, inputmngr);
 
-		currentmatch.getBall().setPosition({ s.ballX, s.ballY });
-		currentmatch.getPlayerOne().setCenter({ x , s.p1Y });
-		currentmatch.getPlayerTwo().setCenter({ x , s.p2Y });
-		currentmatch.getPlayerOne().setScore(s.p1Score);
-		currentmatch.getPlayerTwo().setScore(s.p2Score);
-	}
+        applyMatchEvent(currentmatch.update(dt, p1, p2));
+    }
 
-	Network::NetGameState Game::buildNetGameState(Match& match)
-	{
-		auto& ball = match.getBall();
-		auto& p1 = match.getPlayerOne();
-		auto& p2 = match.getPlayerTwo();
+    void Game::updatePlayHost(float dt)
+    {
+        PlayerInputState p1 =
+            buildLocalInput(SDL_SCANCODE_W, SDL_SCANCODE_S, inputmngr);
 
-		Network::NetGameState state = {
-			.ballX = ball.getCenter().x,
-			.ballY = ball.getCenter().y,
-			.ballSpeedX = ball.getSpeed().x,
-			.ballSpeedY = ball.getSpeed().y,
-			.p1Y = p1.getCenter().y,
-			.p2Y = p2.getCenter().y,
-			.p1Score = p1.getScore(),
-			.p2Score = p2.getScore()
-		};
+        networkManager.processMessages();
 
-		return state;
-	}
+        hostTickAccumulator += dt;
 
-	void Game::updatePlayClient(float dt)
-	{
-		PlayerInputState localInput = (localPlayerSlot == 1)
-		? buildLocalInput(SDL_SCANCODE_W, SDL_SCANCODE_S, inputmngr)
-		: buildLocalInput(SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, inputmngr);
+        const float TICK = 1.f / 30.f;
 
-		networkManager.sendInput(localInput);
+        while (hostTickAccumulator >= TICK)
+        {
+            PlayerInputState p2 = networkManager.getRemoteInput(2);
+            MatchEvent e = currentmatch.update(TICK, p1, p2);
 
-		Network::NetGameState snapshot;
-		if (networkManager.pollGameState(snapshot))
-			applySnapshotToMatch(snapshot);
+            networkManager.broadcastGameState(
+                buildNetGameState(currentmatch)
+            );
 
-		if (networkManager.pollMatchEnded())
-		{
-			state = GameState::MENU;
-			networkManager.teardown();
-			netRole = NetRole::Offline;
-		}
-	}
+            applyMatchEvent(e);
 
-	void Game::updatePlayHost(float dt)
-	{
-		PlayerInputState p1 = buildLocalInput(SDL_SCANCODE_W, SDL_SCANCODE_S, inputmngr);
+            hostTickAccumulator -= TICK;
+        }
+    }
 
-		networkManager.processMessages();
+    void Game::updatePlayClient(float dt)
+    {
+        PlayerInputState localInput =
+            (localPlayerSlot == 1)
+            ? buildLocalInput(SDL_SCANCODE_W, SDL_SCANCODE_S, inputmngr)
+            : buildLocalInput(SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, inputmngr);
 
-		hostTickAccumulator += dt;
-		const float TICK = 1.f / 30.f;
+        networkManager.sendInput(localInput);
 
-		while (hostTickAccumulator >= TICK)
-		{
-			PlayerInputState p2 = networkManager.getRemoteInput(2);
-			MatchEvent e = currentmatch.update(TICK, p1, p2);
-			networkManager.broadcastGameState(buildNetGameState(currentmatch));
-			applyMatchEvent(e);
-			hostTickAccumulator -= TICK;
-		}
-	}
+        Network::NetGameState snapshot;
 
-	void Game::updatePlayOffline(float dt)
-	{
-		PlayerInputState p1 = buildLocalInput(SDL_SCANCODE_W, SDL_SCANCODE_S, inputmngr);
-		PlayerInputState p2 = buildLocalInput(SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, inputmngr);
-		applyMatchEvent(currentmatch.update(dt, p1, p2));
-	}
+        if (networkManager.pollGameState(snapshot))
+            applySnapshotToMatch(snapshot);
 
-	void Game::updatePoint(float dt)
-	{
-		pauseTimer -= dt;
+        if (networkManager.pollMatchEnded())
+        {
+            state = GameState::MENU;
+            networkManager.teardown();
+            netRole = NetRole::Offline;
+        }
+    }
 
-		if (pauseTimer <= 0.f)
-			state = GameState::PLAY;
-	}
+    void Game::updateConnecting(float dt)
+    {
+        networkManager.processMessages();
 
-	void Game::render()
-	{
-		SDL_SetRenderDrawColor(windowRenderer.renderer, 0, 0, 0, 255);
-		SDL_RenderClear(windowRenderer.renderer);
+        if (networkManager.getConnectionState() == Network::ConnectionState::Failed)
+        {
+            netRole = NetRole::Offline;
+            state = GameState::MENU;
+            return;
+        }
 
-		switch (state)
-		{
-		case GameState::MENU:
-			renderMenu();
-			break;
+        int slot;
 
-		case GameState::PLAY:
-			renderPlay();
-			break;
+        if (networkManager.pollMatchStart(slot))
+        {
+            localPlayerSlot = slot;
+            state = GameState::PLAY;
+        }
+    }
 
-		case GameState::POINT:
-			renderPlay();
-			break;
+    void Game::applyMatchEvent(MatchEvent e)
+    {
+        switch (e)
+        {
+        case MatchEvent::PointScored:
+            scoreboard.update(
+                windowRenderer.renderer,
+                currentmatch.getPlayerOne().getScore(),
+                currentmatch.getPlayerTwo().getScore()
+            );
 
-		case GameState::PAUSE:
-			//renderPause(); TODO
-			break;
+            pauseTimer = 1.f;
+            state = GameState::POINT;
+            break;
 
-		case GameState::CONNECTING:
-			//renderConnecting(); TODO
-			break;
+        case MatchEvent::MatchFinished:
+            scoreboard.update(
+                windowRenderer.renderer,
+                currentmatch.getPlayerOne().getScore(),
+                currentmatch.getPlayerTwo().getScore()
+            );
 
-		default:
-			break;
-		}
+            state = GameState::MENU;
 
-		SDL_RenderPresent(windowRenderer.renderer);
-	}
+            if (netRole != NetRole::Offline)
+                networkManager.teardown();
 
-	void Game::renderMenu()
-	{
-		menuManager.render(windowRenderer.renderer);
-	}
+            break;
 
-	void Game::renderPlay()
-	{
-		currentmatch.render(windowRenderer.renderer);
+        default:
+            break;
+        }
+    }
 
-		view.drawAllUI(windowRenderer.renderer);
-	}
+    void Game::applySnapshotToMatch(const Network::NetGameState& s)
+    {
+        auto x = currentmatch.getPlayerOne().getCenter().x;
 
-	inline GameDifficulty actionToDifficulty(GameAction& a)
-	{
-		switch (a)
-		{
-		case GameAction::StartSoloEasy:
-			return GameDifficulty::EASY;
-			break;
-		case GameAction::StartSoloMedium:
-			return GameDifficulty::MEDIUM;
-			break;
-		case GameAction::StartSoloHard:
-			return GameDifficulty::HARD;
-			break;
-		default:
-			return GameDifficulty::EASY;
-			break;
-		}
-	}
+        currentmatch.getBall().setPosition({ s.ballX, s.ballY });
+        currentmatch.getPlayerOne().setCenter({ x, s.p1Y });
+        currentmatch.getPlayerTwo().setCenter({ x, s.p2Y });
+        currentmatch.getPlayerOne().setScore(s.p1Score);
+        currentmatch.getPlayerTwo().setScore(s.p2Score);
+    }
 
-	inline std::string game_state_to_string(Game::GameState& state)
-	{
-		switch (state)
-		{
-		case Core::Game::GameState::PAUSE:		return "Pause";
-		case Core::Game::GameState::MENU:		return "Menu";
-		case Core::Game::GameState::POINT:		return "Point";
-		case Core::Game::GameState::PLAY:		return "Point";
-		case Core::Game::GameState::CONNECTING: return "Connecting";
-		default: return "Unknown";
-		}
-	}
+    Network::NetGameState Game::buildNetGameState(Match& match)
+    {
+        auto& ball = match.getBall();
+        auto& p1 = match.getPlayerOne();
+        auto& p2 = match.getPlayerTwo();
 
-	void Game::handleMenuAction(UI::Action a)
-	{
-		if (a.menuid != MenuID::None)
-		{
-			menuManager.setCurrentMenu(a.menuid);
-		}
-		else
-		{
-			switch (a.action)
-			{
-			case GameAction::StartSoloEasy:
-				currentmatch = Match(
-					Match::MatchSettings{
-						.type = Match::MatchType::Solo,
-						.difficulty = GameDifficulty::EASY
-					});
-				state = GameState::PLAY;
-				break;
-			case GameAction::StartSoloMedium:
-				currentmatch = Match(
-					Match::MatchSettings{
-						.type = Match::MatchType::Solo,
-						.difficulty = GameDifficulty::MEDIUM
-					});
-				state = GameState::PLAY;
-				break;
-			case GameAction::StartSoloHard:
-				currentmatch = Match(
-					Match::MatchSettings{
-						.type = Match::MatchType::Solo,
-						.difficulty = GameDifficulty::HARD
-					});
-				state = GameState::PLAY;
-				break;
-			case GameAction::StartLocalMultiplayer:
-				currentmatch = Match(
-					Match::MatchSettings{
-						.type = Match::MatchType::Multi,
-						.difficulty = GameDifficulty::NONE
-					});
-				state = GameState::PLAY;
-				break;
+        Network::NetGameState state = {
+            .ballX = ball.getCenter().x,
+            .ballY = ball.getCenter().y,
+            .ballSpeedX = ball.getSpeed().x,
+            .ballSpeedY = ball.getSpeed().y,
+            .p1Y = p1.getCenter().y,
+            .p2Y = p2.getCenter().y,
+            .p1Score = p1.getScore(),
+            .p2Score = p2.getScore()
+        };
 
-			case GameAction::HostGame:
-				hostTickAccumulator = 0.f;
-				netRole = NetRole::Host;
-				localPlayerSlot = 1;
-				networkManager.startHost(networkManager.getActivePort());
-				networkManager.connectLocalClient();
+        return state;
+    }
 
-				currentmatch = Match(
-					Match::MatchSettings{
-						.type = Match::MatchType::Multi,
-						.difficulty = GameDifficulty::NONE
-					});
-				state = GameState::CONNECTING;
-				break;
+    void Game::render()
+    {
+        SDL_SetRenderDrawColor(
+            windowRenderer.renderer,
+            0,
+            0,
+            0,
+            255
+        );
 
-			case GameAction::JoinGame:
-				netRole = NetRole::Client;
-				currentmatch = Match(Match::MatchSettings{ .type = Match::MatchType::Multi });
-				networkManager.joinServer(hostIpFromUI, networkManager.getActivePort());
-				state = GameState::CONNECTING;
-				break;
+        SDL_RenderClear(windowRenderer.renderer);
 
-			case GameAction::Back:
-				menuManager.returnBack();
-				break;
-			case GameAction::Quit:
-				running = false;
-				break;
-			default:
-				break;
-			}
-		}
-	}
+        switch (state)
+        {
+        case GameState::MENU:
+            renderMenu();
+            break;
+
+        case GameState::PLAY:
+            renderPlay();
+            break;
+
+        case GameState::POINT:
+            renderPlay();
+            break;
+
+        case GameState::PAUSE:
+            // renderPause(); TODO
+            break;
+
+        case GameState::CONNECTING:
+            renderConnecting();
+            break;
+
+        default:
+            break;
+        }
+
+        SDL_RenderPresent(windowRenderer.renderer);
+    }
+
+    void Game::renderMenu()
+    {
+        menuManager.render(windowRenderer.renderer);
+    }
+
+    void Game::renderPlay()
+    {
+        currentmatch.render(windowRenderer.renderer);
+
+        view.drawAllUI(windowRenderer.renderer, LayerType::ConnectLayer);
+    }
+
+    void Game::renderConnecting()
+    {
+        view.drawThisType(windowRenderer.renderer, LayerType::ConnectLayer);
+    }
+
+    void Game::handleMenuAction(UI::Action a)
+    {
+        if (a.menuid != MenuID::None)
+        {
+            menuManager.setCurrentMenu(a.menuid);
+        }
+        else
+        {
+            switch (a.action)
+            {
+            case GameAction::StartSoloEasy:
+                currentmatch = Match(
+                    Match::MatchSettings{
+                        .type = Match::MatchType::Solo,
+                        .difficulty = GameDifficulty::EASY
+                    }
+                );
+
+                state = GameState::PLAY;
+                break;
+
+            case GameAction::StartSoloMedium:
+                currentmatch = Match(
+                    Match::MatchSettings{
+                        .type = Match::MatchType::Solo,
+                        .difficulty = GameDifficulty::MEDIUM
+                    }
+                );
+
+                state = GameState::PLAY;
+                break;
+
+            case GameAction::StartSoloHard:
+                currentmatch = Match(
+                    Match::MatchSettings{
+                        .type = Match::MatchType::Solo,
+                        .difficulty = GameDifficulty::HARD
+                    }
+                );
+
+                state = GameState::PLAY;
+                break;
+
+            case GameAction::StartLocalMultiplayer:
+                currentmatch = Match(
+                    Match::MatchSettings{
+                        .type = Match::MatchType::Multi,
+                        .difficulty = GameDifficulty::NONE
+                    }
+                );
+
+                state = GameState::PLAY;
+                break;
+
+            case GameAction::HostGame:
+                hostTickAccumulator = 0.f;
+                netRole = NetRole::Host;
+                localPlayerSlot = 1;
+
+                networkManager.startHost(
+                    networkManager.getActivePort()
+                );
+
+                networkManager.connectLocalClient();
+
+                currentmatch = Match(
+                    Match::MatchSettings{
+                        .type = Match::MatchType::Multi,
+                        .difficulty = GameDifficulty::NONE
+                    }
+                );
+
+                state = GameState::CONNECTING;
+                break;
+
+            case GameAction::JoinGame:
+                netRole = NetRole::Client;
+
+                currentmatch = Match(
+                    Match::MatchSettings{
+                        .type = Match::MatchType::Multi
+                    }
+                );
+
+                networkManager.joinServer(
+                    "127.0.0.1",
+                    networkManager.getActivePort()
+                );
+
+                state = GameState::CONNECTING;
+                break;
+
+            case GameAction::Back:
+                menuManager.returnBack();
+                break;
+
+            case GameAction::Quit:
+                running = false;
+                break;
+
+            default:
+                break;
+            }
+        }
+    }
+
+    inline GameDifficulty actionToDifficulty(GameAction& a)
+    {
+        switch (a)
+        {
+        case GameAction::StartSoloEasy:
+            return GameDifficulty::EASY;
+
+        case GameAction::StartSoloMedium:
+            return GameDifficulty::MEDIUM;
+
+        case GameAction::StartSoloHard:
+            return GameDifficulty::HARD;
+
+        default:
+            return GameDifficulty::EASY;
+        }
+    }
+
+    inline std::string game_state_to_string(Game::GameState& state)
+    {
+        switch (state)
+        {
+        case Game::GameState::PAUSE:
+            return "Pause";
+
+        case Game::GameState::MENU:
+            return "Menu";
+
+        case Game::GameState::POINT:
+            return "Point";
+
+        case Game::GameState::PLAY:
+            return "Point";
+
+        case Game::GameState::CONNECTING:
+            return "Connecting";
+
+        default:
+            return "Unknown";
+        }
+    }
 
 #ifdef _DEBUG
-	void Game::updateDebug(float dt)
-	{
-		auto& ball = currentmatch.getBall();
-		auto& p_one = currentmatch.getPlayerOne();
-		auto& p_two = currentmatch.getPlayerTwo();
 
-		auto ballPos = ball.getCenter();
-		auto p1Pos = p_one.getCenter();
-		auto p2Pos = p_two.getCenter();
+    void Game::updateDebug(float dt)
+    {
+        auto& ball = currentmatch.getBall();
+        auto& p_one = currentmatch.getPlayerOne();
+        auto& p_two = currentmatch.getPlayerTwo();
 
-		debugOverlay.update(windowRenderer.renderer, {
-			"Ball pos: (" + fmt(ballPos.x) + ", " + fmt(ballPos.y) + ")",
-			"Ball speed X: " + fmt(ball.getSpeed().x),
-			"Ball speed Y: " + fmt(ball.getSpeed().y),
-			"P1 pos: (" + fmt(p1Pos.x) + ", " + fmt(p1Pos.y) + ")",
-			"P2 pos: (" + fmt(p2Pos.x) + ", " + fmt(p2Pos.y) + ")",
-			"State: " + game_state_to_string(state),
-			"frame time: " + fmt(1.0f / static_cast<float>(dt)),
-			"Current Ball effect: " + Entities::effect_to_string(ball.getBallEffect())
-		});
-	}
-#endif 
+        auto ballPos = ball.getCenter();
+        auto p1Pos = p_one.getCenter();
+        auto p2Pos = p_two.getCenter();
 
-	void Game::quit()
-	{
-		view.clear();
-		windowRenderer.quit();
-	}
+        debugOverlay.update(
+            windowRenderer.renderer,
+            {
+                "Ball pos: (" + fmt(ballPos.x) + ", " + fmt(ballPos.y) + ")",
+                "Ball speed X: " + fmt(ball.getSpeed().x),
+                "Ball speed Y: " + fmt(ball.getSpeed().y),
+                "P1 pos: (" + fmt(p1Pos.x) + ", " + fmt(p1Pos.y) + ")",
+                "P2 pos: (" + fmt(p2Pos.x) + ", " + fmt(p2Pos.y) + ")",
+                "State: " + game_state_to_string(state),
+                "frame time: " + fmt(1.0f / static_cast<float>(dt)),
+                "Current Ball effect: " +
+                    Entities::effect_to_string(ball.getBallEffect())
+            }
+        );
+    }
+
+#endif
+
+    void Game::quit()
+    {
+        view.clear();
+        windowRenderer.quit();
+    }
+
 }

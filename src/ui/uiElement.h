@@ -9,11 +9,20 @@
 
 namespace UI
 {
+	enum class LayerType
+	{
+		None,
+		P1_score,
+		P2_score,
+		DebugLayer,
+		ConnectLayer
+	};
+
 	class UILayer
 	{
 	public:
 
-		UILayer(Util::Vec2 position) : position(position)
+		UILayer(Util::Vec2 position, LayerType type) : position(position), type(type)
 		{
 			destRect.x = static_cast<int>(position.x);
 			destRect.y = static_cast<int>(position.y);
@@ -31,7 +40,8 @@ namespace UI
 			: position(other.position),
 			  destRect(other.destRect),
 			  texture(other.texture),
-			  ownsTexture(other.ownsTexture)
+			  ownsTexture(other.ownsTexture),
+			  type(other.type)
 		{
 			other.texture = nullptr;
 			other.ownsTexture = false;
@@ -47,6 +57,7 @@ namespace UI
 				destRect = other.destRect;
 				texture = other.texture;
 				ownsTexture = other.ownsTexture;
+				type = other.type;
 
 				other.texture = nullptr;
 				other.ownsTexture = false;
@@ -97,11 +108,13 @@ namespace UI
 		}
 
 		Util::Vec2 getPos() const { return position; }
+		LayerType getType() const { return type; }
 
 	private:
 		Util::Vec2 position{};
 		SDL_Rect destRect{};
 		SDL_Texture* texture{ nullptr };
+		LayerType type;
 		bool ownsTexture{ true };
 	};
 

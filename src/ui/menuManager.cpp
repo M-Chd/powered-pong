@@ -118,7 +118,11 @@ namespace UI
 			printf("Added : %s\n", desc.txt.data());
 		}
 
-		ipMenu.addBtn(Button(IpMenuButtons[0], r, font, c));
+		for (auto& desc : IpMenuButtons)
+		{
+			ipMenu.addBtn(Button(desc, r, font, c));
+			printf("Added : %s\n", desc.txt.data());
+		}
 
 		for (auto& desc : optionsButtons)
 		{

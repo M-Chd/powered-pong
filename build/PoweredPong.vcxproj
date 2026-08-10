@@ -85,40 +85,29 @@
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\NetCommon;</IncludePath>
-  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/include" /external:I "C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/include/SDL2"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <BufferSecurityCheck>
-      </BufferSecurityCheck>
-      <CallingConvention>
-      </CallingConvention>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
       <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
-      <FloatingPointModel>
-      </FloatingPointModel>
-      <ForceConformanceInForLoopScope>
-      </ForceConformanceInForLoopScope>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild>
-      </MinimalRebuild>
+      <MinimalRebuild></MinimalRebuild>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RemoveUnreferencedCodeData>
-      </RemoveUnreferencedCodeData>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode>
-      </SupportJustMyCode>
-      <TreatWChar_tAsBuiltInType>
-      </TreatWChar_tAsBuiltInType>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
@@ -127,10 +116,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -138,8 +127,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>
-      </Message>
+      <Message></Message>
       <Command>setlocal
 C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/mouad/Desktop/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/mouad/Desktop/powered-pong/build/Debug/PoweredPong.exe -installedDir C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/debug/bin -OutVariable out
 if %errorlevel% neq 0 goto :cmEnd
@@ -154,18 +142,14 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalDependencies>C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\debug\lib\manual-link\SDL2maind.lib;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\debug\lib\SDL2_ttfd.lib;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\debug\lib\SDL2_imaged.lib;shell32.lib;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\debug\lib\SDL2d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
+      <DataExecutionPrevention></DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImageHasSafeExceptionHandlers>
-      </ImageHasSafeExceptionHandlers>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
       <ImportLibrary>C:/Users/mouad/Desktop/powered-pong/build/Debug/PoweredPong.lib</ImportLibrary>
-      <LinkErrorReporting>
-      </LinkErrorReporting>
+      <LinkErrorReporting></LinkErrorReporting>
       <ProgramDataBaseFile>C:/Users/mouad/Desktop/powered-pong/build/Debug/PoweredPong.pdb</ProgramDataBaseFile>
-      <RandomizedBaseAddress>
-      </RandomizedBaseAddress>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -174,34 +158,26 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/include" /external:I "C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/include/SDL2"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <BufferSecurityCheck>
-      </BufferSecurityCheck>
-      <CallingConvention>
-      </CallingConvention>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
       <ExceptionHandling>Sync</ExceptionHandling>
       <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
-      <FloatingPointModel>
-      </FloatingPointModel>
-      <ForceConformanceInForLoopScope>
-      </ForceConformanceInForLoopScope>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild>
-      </MinimalRebuild>
+      <MinimalRebuild></MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RemoveUnreferencedCodeData>
-      </RemoveUnreferencedCodeData>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode>
-      </SupportJustMyCode>
-      <TreatWChar_tAsBuiltInType>
-      </TreatWChar_tAsBuiltInType>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
@@ -212,10 +188,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -223,8 +199,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>
-      </Message>
+      <Message></Message>
       <Command>setlocal
 C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/mouad/Desktop/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/mouad/Desktop/powered-pong/build/Release/PoweredPong.exe -installedDir C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/bin -OutVariable out
 if %errorlevel% neq 0 goto :cmEnd
@@ -239,18 +214,14 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalDependencies>C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\lib\manual-link\SDL2main.lib;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\lib\SDL2_ttf.lib;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\lib\SDL2_image.lib;shell32.lib;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\lib\SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
+      <DataExecutionPrevention></DataExecutionPrevention>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImageHasSafeExceptionHandlers>
-      </ImageHasSafeExceptionHandlers>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
       <ImportLibrary>C:/Users/mouad/Desktop/powered-pong/build/Release/PoweredPong.lib</ImportLibrary>
-      <LinkErrorReporting>
-      </LinkErrorReporting>
+      <LinkErrorReporting></LinkErrorReporting>
       <ProgramDataBaseFile>C:/Users/mouad/Desktop/powered-pong/build/Release/PoweredPong.pdb</ProgramDataBaseFile>
-      <RandomizedBaseAddress>
-      </RandomizedBaseAddress>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -259,34 +230,26 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/include" /external:I "C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/include/SDL2"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <BufferSecurityCheck>
-      </BufferSecurityCheck>
-      <CallingConvention>
-      </CallingConvention>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
       <ExceptionHandling>Sync</ExceptionHandling>
       <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
-      <FloatingPointModel>
-      </FloatingPointModel>
-      <ForceConformanceInForLoopScope>
-      </ForceConformanceInForLoopScope>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild>
-      </MinimalRebuild>
+      <MinimalRebuild></MinimalRebuild>
       <Optimization>MinSpace</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RemoveUnreferencedCodeData>
-      </RemoveUnreferencedCodeData>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode>
-      </SupportJustMyCode>
-      <TreatWChar_tAsBuiltInType>
-      </TreatWChar_tAsBuiltInType>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
@@ -297,10 +260,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -308,8 +271,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>
-      </Message>
+      <Message></Message>
       <Command>setlocal
 C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/mouad/Desktop/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/mouad/Desktop/powered-pong/build/MinSizeRel/PoweredPong.exe -installedDir C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/bin -OutVariable out
 if %errorlevel% neq 0 goto :cmEnd
@@ -324,18 +286,14 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalDependencies>C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\lib\manual-link\SDL2main.lib;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\lib\SDL2_ttf.lib;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\lib\SDL2_image.lib;shell32.lib;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\lib\SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
+      <DataExecutionPrevention></DataExecutionPrevention>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImageHasSafeExceptionHandlers>
-      </ImageHasSafeExceptionHandlers>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
       <ImportLibrary>C:/Users/mouad/Desktop/powered-pong/build/MinSizeRel/PoweredPong.lib</ImportLibrary>
-      <LinkErrorReporting>
-      </LinkErrorReporting>
+      <LinkErrorReporting></LinkErrorReporting>
       <ProgramDataBaseFile>C:/Users/mouad/Desktop/powered-pong/build/MinSizeRel/PoweredPong.pdb</ProgramDataBaseFile>
-      <RandomizedBaseAddress>
-      </RandomizedBaseAddress>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -344,35 +302,27 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/include" /external:I "C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/include/SDL2"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <BufferSecurityCheck>
-      </BufferSecurityCheck>
-      <CallingConvention>
-      </CallingConvention>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
       <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
-      <FloatingPointModel>
-      </FloatingPointModel>
-      <ForceConformanceInForLoopScope>
-      </ForceConformanceInForLoopScope>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild>
-      </MinimalRebuild>
+      <MinimalRebuild></MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <RemoveUnreferencedCodeData>
-      </RemoveUnreferencedCodeData>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode>
-      </SupportJustMyCode>
-      <TreatWChar_tAsBuiltInType>
-      </TreatWChar_tAsBuiltInType>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
@@ -381,10 +331,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -392,8 +342,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>
-      </Message>
+      <Message></Message>
       <Command>setlocal
 C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/mouad/Desktop/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/mouad/Desktop/powered-pong/build/RelWithDebInfo/PoweredPong.exe -installedDir C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/bin -OutVariable out
 if %errorlevel% neq 0 goto :cmEnd
@@ -408,18 +357,14 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalDependencies>C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\lib\manual-link\SDL2main.lib;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\lib\SDL2_ttf.lib;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\lib\SDL2_image.lib;shell32.lib;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\lib\SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
+      <DataExecutionPrevention></DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImageHasSafeExceptionHandlers>
-      </ImageHasSafeExceptionHandlers>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
       <ImportLibrary>C:/Users/mouad/Desktop/powered-pong/build/RelWithDebInfo/PoweredPong.lib</ImportLibrary>
-      <LinkErrorReporting>
-      </LinkErrorReporting>
+      <LinkErrorReporting></LinkErrorReporting>
       <ProgramDataBaseFile>C:/Users/mouad/Desktop/powered-pong/build/RelWithDebInfo/PoweredPong.pdb</ProgramDataBaseFile>
-      <RandomizedBaseAddress>
-      </RandomizedBaseAddress>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -439,7 +384,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FeatureSummary.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPNG.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindZLIB.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\SelectLibraryConfigurations.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeCCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeCXXCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeRCCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeSystem.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_imageConfig.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_imageConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttfConfig.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttfConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\png\vcpkg-cmake-wrapper.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Config.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2ConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\sdlfind.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\zlib\vcpkg-cmake-wrapper.cmake;C:\Users\mouad\Desktop\vcpkg\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FeatureSummary.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPNG.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindZLIB.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\SelectLibraryConfigurations.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeCCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeCXXCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeRCCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeSystem.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_imageConfig.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_imageConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttfConfig.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttfConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\asio\asio-config.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\asio\asio-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\png\vcpkg-cmake-wrapper.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Config.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2ConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\sdlfind.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\zlib\vcpkg-cmake-wrapper.cmake;C:\Users\mouad\Desktop\vcpkg\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/mouad/Desktop/powered-pong/CMakeLists.txt</Message>
@@ -452,7 +397,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FeatureSummary.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPNG.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindZLIB.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\SelectLibraryConfigurations.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeCCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeCXXCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeRCCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeSystem.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_imageConfig.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_imageConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttfConfig.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttfConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\png\vcpkg-cmake-wrapper.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Config.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2ConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\sdlfind.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\zlib\vcpkg-cmake-wrapper.cmake;C:\Users\mouad\Desktop\vcpkg\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FeatureSummary.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPNG.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindZLIB.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\SelectLibraryConfigurations.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeCCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeCXXCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeRCCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeSystem.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_imageConfig.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_imageConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttfConfig.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttfConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\asio\asio-config.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\asio\asio-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\png\vcpkg-cmake-wrapper.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Config.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2ConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\sdlfind.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\zlib\vcpkg-cmake-wrapper.cmake;C:\Users\mouad\Desktop\vcpkg\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/mouad/Desktop/powered-pong/CMakeLists.txt</Message>
@@ -465,7 +410,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FeatureSummary.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPNG.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindZLIB.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\SelectLibraryConfigurations.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeCCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeCXXCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeRCCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeSystem.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_imageConfig.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_imageConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttfConfig.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttfConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\png\vcpkg-cmake-wrapper.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Config.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2ConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\sdlfind.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\zlib\vcpkg-cmake-wrapper.cmake;C:\Users\mouad\Desktop\vcpkg\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FeatureSummary.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPNG.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindZLIB.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\SelectLibraryConfigurations.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeCCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeCXXCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeRCCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeSystem.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_imageConfig.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_imageConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttfConfig.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttfConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\asio\asio-config.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\asio\asio-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\png\vcpkg-cmake-wrapper.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Config.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2ConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\sdlfind.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\zlib\vcpkg-cmake-wrapper.cmake;C:\Users\mouad\Desktop\vcpkg\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/mouad/Desktop/powered-pong/CMakeLists.txt</Message>
@@ -478,7 +423,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FeatureSummary.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPNG.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindZLIB.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\SelectLibraryConfigurations.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeCCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeCXXCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeRCCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeSystem.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_imageConfig.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_imageConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttfConfig.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttfConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\png\vcpkg-cmake-wrapper.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Config.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2ConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\sdlfind.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\zlib\vcpkg-cmake-wrapper.cmake;C:\Users\mouad\Desktop\vcpkg\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FeatureSummary.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPNG.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\FindZLIB.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-4.3\Modules\SelectLibraryConfigurations.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeCCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeCXXCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeRCCompiler.cmake;C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\4.3.0-rc2\CMakeSystem.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_image-shared-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_imageConfig.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_image\SDL2_imageConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttf-shared-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttfConfig.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\SDL2_ttf\SDL2_ttfConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\asio\asio-config.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\asio\asio-targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\png\vcpkg-cmake-wrapper.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Config.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2ConfigVersion.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-debug.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-release.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\sdl2\sdlfind.cmake;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\share\zlib\vcpkg-cmake-wrapper.cmake;C:\Users\mouad\Desktop\vcpkg\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\mouad\Desktop\powered-pong\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
@@ -491,7 +436,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\game.cpp" />
     <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\board.h" />
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\board.cpp" />
-    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\entities\item.cpp" />
     <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\gameConfig.h" />
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\gameConfig.cpp" />
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\util\vector2.cpp" />
@@ -510,7 +454,22 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\match.cpp" />
     <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\difficulty.h" />
     <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\matchEvent.h" />
-    <ClInclude Include="networkManager.h" />
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\aiController.h" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\aiController.cpp" />
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\entities\activeEffect.h" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\entities\activeEffect.cpp" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\entities\item.cpp" />
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkManager.h" />
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\netGameState.h" />
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkClient.h" />
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkServer.h" />
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\netCommon.h" />
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\messageType.h" />
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\playerInputState.h" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkManager.cpp" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkServer.cpp" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkClient.cpp" />
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\connectionState.h" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

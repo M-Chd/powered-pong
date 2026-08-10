@@ -9,8 +9,8 @@ namespace UI
 		this->color = color;
 		font = std::shared_ptr<TTF_Font>(TTF_OpenFont(fontPath.c_str(), fontSize), TTF_CloseFont);
  
-		p1Layer = view.addLayer(std::make_unique<UILayer>(p1_pos));
-		p2Layer = view.addLayer(std::make_unique<UILayer>(p2_pos));
+		p1Layer = view.addLayer(std::make_unique<UILayer>(p1_pos,LayerType::P1_score));
+		p2Layer = view.addLayer(std::make_unique<UILayer>(p2_pos,LayerType::P2_score));
  
 		update(renderer, 0, 0);
 	}

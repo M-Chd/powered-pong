@@ -10,6 +10,7 @@
 #include "textureCache.h"
 #include "util.h"
 #include "debugOverlay.h"
+#include "connectUi.h"
 #include "menuManager.h"
 #include "match.h"
 #include "difficulty.h"
@@ -45,11 +46,14 @@ namespace Core
 		void updatePlayHost(float dt);
 		void updatePlayClient(float dt);
 		void updateConnecting(float dt);
+
 		void applyMatchEvent(MatchEvent);
 		void applySnapshotToMatch(const Network::NetGameState&);
 		Network::NetGameState buildNetGameState(Match&);
+
 		void renderMenu();
 		void renderPlay();
+		void renderConnecting();
 
 	public:
 		WindowRenderer windowRenderer;
@@ -58,6 +62,7 @@ namespace Core
 		UI::View view;
 		UI::ScoreBoard scoreboard;
 		UI::MenuManager menuManager;
+		UI::ConnectUIElement connectUI;
 		Network::NetworkManager networkManager;
 		
 #ifdef _DEBUG

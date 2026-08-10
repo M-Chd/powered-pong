@@ -15,7 +15,7 @@ namespace UI
 		for (int i = 0; i < lineCount; ++i)
 		{
 			float lineY = y - (lineCount - i) * lineHeight;
-			layers.push_back(view.addLayer(std::make_unique<UILayer>(Util::Vec2{ x, lineY })));
+			layers.push_back(view.addLayer(std::make_unique<UILayer>(Util::Vec2{ x, lineY },LayerType::DebugLayer)));
 		}
 	}
  

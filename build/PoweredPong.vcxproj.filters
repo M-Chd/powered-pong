@@ -19,9 +19,6 @@
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\board.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\entities\item.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\gameConfig.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -44,6 +41,24 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\match.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\aiController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\entities\activeEffect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\entities\item.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -81,7 +96,36 @@
     <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\matchEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="networkManager.h" />
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\aiController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\entities\activeEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\netGameState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkClient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkServer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\netCommon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\messageType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\playerInputState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\connectionState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\mouad\Desktop\powered-pong\CMakeLists.txt" />

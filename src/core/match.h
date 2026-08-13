@@ -28,6 +28,7 @@ namespace Core
 		float		 getItemSpawnTimer() const { return itemSpawnTimer; }
 		float		 getItemRndmRate() const { return itemRdmRate; }
 		bool		 isPowerUpsAllowed() const { return allowPowerUps; }
+		void		 toggleItems() { allowPowerUps == true ? allowPowerUps = false : allowPowerUps = true; }
 
 		void		 reduceItemSpawnTimer(float dt) { itemSpawnTimer -= dt; }
 		void		 resetItemSpwnTimer(float time = 10.f) { itemSpawnTimer = time; }
@@ -78,7 +79,7 @@ namespace Core
 		Entities::Player& getPlayerTwo() { return playerTwo; }
 		Entities::Ball& getBall() { return ball; }
 		Board& getBoard() { return board; }
-		void setRules(Rules& r) { rules = r; }
+		void setRules(Rules r) { rules = r; }
 		Rules& getRules() { return rules; }
 
 	private:

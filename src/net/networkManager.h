@@ -25,7 +25,8 @@ namespace Network
 
 		Core::PlayerInputState getRemoteInput(int slot);
 		void broadcastGameState(const NetGameState&);
-
+	private:
+		void connectClient(const std::string& ip, uint16_t port);
 	private:
 		std::unique_ptr<GameServer> server;
 		std::unique_ptr<GameClient> client;

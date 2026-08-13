@@ -44,7 +44,7 @@ namespace pong
 
 				std::memcpy(msg.body.data() + i, &data, sizeof(DataType));
 
-				msg.header.size = msg.size();
+				msg.header.size = static_cast<uint32_t>(msg.body.size());
 
 				return msg;
 			}
@@ -56,13 +56,11 @@ namespace pong
 
 				size_t i = msg.body.size() - sizeof(DataType);
 
-				msg.body.resize(msg.body.size() + sizeof(DataType));
-
 				std::memcpy(&data, msg.body.data() + i, sizeof(DataType));
 
 				msg.body.resize(i);
 
-				msg.header.size = msg.size();
+				msg.header.size = static_cast<uint32_t>(msg.body.size());
 
 				return msg;
 			}

@@ -75,16 +75,20 @@ namespace Network
 		server->Start();
 	}
 
-	void NetworkManager::joinServer(const std::string& ip, uint16_t port)
+	void NetworkManager::connectClient(const std::string& ip, uint16_t port)
 	{
 		client = std::make_unique<GameClient>();
 		client->Connect(ip, port);
 		client->sendJoinMatch();
 	}
 
+	void NetworkManager::joinServer(const std::string& ip, uint16_t port)
+	{
+		connectClient(ip, port);
+	}
+
 	void NetworkManager::connectLocalClient()
 	{
-		client = std::make_unique<GameClient>();
-		client->Connect("127.0.0.1", activePort);
+		connectClient("127.0.0.1", activePort);
 	}
 }

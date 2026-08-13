@@ -170,7 +170,7 @@ namespace pong
 
 			void WriteBody()
 			{
-				asio::async_write(m_socket, asio::buffer(m_msgTemporaryIn.body.data(), m_msgTemporaryIn.body.size()),
+				asio::async_write(m_socket, asio::buffer(m_qMessagesOut.front().body.data(), m_qMessagesOut.front().body.size()),
 					[this](std::error_code ec, std::size_t length)
 					{
 						if (!ec)

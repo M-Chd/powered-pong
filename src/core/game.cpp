@@ -184,6 +184,8 @@ namespace Core
 
     void Game::updatePlayClient(float dt)
     {
+        networkManager.processMessages();
+
         PlayerInputState localInput =
             (localPlayerSlot == 1)
             ? buildLocalInput(SDL_SCANCODE_W, SDL_SCANCODE_S, inputmngr)
@@ -260,13 +262,25 @@ namespace Core
 
     void Game::applySnapshotToMatch(const Network::NetGameState& s)
     {
-        auto x = currentmatch.getPlayerOne().getCenter().x;
+        auto x1 = currentmatch.getPlayerOne().getCenter().x;
+        auto x2 = currentmatch.getPlayerTwo().getCenter().x;
 
         currentmatch.getBall().setPosition({ s.ballX, s.ballY });
-        currentmatch.getPlayerOne().setCenter({ x, s.p1Y });
-        currentmatch.getPlayerTwo().setCenter({ x, s.p2Y });
-        currentmatch.getPlayerOne().setScore(s.p1Score);
-        currentmatch.getPlayerTwo().setScore(s.p2Score);
+        currentmatch.getPlayerOne().setCenter({ x1, s.p1Y });
+        currentmatch.getPlayerTwo().setCenter({ x2, s.p2Y });
+
+        if (s.p1Score != currentmatch.getPlayerOne().getScore() ||
+            s.p2Score != currentmatch.getPlayerTwo().getScore())
+        {
+            currentmatch.getPlayerOne().setScore(s.p1Score);
+            currentmatch.getPlayerTwo().setScore(s.p2Score);
+
+            scoreboard.update(
+                windowRenderer.renderer,
+                s.p1Score,
+                s.p2Score
+            );
+        }
     }
 
     Network::NetGameState Game::buildNetGameState(Match& match)
@@ -365,6 +379,9 @@ namespace Core
                     }
                 );
 
+                scoreboard.update(windowRenderer.renderer, currentmatch.getPlayerOne().getScore(),
+                    currentmatch.getPlayerTwo().getScore());
+
                 state = GameState::PLAY;
                 break;
 
@@ -375,6 +392,9 @@ namespace Core
                         .difficulty = GameDifficulty::MEDIUM
                     }
                 );
+
+                scoreboard.update(windowRenderer.renderer, currentmatch.getPlayerOne().getScore(),
+                    currentmatch.getPlayerTwo().getScore());
 
                 state = GameState::PLAY;
                 break;
@@ -387,6 +407,9 @@ namespace Core
                     }
                 );
 
+                scoreboard.update(windowRenderer.renderer, currentmatch.getPlayerOne().getScore(),
+                    currentmatch.getPlayerTwo().getScore());
+
                 state = GameState::PLAY;
                 break;
 
@@ -397,6 +420,9 @@ namespace Core
                         .difficulty = GameDifficulty::NONE
                     }
                 );
+
+                scoreboard.update(windowRenderer.renderer, currentmatch.getPlayerOne().getScore(),
+                    currentmatch.getPlayerTwo().getScore());
 
                 state = GameState::PLAY;
                 break;
@@ -419,10 +445,17 @@ namespace Core
                     }
                 );
 
+                scoreboard.update(windowRenderer.renderer, currentmatch.getPlayerOne().getScore(),
+                    currentmatch.getPlayerTwo().getScore());
+
+                // Need to change this for a future update, online matches are temporarily without items
+                currentmatch.getRules().toggleItems();
+
                 state = GameState::CONNECTING;
                 break;
 
             case GameAction::JoinGame:
+
                 netRole = NetRole::Client;
 
                 currentmatch = Match(
@@ -430,6 +463,12 @@ namespace Core
                         .type = Match::MatchType::Multi
                     }
                 );
+
+                scoreboard.update(windowRenderer.renderer, currentmatch.getPlayerOne().getScore(),
+                    currentmatch.getPlayerTwo().getScore());
+
+                // Need to change this for a future update, online matches are temporarily without items
+                currentmatch.getRules().toggleItems();
 
                 networkManager.joinServer(
                     "127.0.0.1",

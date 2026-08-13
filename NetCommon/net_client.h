@@ -39,7 +39,7 @@ namespace pong
 					return false;
 				}
 
-				return false;
+				return true;
 			}
 
 			void Disconnect()

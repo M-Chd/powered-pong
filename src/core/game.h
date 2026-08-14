@@ -85,4 +85,5 @@ namespace Core
 
 	inline GameDifficulty actionToDifficulty(UI::GameAction&);
 	inline std::string game_state_to_string(Game::GameState&);
+	inline static std::string netRole_to_string(Game::NetRole&);
 }

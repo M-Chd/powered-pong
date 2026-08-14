@@ -35,7 +35,9 @@ namespace Network
 		message<MessageType> msg;
 		msg.header.id = MessageType::GameState;
 		msg << n;
-		server->MessageAllClients(msg);
+
+		if(server)
+			server->MessageAllClients(msg);
 	}
 
 	void NetworkManager::sendInput(const Core::PlayerInputState& input)

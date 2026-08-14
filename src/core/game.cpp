@@ -43,8 +43,8 @@ namespace Core
             14,
             SDL_Color{ 200, 200, 200, 255 },
             10,
-            static_cast<float>(windowRenderer.height) - 15,
-            8
+            static_cast<float>(windowRenderer.height) - 20,
+            9 // nombre de ligne de debug
         );
 
         connectUI.init(
@@ -252,6 +252,8 @@ namespace Core
 
             if (netRole != NetRole::Offline)
                 networkManager.teardown();
+
+            netRole = NetRole::Offline;
 
             break;
 
@@ -471,7 +473,7 @@ namespace Core
                 currentmatch.getRules().toggleItems();
 
                 networkManager.joinServer(
-                    "127.0.0.1",
+                    "127.0.0.1", //join localhost temporarily
                     networkManager.getActivePort()
                 );
 
@@ -534,6 +536,19 @@ namespace Core
         }
     }
 
+    inline static std::string netRole_to_string(Game::NetRole& netRole)
+    {
+        switch (netRole)
+        {
+        case Game::NetRole::Client:     return "Client";
+        case Game::NetRole::Host:       return "Host";
+        case Game::NetRole::Offline:    return "Offline";
+        default:
+            return "Unknown";
+            break;
+        }
+    }
+
 #ifdef _DEBUG
 
     void Game::updateDebug(float dt)
@@ -557,7 +572,8 @@ namespace Core
                 "State: " + game_state_to_string(state),
                 "frame time: " + fmt(1.0f / static_cast<float>(dt)),
                 "Current Ball effect: " +
-                    Entities::effect_to_string(ball.getBallEffect())
+                    Entities::effect_to_string(ball.getBallEffect()),
+                "Net Role: " + netRole_to_string(netRole)
             }
         );
     }

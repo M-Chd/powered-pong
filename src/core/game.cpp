@@ -198,7 +198,8 @@ namespace Core
         if (networkManager.pollGameState(snapshot))
             applySnapshotToMatch(snapshot);
 
-        if (networkManager.pollMatchEnded())
+        if (networkManager.pollMatchEnded() ||
+            networkManager.getConnectionState() == Network::ConnectionState::Failed)
         {
             state = GameState::MENU;
             networkManager.teardown();
@@ -253,7 +254,7 @@ namespace Core
             if (netRole != NetRole::Offline)
                 networkManager.teardown();
 
-            netRole = NetRole::Offline;
+            netRole = NetRole::Offline; // Si ajouté regle le probleme du Host qui reste en online
 
             break;
 

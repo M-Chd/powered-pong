@@ -82,4 +82,12 @@ namespace UI
 		{"Rules",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 0},MenuID::Rules,GameAction::None },
 		{"Back",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 1},MenuID::None,GameAction::Back}
 	} };
+
+	static const char* RulesText =
+		R"(Movements:
+Z or W to go UP, S to go DOWN
+if you play in Local Multiplayer or Online Mutiplayer,
+the inputs for the second are KEY UP and KEY DOWN
+Items:
+Items can spawn on the map if allowed within a specific cooldown time.)";
 }

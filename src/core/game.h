@@ -16,6 +16,7 @@
 #include "difficulty.h"
 #include "matchEvent.h"
 #include "net/networkManager.h"
+#include "inputIP.h"
 
 namespace UI { struct View; }
 
@@ -34,7 +35,8 @@ namespace Core
 		void init();
 		void update(float dt);
 		void render();
-		void handleMenuAction(UI::Action a);
+		void handleMenuAction(UI::Action);
+		void handleEvent(const SDL_Event&);
 		void quit();
 
 	private:
@@ -64,6 +66,7 @@ namespace Core
 		UI::MenuManager menuManager;
 		UI::ConnectUIElement connectUI;
 		Network::NetworkManager networkManager;
+		UI::InputIP inputIp;
 		
 #ifdef _DEBUG
 		UI::DebugOverlay debugOverlay;
@@ -71,12 +74,13 @@ namespace Core
 		System::TextureCache cache;
 		System::InputManager inputmngr;
 		GameState state;
-		NetRole netRole = NetRole::Offline;
+		NetRole netRole{ NetRole::Offline };
 		float pauseTimer{ 0.f };
 		float menuInputTimer{ 0.f };
 		float hostTickAccumulator{};
 		int localPlayerSlot{ 1 };
 		bool running{ true };
+		bool textInputActive{ false };
 
 #ifdef _DEBUG
 		void updateDebug(float dt);

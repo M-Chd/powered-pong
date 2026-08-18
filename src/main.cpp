@@ -20,6 +20,9 @@ int main(int argc, char* argv[])
         {
             if (event.type == SDL_QUIT)
                 g.running = false;
+
+            if(g.textInputActive)
+                g.handleEvent(event);
         }
 
         g.inputmngr.update();

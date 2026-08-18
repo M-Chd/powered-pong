@@ -14,7 +14,7 @@ namespace UI
 
 		DebugOverlay()
 		{
-			layers.reserve(9);
+			layers.reserve(10);
 		}
 
 		void init(View& view,

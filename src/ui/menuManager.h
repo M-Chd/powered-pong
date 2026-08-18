@@ -37,6 +37,7 @@ namespace UI
 	private:
 		Menu* currentMenu{ nullptr };
 		std::stack<Menu*> menuHistory{};
+		std::stack<MenuID> menuIDHistory{};
 		MenuID currentMenuID{ MenuID::Main };
 
 		Menu mainMenu{};

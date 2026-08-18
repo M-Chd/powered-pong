@@ -2,6 +2,7 @@
 
 using namespace Util;
 using namespace UI;
+using namespace Network;
 
 namespace Core
 {
@@ -44,7 +45,7 @@ namespace Core
             SDL_Color{ 200, 200, 200, 255 },
             10,
             static_cast<float>(windowRenderer.height) - 20,
-            9 // nombre de ligne de debug
+            10 // nombre de ligne de debug
         );
 
         connectUI.init(
@@ -54,6 +55,14 @@ namespace Core
             50,
             WHITE,
             { (float)windowRenderer.height / 2, (float)windowRenderer.width / 2 }
+        );
+
+        inputIp.init(
+            windowRenderer.renderer,
+            "../../../assets/fonts/IMPACT.ttf",
+            40,
+            WHITE,
+            { static_cast<float>(MENU_DEFAULT_X), static_cast<float>(MENU_FIRST_Y - 50) }
         );
 
         state = GameState::MENU;
@@ -350,6 +359,16 @@ namespace Core
     void Game::renderMenu()
     {
         menuManager.render(windowRenderer.renderer);
+
+        if (menuManager.getCurrentMenuID() == MenuID::OnlineIP)
+        {
+            this->textInputActive = true;
+            inputIp.render(windowRenderer.renderer);
+        }
+        else
+        {
+            this->textInputActive = false;
+        }
     }
 
     void Game::renderPlay()
@@ -372,6 +391,8 @@ namespace Core
         }
         else
         {
+            auto ip = inputIp.getIP();
+
             switch (a.action)
             {
             case GameAction::StartSoloEasy:
@@ -459,6 +480,12 @@ namespace Core
 
             case GameAction::JoinGame:
 
+                if (!inputIp.isValidIP())
+                {
+                    printf("Adresse IP invalide : %s\n", ip.c_str());
+                    break;
+                }
+
                 netRole = NetRole::Client;
 
                 currentmatch = Match(
@@ -473,10 +500,7 @@ namespace Core
                 // Need to change this for a future update, online matches are temporarily without items
                 currentmatch.getRules().toggleItems();
 
-                networkManager.joinServer(
-                    "127.0.0.1", //join localhost temporarily
-                    networkManager.getActivePort()
-                );
+                networkManager.joinServer(ip.c_str(), networkManager.getActivePort());
 
                 state = GameState::CONNECTING;
                 break;
@@ -491,6 +515,28 @@ namespace Core
 
             default:
                 break;
+            }
+        }
+    }
+
+    void Game::handleEvent(const SDL_Event& e)
+    {
+        if (menuManager.getCurrentMenuID() == MenuID::OnlineIP)
+        {
+            if (!textInputActive)
+            {
+                SDL_StartTextInput();
+                textInputActive = true;
+            }
+            inputIp.handleEvent(e);
+            return;
+        }
+        else
+        {
+            if (textInputActive)
+            {
+                SDL_StopTextInput();
+                textInputActive = false;
             }
         }
     }
@@ -512,6 +558,7 @@ namespace Core
             return GameDifficulty::EASY;
         }
     }
+
 
     inline std::string game_state_to_string(Game::GameState& state)
     {
@@ -558,9 +605,12 @@ namespace Core
         auto& p_one = currentmatch.getPlayerOne();
         auto& p_two = currentmatch.getPlayerTwo();
 
+        int mouseX, mouseY;
         auto ballPos = ball.getCenter();
         auto p1Pos = p_one.getCenter();
         auto p2Pos = p_two.getCenter();
+
+        SDL_GetMouseState(&mouseX, &mouseY);
 
         debugOverlay.update(
             windowRenderer.renderer,
@@ -570,6 +620,7 @@ namespace Core
                 "Ball speed Y: " + fmt(ball.getSpeed().y),
                 "P1 pos: (" + fmt(p1Pos.x) + ", " + fmt(p1Pos.y) + ")",
                 "P2 pos: (" + fmt(p2Pos.x) + ", " + fmt(p2Pos.y) + ")",
+                "Mouse position: (" + fmt(mouseX) + ", " + fmt(mouseY) + ")",
                 "State: " + game_state_to_string(state),
                 "frame time: " + fmt(1.0f / static_cast<float>(dt)),
                 "Current Ball effect: " +

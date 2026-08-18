@@ -58,6 +58,7 @@ namespace Core
         {
             throw std::runtime_error("Error while initializating renderer...");
         }
+        std::cout << "Loaded successfuly the renderer and the window" << "\n";
     }
 
     void WindowRenderer::quit() const

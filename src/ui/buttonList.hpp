@@ -47,6 +47,7 @@ namespace UI
 		GameAction action;
 	};
 
+
 	constexpr std::array<ButtonDescription,4> mainMenuButtons
 	{ {
 		{"Solo",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 0},MenuID::Solo,GameAction::None},

@@ -20,6 +20,8 @@
 
 namespace UI { struct View; }
 
+#define DEBUG 1 // change this to 0 for usual mode, 1 to play on debug mode
+
 constexpr float MENU_REPEAT_DELAY = 0.15f;
 
 namespace Core
@@ -68,7 +70,7 @@ namespace Core
 		Network::NetworkManager networkManager;
 		UI::InputIP inputIp;
 		
-#ifdef _DEBUG
+#ifdef DEBUG
 		UI::DebugOverlay debugOverlay;
 #endif
 		System::TextureCache cache;
@@ -82,7 +84,7 @@ namespace Core
 		bool running{ true };
 		bool textInputActive{ false };
 
-#ifdef _DEBUG
+#ifdef DEBUG
 		void updateDebug(float dt);
 #endif
 	};

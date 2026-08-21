@@ -70,7 +70,9 @@ namespace UI
 		{
 			if (!texture)
 			{
+#if DEBUG
 				printf("Texture nullptr\n");
+#endif 
 				return;
 			}
 

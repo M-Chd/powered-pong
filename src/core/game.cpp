@@ -96,7 +96,7 @@ namespace Core
             break;
         }
 
-#ifdef DEBUG
+#if DEBUG
         updateDebug(dt);
 #endif
     }
@@ -597,7 +597,7 @@ namespace Core
         }
     }
 
-#ifdef DEBUG
+#if DEBUG
 
     void Game::updateDebug(float dt)
     {

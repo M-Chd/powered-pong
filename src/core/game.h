@@ -20,7 +20,7 @@
 
 namespace UI { struct View; }
 
-#define DEBUG 1 // change this to 0 for usual mode, 1 to play on debug mode
+#define DEBUG 0 // change this to 0 for usual mode, 1 to play on debug mode
 
 constexpr float MENU_REPEAT_DELAY = 0.15f;
 
@@ -69,10 +69,7 @@ namespace Core
 		UI::ConnectUIElement connectUI;
 		Network::NetworkManager networkManager;
 		UI::InputIP inputIp;
-		
-#ifdef DEBUG
 		UI::DebugOverlay debugOverlay;
-#endif
 		System::TextureCache cache;
 		System::InputManager inputmngr;
 		GameState state;
@@ -84,7 +81,7 @@ namespace Core
 		bool running{ true };
 		bool textInputActive{ false };
 
-#ifdef DEBUG
+#if DEBUG
 		void updateDebug(float dt);
 #endif
 	};

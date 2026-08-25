@@ -20,7 +20,7 @@
 
 namespace UI { struct View; }
 
-#define DEBUG 0 // change this to 0 for usual mode, 1 to play on debug mode
+#define DEBUG 1 // change this to 0 for usual mode, 1 to play on debug mode
 
 constexpr float MENU_REPEAT_DELAY = 0.15f;
 
@@ -44,6 +44,7 @@ namespace Core
 	private:
 
 		void updateMenu(float dt);
+		void updatePause(float dt);
 		void updatePlay(float dt);
 		void updatePoint(float dt);
 		void updatePlayOffline(float dt);
@@ -57,6 +58,7 @@ namespace Core
 
 		void renderMenu();
 		void renderPlay();
+		void renderPause();
 		void renderConnecting();
 
 	public:
@@ -86,7 +88,6 @@ namespace Core
 #endif
 	};
 
-	inline GameDifficulty actionToDifficulty(UI::GameAction&);
 	inline std::string game_state_to_string(Game::GameState&);
 	inline static std::string netRole_to_string(Game::NetRole&);
 }

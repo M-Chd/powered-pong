@@ -55,6 +55,11 @@ namespace UI
 			currentMenu->updateSelection();
 			currentMenuID = MenuID::Main;
 			break;
+		case UI::MenuID::Pause:
+			currentMenu = &pauseMenu;
+			currentMenu->updateSelection();
+			currentMenuID = MenuID::Pause;
+			break;
 		case UI::MenuID::Solo:
 			menuHistory.push(currentMenu);
 			menuIDHistory.push(currentMenuID);
@@ -93,6 +98,15 @@ namespace UI
 		default:
 			break;
 		}
+	}
+
+	void MenuManager::setLastCurrentMenu()
+	{
+		currentMenu = menuHistory.top();
+		currentMenu->updateSelection();
+		currentMenuID = menuIDHistory.top();
+		menuHistory.pop();
+		menuIDHistory.pop();
 	}
 
 	void MenuManager::moveUp()
@@ -137,6 +151,11 @@ namespace UI
 		{
 			optionsMenu.addBtn(Button(desc, r, font, c));
 			//printf("Added : %s\n", desc.txt.data());
+		}
+
+		for (auto& desc : pauseButtons)
+		{
+			pauseMenu.addBtn(Button(desc, r, font, c));
 		}
 	}
 }

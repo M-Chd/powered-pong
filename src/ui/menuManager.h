@@ -28,6 +28,8 @@ namespace UI
 		Menu* getCurrentMenu() { if (currentMenu) return currentMenu; }
 		MenuID getCurrentMenuID() const { return currentMenuID; }
 
+		void setLastCurrentMenu();
+
 	private:
 
 		void buildMenus(SDL_Renderer*,
@@ -41,6 +43,7 @@ namespace UI
 		MenuID currentMenuID{ MenuID::Main };
 
 		Menu mainMenu{};
+		Menu pauseMenu{};
 		Menu soloMenu{};
 		Menu multiMenu{};
 		Menu optionsMenu{};

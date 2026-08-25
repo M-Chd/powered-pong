@@ -19,6 +19,7 @@ namespace Core
         catch (std::runtime_error e)
         {
             printf("%s", e.what());
+            return;
         }
 
         menuManager.init(
@@ -70,10 +71,19 @@ namespace Core
 
     void Game::update(float dt)
     {
+        if (state == GameState::PLAY)
+        {
+            if (inputmngr.isKeyDown(SDL_SCANCODE_ESCAPE))
+            {
+                state = GameState::PAUSE;
+                menuManager.setCurrentMenu(MenuID::Pause);
+            }
+        }
+
         switch (state)
         {
         case GameState::PAUSE:
-            // TODO
+            updateMenu(dt);
             break;
 
         case GameState::MENU:
@@ -265,6 +275,8 @@ namespace Core
 
             netRole = NetRole::Offline; // Si ajouté regle le probleme du Host qui reste en online
 
+            menuManager.setLastCurrentMenu(); // pour une raison, ne met pas le curseur tout en haut
+
             break;
 
         default:
@@ -342,7 +354,7 @@ namespace Core
             break;
 
         case GameState::PAUSE:
-            // renderPause(); TODO
+            renderPause();
             break;
 
         case GameState::CONNECTING:
@@ -354,6 +366,11 @@ namespace Core
         }
 
         SDL_RenderPresent(windowRenderer.renderer);
+    }
+
+    void Game::renderPause()
+    {
+        menuManager.render(windowRenderer.renderer);
     }
 
     void Game::renderMenu()
@@ -375,7 +392,7 @@ namespace Core
     {
         currentmatch.render(windowRenderer.renderer);
 
-        view.drawAllUI(windowRenderer.renderer, LayerType::ConnectLayer);
+        view.drawAllUI(windowRenderer.renderer, LayerType::ConnectLayer); // peut etre utiliser un vector pour permettre plusieurs flags
     }
 
     void Game::renderConnecting()
@@ -388,6 +405,15 @@ namespace Core
         if (a.menuid != MenuID::None)
         {
             menuManager.setCurrentMenu(a.menuid);
+        }
+        else if (a.action == GameAction::Resume)
+        {
+            state = GameState::PLAY;
+        }
+        else if (a.action == GameAction::BackToMenu)
+        {
+            state = GameState::MENU;
+            menuManager.setCurrentMenu(MenuID::Main);
         }
         else
         {
@@ -541,25 +567,6 @@ namespace Core
         }
     }
 
-    inline GameDifficulty actionToDifficulty(GameAction& a)
-    {
-        switch (a)
-        {
-        case GameAction::StartSoloEasy:
-            return GameDifficulty::EASY;
-
-        case GameAction::StartSoloMedium:
-            return GameDifficulty::MEDIUM;
-
-        case GameAction::StartSoloHard:
-            return GameDifficulty::HARD;
-
-        default:
-            return GameDifficulty::EASY;
-        }
-    }
-
-
     inline std::string game_state_to_string(Game::GameState& state)
     {
         switch (state)
@@ -620,7 +627,7 @@ namespace Core
                 "Ball speed Y: " + fmt(ball.getSpeed().y),
                 "P1 pos: (" + fmt(p1Pos.x) + ", " + fmt(p1Pos.y) + ")",
                 "P2 pos: (" + fmt(p2Pos.x) + ", " + fmt(p2Pos.y) + ")",
-                "Mouse position: (" + fmt(mouseX) + ", " + fmt(mouseY) + ")",
+                "Mouse position: (" + fmt((float)mouseX) + ", " + fmt((float)mouseY) + ")",
                 "State: " + game_state_to_string(state),
                 "frame time: " + fmt(1.0f / static_cast<float>(dt)),
                 "Current Ball effect: " +

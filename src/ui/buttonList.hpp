@@ -15,6 +15,7 @@ namespace UI
 	{
 		None,
 		Main,
+		Pause,
 		Solo,
 		Multiplayer,
 		OnlineIP,
@@ -31,6 +32,9 @@ namespace UI
 		StartSoloHard,
 
 		StartLocalMultiplayer,
+
+		Resume,
+		BackToMenu,
 
 		HostGame,
 		JoinGame,
@@ -82,6 +86,13 @@ namespace UI
 	{ {
 		{"Rules",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 0},MenuID::Rules,GameAction::None },
 		{"Back",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 1},MenuID::None,GameAction::Back}
+	} };
+
+	constexpr std::array<ButtonDescription, 3> pauseButtons
+	{ {
+		{"Resume",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 0},MenuID::None,GameAction::Resume},
+		{"Back to Menu",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 1},MenuID::None,GameAction::BackToMenu},
+		{"Quit Game",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 2},MenuID::None,GameAction::Quit}
 	} };
 
 	static const char* RulesText =

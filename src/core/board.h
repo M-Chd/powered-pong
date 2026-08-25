@@ -1,6 +1,6 @@
 #pragma once
-#include "ball.h"
-#include "player.h"
+#include "entities/ball.h"
+#include "entities/player.h"
 
 namespace Core
 {

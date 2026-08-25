@@ -1,12 +1,12 @@
 #pragma once
 
-#include "player.h"
-#include "ball.h"
+#include "entities/player.h"
+#include "entities/ball.h"
 #include "board.h"
 #include "difficulty.h"
 #include "matchEvent.h"
 #include "aiController.h"
-#include "activeEffect.h"
+#include "entities/activeEffect.h"
 #include "playerInputState.h"
 
 namespace Core

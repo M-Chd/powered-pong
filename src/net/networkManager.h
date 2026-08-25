@@ -2,7 +2,7 @@
 
 #include "netCommon.h"
 
-constexpr uint16_t PONG_PORT{ 6500 };
+constexpr uint16_t PONG_PORT{ 7000 };
 
 namespace Network
 {

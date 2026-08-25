@@ -126,31 +126,26 @@ namespace UI
 		for (auto& desc : mainMenuButtons)
 		{	
 			mainMenu.addBtn(Button(desc, r, font, c));
-			//printf("Added : %s\n", desc.txt.data());
 		}
 
 		for (auto& desc : multiPlayerButtons)
 		{
 			multiMenu.addBtn(Button(desc, r, font, c));
-			//printf("Added : %s\n", desc.txt.data());
 		}
 
 		for (auto& desc : soloMenuButtons)
 		{
 			soloMenu.addBtn(Button(desc, r, font, c));
-			//printf("Added : %s\n", desc.txt.data());
 		}
 
 		for (auto& desc : IpMenuButtons)
 		{
 			ipMenu.addBtn(Button(desc, r, font, c));
-			//printf("Added : %s\n", desc.txt.data());
 		}
 
 		for (auto& desc : optionsButtons)
 		{
 			optionsMenu.addBtn(Button(desc, r, font, c));
-			//printf("Added : %s\n", desc.txt.data());
 		}
 
 		for (auto& desc : pauseButtons)

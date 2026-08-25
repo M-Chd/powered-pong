@@ -87,7 +87,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/include" /external:I "C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/include/SDL2"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -116,10 +116,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -158,7 +158,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/include" /external:I "C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/include/SDL2"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -188,10 +188,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -230,7 +230,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/include" /external:I "C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/include/SDL2"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -260,10 +260,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -302,7 +302,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/include" /external:I "C:/Users/mouad/Desktop/vcpkg/installed/x64-windows/include/SDL2"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -331,10 +331,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\src\util;C:\Users\mouad\Desktop\powered-pong\src\entities;C:\Users\mouad\Desktop\powered-pong\src\core;C:\Users\mouad\Desktop\powered-pong\src\ui;C:\Users\mouad\Desktop\powered-pong\src\net;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mouad\Desktop\powered-pong\src;C:\Users\mouad\Desktop\powered-pong\..\NetCommon;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include;C:\Users\mouad\Desktop\vcpkg\installed\x64-windows\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -432,44 +432,22 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\main.cpp" />
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\entities\ball.cpp" />
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\entities\player.cpp" />
-    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\window.cpp" />
-    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\game.cpp" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\board.h" />
-    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\board.cpp" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\gameConfig.h" />
-    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\gameConfig.cpp" />
-    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\util\vector2.cpp" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\inputManager.h" />
-    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\inputManager.cpp" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\ui\view.h" />
-    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\scoreBoard.cpp" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\textureCache.h" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\util\util.h" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\ui\debugOverlay.h" />
-    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\debugOverlay.cpp" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menu.h" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menuManager.h" />
-    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menu.cpp" />
-    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menuManager.cpp" />
-    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\match.cpp" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\difficulty.h" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\matchEvent.h" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\aiController.h" />
-    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\aiController.cpp" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\entities\activeEffect.h" />
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\entities\activeEffect.cpp" />
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\entities\item.cpp" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkManager.h" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\netGameState.h" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkClient.h" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkServer.h" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\netCommon.h" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\messageType.h" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\core\playerInputState.h" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\window.cpp" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\game.cpp" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\board.cpp" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\inputManager.cpp" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\core\match.cpp" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\util\vector2.cpp" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\debugOverlay.cpp" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\inputIP.cpp" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menu.cpp" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\menuManager.cpp" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\ui\scoreBoard.cpp" />
+    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkClient.cpp" />
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkManager.cpp" />
     <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkServer.cpp" />
-    <ClCompile Include="C:\Users\mouad\Desktop\powered-pong\src\net\networkClient.cpp" />
-    <ClInclude Include="C:\Users\mouad\Desktop\powered-pong\src\net\connectionState.h" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

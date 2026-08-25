@@ -1,6 +1,6 @@
 #pragma once
 
-#include "vector2.hpp"
+#include "util/vector2.hpp"
 #include <string>
 #include <SDL.h>
 #include <SDL_ttf.h>

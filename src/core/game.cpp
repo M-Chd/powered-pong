@@ -45,7 +45,7 @@ namespace Core
                 view,
                 "../../../assets/fonts/Beach-Ball.ttf",
                 14,
-                SDL_Color{ 200, 200, 200, 255 },
+                WHITE,
                 10,
                 static_cast<float>(windowRenderer.height) - 20,
                 10 // nombre de ligne de debug | number of debug lines
@@ -290,16 +290,19 @@ namespace Core
     {
         auto x1 = currentmatch.getPlayerOne().getCenter().x;
         auto x2 = currentmatch.getPlayerTwo().getCenter().x;
+        auto& playerOne = currentmatch.getPlayerOne();
+        auto& playerTwo = currentmatch.getPlayerTwo();
+        auto& ball = currentmatch.getBall();
 
-        currentmatch.getBall().setPosition({ s.ballX, s.ballY });
-        currentmatch.getPlayerOne().setCenter({ x1, s.p1Y });
-        currentmatch.getPlayerTwo().setCenter({ x2, s.p2Y });
+        ball.setPosition({ s.ballX, s.ballY });
+        playerOne.setCenter({ x1, s.p1Y });
+        playerTwo.setCenter({ x2, s.p2Y });
 
-        if (s.p1Score != currentmatch.getPlayerOne().getScore() ||
-            s.p2Score != currentmatch.getPlayerTwo().getScore())
+        if (s.p1Score != playerOne.getScore() ||
+            s.p2Score != playerTwo.getScore())
         {
-            currentmatch.getPlayerOne().setScore(s.p1Score);
-            currentmatch.getPlayerTwo().setScore(s.p2Score);
+            playerOne.setScore(s.p1Score);
+            playerTwo.setScore(s.p2Score);
 
             scoreboard.update(
                 windowRenderer.renderer,

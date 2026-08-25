@@ -1,25 +1,23 @@
 #pragma once
 
 #include "window.h"
-#include "player.h"
+#include "entities/player.h"
 #include "board.h"
 #include "inputManager.h"
 #include "ui/view.h"
 #include "ui/scoreBoard.h"
 #include "textureCache.h"
-#include "util.h"
-#include "debugOverlay.h"
-#include "connectUi.h"
-#include "menuManager.h"
+#include "util/util.h"
+#include "ui/debugOverlay.h"
+#include "ui/connectUi.h"
+#include "ui/menuManager.h"
 #include "match.h"
 #include "difficulty.h"
 #include "matchEvent.h"
 #include "net/networkManager.h"
-#include "inputIP.h"
+#include "ui/inputIP.h"
 
 namespace UI { struct View; }
-
-//#define DEBUG 1 // change this to 0 for usual mode, 1 to play on debug mode
 
 constexpr float MENU_REPEAT_DELAY = 0.15f;
 

@@ -1,5 +1,5 @@
 #include "Player.h"
-#include "board.h"
+#include "core/board.h"
 
 namespace Entities
 {

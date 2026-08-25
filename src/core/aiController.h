@@ -1,10 +1,8 @@
 #pragma once
 
-#include <random>
-
 #include "difficulty.h"
-#include "ball.h"
-#include "player.h"
+#include "entities/ball.h"
+#include "entities/player.h"
 
 namespace Core
 {
@@ -31,6 +29,8 @@ namespace Core
 		Decision getDecision() const { return decision; }
 
 	private:
+		static float randomError(float range);
+
 		GameDifficulty difficulty{ GameDifficulty::NONE };
 		float reactionTimer{ 0.0f };
 		float reactionDelay{ 0.0f };
@@ -40,9 +40,6 @@ namespace Core
 		float targetY{ 0.0f };
 		float deadZone{ 6.0f };
 		bool hasCommittedThisRally{ false };
-
-		std::mt19937 randomGenerator{ std::random_device{}() };
-		std::uniform_real_distribution<float> errorDist{ -1.0f, 1.0f };
 
 		Decision decision{ Decision::None };
 	};

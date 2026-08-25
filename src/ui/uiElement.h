@@ -5,7 +5,7 @@
 
 #include <string>
 
-#include "vector2.hpp"
+#include "util/vector2.hpp"
 
 namespace UI
 {

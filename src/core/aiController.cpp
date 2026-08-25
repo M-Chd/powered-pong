@@ -1,6 +1,8 @@
 #include "aiController.h"
 #include "board.h"
 
+#include <random>
+
 namespace Core
 {
 	void AIController::setDifficulty(GameDifficulty diff)
@@ -53,7 +55,7 @@ namespace Core
 
 	void AIController::chooseTarget(Entities::Ball& ball, Entities::Player& player)
 	{
-		 bool ballComingTowardsUs = ball.getSpeed().x > 0.0f;
+		bool ballComingTowardsUs = ball.getSpeed().x > 0.0f;
 
 		if (ballComingTowardsUs)
 		{
@@ -76,9 +78,17 @@ namespace Core
 		predictedY = targetY + ball.getSpeed().y * reactionDelay;
 	}
 
+	float AIController::randomError(float range)
+	{
+		static thread_local std::mt19937 generator{ std::random_device{}() };
+		static thread_local std::uniform_real_distribution<float> distribution{ -1.0f, 1.0f };
+
+		return distribution(generator) * range;
+	}
+
 	void AIController::computeError()
 	{
-		currentError = errorDist(randomGenerator) * predictionErrorRange;
+		currentError = randomError(predictionErrorRange);
 	}
 
 	void AIController::makeDecision(Entities::Player& player)

@@ -6,28 +6,36 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(PoweredPong
     src/main.cpp
+
     src/entities/ball.cpp
     src/entities/player.cpp
+    src/entities/activeEffect.cpp
+    src/entities/item.cpp
+
     src/core/window.cpp
-    
     src/core/game.cpp
-  "src/core/board.h" "src/core/board.cpp"   
-   "src/util/vector2.cpp" "src/core/inputManager.h" 
-  "src/core/inputManager.cpp" "src/ui/view.h" "src/ui/scoreBoard.cpp" 
-  "src/core/textureCache.h" "src/util/util.h" "src/ui/debugOverlay.h" 
-  "src/ui/debugOverlay.cpp" "src/ui/menu.h" "src/ui/menuManager.h" "src/ui/menu.cpp" "src/ui/menuManager.cpp" 
-  "src/core/match.cpp"  "src/core/difficulty.h" "src/core/matchEvent.h" "src/core/aiController.h" "src/core/aiController.cpp" 
-  "src/entities/activeEffect.h" "src/entities/activeEffect.cpp" "src/entities/item.cpp" 
-  "src/net/networkManager.h" "src/net/netGameState.h" "src/net/networkClient.h" "src/net/networkServer.h" "src/net/netCommon.h" "src/net/messageType.h" "src/core/playerInputState.h" "src/net/networkManager.cpp" "src/net/networkServer.cpp" "src/net/networkClient.cpp" "src/net/connectionState.h"  "src/ui/connectUi.h"  "src/ui/inputIP.h" "src/ui/inputIP.cpp")
+    src/core/board.cpp
+    src/core/inputManager.cpp
+    src/core/match.cpp
+    src/core/aiController.cpp
+
+    src/util/vector2.cpp
+
+    src/ui/debugOverlay.cpp
+    src/ui/inputIP.cpp
+    src/ui/menu.cpp
+    src/ui/menuManager.cpp
+    src/ui/scoreBoard.cpp
+
+    src/net/networkClient.cpp
+    src/net/networkManager.cpp
+    src/net/networkServer.cpp
+
+    )
 
 target_include_directories(PoweredPong PRIVATE
-    src
-    src/util
-    src/entities
-    src/core
-    src/ui
-    src/net
-    ${CMAKE_CURRENT_SOURCE_DIR}/../NetCommon
+    ${CMAKE_CURRENT_SOURCE_DIR}/src 
+    ${CMAKE_CURRENT_SOURCE_DIR}/NetCommon
 )
 
 find_package(SDL2 CONFIG REQUIRED)

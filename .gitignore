@@ -1,6 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/c++,visualstudio,visualstudiocode,cmake,clion,vcpkg
 # Edit at https://www.toptal.com/developers/gitignore?templates=c++,visualstudio,visualstudiocode,cmake,clion,vcpkg
 
+build/
+
+Makefile
+
 ### C++ ###
 # Prerequisites
 *.d
@@ -174,6 +178,12 @@ vcpkg-manifest-install.log
 
 ## Manifest Mode
 vcpkg_installed/
+
+external/vcpkg/buildtrees/
+external/vcpkg/packages/
+external/vcpkg/downloads/
+external/vcpkg/installed/
+
 
 ### VisualStudioCode ###
 .vscode/*

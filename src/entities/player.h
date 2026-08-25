@@ -6,6 +6,8 @@
 
 namespace Core { struct Board; }
 
+using Score = unsigned int;
+
 constexpr Util::Vec2 PlayerOneDefaultPos{ 207.0f, 360.0f };
 constexpr Util::Vec2 PlayerTwoDefaultPos{ 1047.0f, 360.0f };
 constexpr Util::Vec2 PlayerDefaultSpeed{ 0.0f,230.0f };
@@ -63,7 +65,7 @@ namespace Entities
 		float _power{ 1.0f };
 		PlayerEffect _effect = PlayerEffect::NONE;
 		Util::Vec2 _speed = { 0.0f,1.0f };
-		unsigned int _score{ 0 };
+		Score _score{ 0 };
 		PlayerType _type = PlayerType::HUMAN;
 		AILevel _aiLevel = AILevel::NONE;
 		SDL_Color _color = WHITE;

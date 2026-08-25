@@ -2,7 +2,7 @@
 #include "entities/item.h"
 #include <iostream>
 #include "util/Vector2.hpp"
-#include "matchEvent.h"
+#include "core/matchEvent.h"
 #include <SDL2/SDL.h>
 
 namespace Core { struct Board; class Match; }

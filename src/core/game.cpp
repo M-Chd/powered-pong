@@ -39,15 +39,18 @@ namespace Core
             { 1100, 20 }
         );
 
-        debugOverlay.init(
-            view,
-            "../../../assets/fonts/Beach-Ball.ttf",
-            14,
-            SDL_Color{ 200, 200, 200, 255 },
-            10,
-            static_cast<float>(windowRenderer.height) - 20,
-            10 // nombre de ligne de debug | number of debug lines
-        );
+        if (debug)
+        {
+            debugOverlay.init(
+                view,
+                "../../../assets/fonts/Beach-Ball.ttf",
+                14,
+                SDL_Color{ 200, 200, 200, 255 },
+                10,
+                static_cast<float>(windowRenderer.height) - 20,
+                10 // nombre de ligne de debug | number of debug lines
+            );
+        }
 
         connectUI.init(
             view,
@@ -106,9 +109,8 @@ namespace Core
             break;
         }
 
-#if DEBUG
-        updateDebug(dt);
-#endif
+        if (debug)
+            updateDebug(dt);
     }
 
     void Game::updateMenu(float dt)
@@ -604,8 +606,6 @@ namespace Core
         }
     }
 
-#if DEBUG
-
     void Game::updateDebug(float dt)
     {
         auto& ball = currentmatch.getBall();
@@ -637,7 +637,14 @@ namespace Core
         );
     }
 
-#endif
+    void Game::parseArgs(int argc, char** argv)
+    {
+        for (int i = 1; i < argc; i++)
+		{
+			if (argv[i] == "-debug")
+				debug = true;
+		}
+    }
 
     void Game::quit()
     {

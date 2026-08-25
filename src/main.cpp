@@ -4,6 +4,8 @@ int main(int argc, char* argv[])
 {
     Core::Game g;
 
+    g.parseArgs(argc, argv);
+
     SDL_Event event;
     Uint64 lastTime = SDL_GetPerformanceCounter();
 

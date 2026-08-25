@@ -19,7 +19,7 @@
 
 namespace UI { struct View; }
 
-#define DEBUG 1 // change this to 0 for usual mode, 1 to play on debug mode
+//#define DEBUG 1 // change this to 0 for usual mode, 1 to play on debug mode
 
 constexpr float MENU_REPEAT_DELAY = 0.15f;
 
@@ -38,6 +38,7 @@ namespace Core
 		void render();
 		void handleMenuAction(UI::Action);
 		void handleEvent(const SDL_Event&);
+		void parseArgs(int argc, char** argv);
 		void quit();
 
 	private:
@@ -79,10 +80,9 @@ namespace Core
 		int localPlayerSlot{ 1 };
 		bool running{ true };
 		bool textInputActive{ false };
+		bool debug{ false };
 
-#if DEBUG
 		void updateDebug(float dt);
-#endif
 	};
 
 	inline std::string game_state_to_string(Game::GameState&);

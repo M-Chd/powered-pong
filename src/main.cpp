@@ -2,9 +2,7 @@
 
 int main(int argc, char* argv[])
 {
-    Core::GameConfig config = Core::parseArgs(argc, argv);
-
-    Core::Game g(config);
+    Core::Game g;
 
     SDL_Event event;
     Uint64 lastTime = SDL_GetPerformanceCounter();

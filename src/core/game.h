@@ -3,7 +3,6 @@
 #include "window.h"
 #include "player.h"
 #include "board.h"
-#include "gameConfig.h"
 #include "inputManager.h"
 #include "ui/view.h"
 #include "ui/scoreBoard.h"
@@ -32,7 +31,7 @@ namespace Core
 
 		enum class NetRole { Offline, Host, Client };
 
-		Game(const GameConfig& config) { init(); }
+		Game() { init(); }
 
 		void init();
 		void update(float dt);
@@ -44,7 +43,6 @@ namespace Core
 	private:
 
 		void updateMenu(float dt);
-		void updatePause(float dt);
 		void updatePlay(float dt);
 		void updatePoint(float dt);
 		void updatePlayOffline(float dt);
@@ -63,7 +61,6 @@ namespace Core
 
 	public:
 		WindowRenderer windowRenderer;
-		GameConfig config;
 		Match currentmatch;
 		UI::View view;
 		UI::ScoreBoard scoreboard;

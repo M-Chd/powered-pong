@@ -46,7 +46,7 @@ namespace Core
             SDL_Color{ 200, 200, 200, 255 },
             10,
             static_cast<float>(windowRenderer.height) - 20,
-            10 // nombre de ligne de debug
+            10 // nombre de ligne de debug | number of debug lines
         );
 
         connectUI.init(
@@ -392,7 +392,7 @@ namespace Core
     {
         currentmatch.render(windowRenderer.renderer);
 
-        view.drawAllUI(windowRenderer.renderer, LayerType::ConnectLayer); // peut etre utiliser un vector pour permettre plusieurs flags
+        view.drawAllUI(windowRenderer.renderer, {LayerType::ConnectLayer});
     }
 
     void Game::renderConnecting()

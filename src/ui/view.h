@@ -27,12 +27,15 @@ namespace UI
 			return layers.back().get();
 		}
 
-		void drawAllUI(SDL_Renderer* renderer, LayerType ignoreFlag) const
+		void drawAllUI(SDL_Renderer* renderer, const std::vector<LayerType>& ignoreFlags)
 		{
 			for (auto& l : layers)
 			{
-				if(l->getType() != ignoreFlag)
-					l->render(renderer);
+				for (auto& ignL : ignoreFlags)
+				{
+					if(l->getType() != ignL)
+						l->render(renderer);
+				}
 			}
 		}
 

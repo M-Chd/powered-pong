@@ -31,7 +31,6 @@ namespace UI
 		MenuID getCurrentMenuID() const { return currentMenuID; }
 
 		void setLastCurrentMenu();
-
 	private:
 
 		void buildMenus(SDL_Renderer*,

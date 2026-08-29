@@ -23,5 +23,10 @@ namespace Core
 		bool initWindow();
 		void init();
 		void quit() const;
+
+		~WindowRenderer() { quit(); }
+		WindowRenderer() = default;
+		WindowRenderer(const WindowRenderer&) = delete;
+		WindowRenderer& operator=(const WindowRenderer&) = delete;
 	};
 }

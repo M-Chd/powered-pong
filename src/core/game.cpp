@@ -652,7 +652,6 @@ namespace Core
     void Game::quit()
     {
         view.clear();
-        windowRenderer.quit();
     }
 
 }

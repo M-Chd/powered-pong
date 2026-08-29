@@ -38,9 +38,9 @@ namespace UI
 	}
 
 	void MenuManager::initRules(
-		SDL_Renderer* r,
-		TTF_Font* font,
-		SDL_Color color)
+    SDL_Renderer* r,
+    TTF_Font* font,
+    SDL_Color color)
 	{
 		static const char* RulesText =
 		R"(|Movements:| Z or W to go UP, S to go DOWN if you play in Local Multiplayer or Online Multiplayer, the inputs for the second player are KEY UP and KEY DOWN
@@ -53,7 +53,20 @@ namespace UI
 			1000
 		);
 
+		if (!surface)
+		{
+			printf("Failed to render rules text: %s\n", TTF_GetError());
+			return;
+		}
+
 		rulesTexture = SDL_CreateTextureFromSurface(r, surface);
+
+		if (!rulesTexture)
+		{
+			printf("Failed to create rules texture: %s\n", SDL_GetError());
+			SDL_FreeSurface(surface);
+			return;
+		}
 
 		ruleRect = {
 			100,

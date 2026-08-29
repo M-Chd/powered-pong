@@ -63,8 +63,8 @@ namespace Core
 
     void WindowRenderer::quit() const
     {
-        SDL_DestroyRenderer(renderer);
-        SDL_DestroyWindow(window);
+        if (renderer) SDL_DestroyRenderer(renderer);
+        if (window) SDL_DestroyWindow(window);
         SDL_Quit();
     }
 }

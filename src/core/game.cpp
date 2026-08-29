@@ -275,7 +275,7 @@ namespace Core
             if (netRole != NetRole::Offline)
                 networkManager.teardown();
 
-            netRole = NetRole::Offline; // Si ajouté regle le probleme du Host qui reste en online
+            netRole = NetRole::Offline; // Si ajoutï¿½ regle le probleme du Host qui reste en online
 
             menuManager.setLastCurrentMenu(); // pour une raison, ne met pas le curseur tout en haut
 
@@ -513,7 +513,7 @@ namespace Core
 
                 if (!inputIp.isValidIP())
                 {
-                    printf("Adresse IP invalide : %s\n", ip.c_str());
+                    printf("Invalid IP : %s\n", ip.c_str());
                     break;
                 }
 

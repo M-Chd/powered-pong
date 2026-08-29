@@ -15,6 +15,8 @@ namespace UI
 			int fontsize,
 			SDL_Color);
 
+		void initRules(SDL_Renderer* r, TTF_Font* font, SDL_Color color);
+
 		void render(SDL_Renderer*);
 
 		void moveUp();
@@ -49,6 +51,9 @@ namespace UI
 		Menu optionsMenu{};
 		Menu rulesMenu{};
 		Menu ipMenu{};
+
+		SDL_Texture* rulesTexture{ nullptr };
+		SDL_Rect ruleRect{};
 
 	};
 }

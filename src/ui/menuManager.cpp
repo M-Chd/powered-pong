@@ -9,7 +9,11 @@ namespace UI
 		if (font)
 		{
 			buildMenus(r, font, c);
+
+			initRules(r, font, c);
+
 			TTF_CloseFont(font);
+
 			currentMenu = &mainMenu;
 			currentMenu->getButtonAt(0)->setSelected(true);
 		}
@@ -20,6 +24,45 @@ namespace UI
 	void MenuManager::render(SDL_Renderer* r)
 	{
 		if (currentMenu) currentMenu->render(r);
+
+		if (currentMenuID == MenuID::Rules)
+		{
+			SDL_RenderCopy(
+			r,
+			rulesTexture,
+			nullptr,
+			&ruleRect
+			);
+		}
+
+	}
+
+	void MenuManager::initRules(
+		SDL_Renderer* r,
+		TTF_Font* font,
+		SDL_Color color)
+	{
+		static const char* RulesText =
+		R"(|Movements:| Z or W to go UP, S to go DOWN if you play in Local Multiplayer or Online Multiplayer, the inputs for the second player are KEY UP and KEY DOWN
+|Items:| Items can spawn on the map if allowed within a specific cooldown time.)";
+
+		SDL_Surface* surface = TTF_RenderText_Blended_Wrapped(
+			font,
+			RulesText,
+			color,
+			1000
+		);
+
+		rulesTexture = SDL_CreateTextureFromSurface(r, surface);
+
+		ruleRect = {
+			100,
+			150,
+			surface->w,
+			surface->h
+		};
+
+		SDL_FreeSurface(surface);
 	}
 
 	Action MenuManager::activate()
@@ -152,5 +195,11 @@ namespace UI
 		{
 			pauseMenu.addBtn(Button(desc, r, font, c));
 		}
+
+		for (auto& desc : rulesButton)
+		{
+			rulesMenu.addBtn(Button(desc, r, font, c));
+		}
+
 	}
 }

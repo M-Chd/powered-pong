@@ -68,7 +68,7 @@ namespace Core
 		Network::NetworkManager networkManager;
 		UI::InputIP inputIp;
 		UI::DebugOverlay debugOverlay;
-		System::TextureCache cache;
+		//System::TextureCache cache;
 		System::InputManager inputmngr;
 		GameState state;
 		NetRole netRole{ NetRole::Offline };

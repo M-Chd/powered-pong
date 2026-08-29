@@ -1,7 +1,7 @@
 #pragma once
 #include "entities/item.h"
 #include <iostream>
-#include "util/Vector2.hpp"
+#include "util/vector2.hpp"
 #include "core/matchEvent.h"
 #include <SDL2/SDL.h>
 

@@ -5,7 +5,13 @@
 
 ## What is this project about ?
 
-- The goal of this project is to learn more about **C++ game programming and C++ networking**. Its a Pong game made by scratch in C++ using the **SDL graphical library**. This project will probably have more updates in the future that add more features already programmed but not really implemented (like the custom rules or real online multiplayer).
+- The goal of this project is to learn more about **C++ game programming and C++ networking**. Its a Pong game made by scratch in C++ using the **SDL graphical library** and the C++ **ASIO networking framework** **. This project will probably have more updates in the future that add more features already programmed but not really implemented (like the custom rules or real online multiplayer).
+
+** No need to install the ASIO framework, it is localised in /external/
+
+> I used the **javidx9 tutorials** for the networking aspects.
+
+Source: https://www.youtube.com/@javidx9
 
 ## Is this Game really playable with anyone ?
 
@@ -85,6 +91,18 @@ cmake --build --preset=debug
 ```bash
 ./build/release/powered-pong
 ```
+---
+
+# How to play ?
+
+- using **Z** or **W** and **S** to move upside and downside.
+
+- If in **Local Multiplayer mode**, the second player moves with **UP** and **DOWN**.
+
+- In the **Menus**
+    - Use UP, DOWN and ENTER
+
+- **ESCAPE** to pause the game.
 ---
 ## Structure
     Directory structure:

@@ -46,6 +46,7 @@ namespace UI
 		Menu mainMenu{};
 		Menu pauseMenu{};
 		Menu soloMenu{};
+		Menu PlayRulesMenu{};
 		Menu multiMenu{};
 		Menu optionsMenu{};
 		Menu rulesMenu{};

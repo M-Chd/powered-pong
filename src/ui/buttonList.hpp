@@ -20,7 +20,8 @@ namespace UI
 		Multiplayer,
 		OnlineIP,
 		Options,
-		Rules
+		Rules,
+		Play_rules
 	};
 
 	enum class GameAction
@@ -30,6 +31,7 @@ namespace UI
 		StartSoloEasy,
 		StartSoloMedium,
 		StartSoloHard,
+		StartCustomGame,
 
 		StartLocalMultiplayer,
 

@@ -72,7 +72,7 @@ namespace Core
 
 		if (items.empty())
 		{
-			if (rules.getItemSpawnTimer() <= 0.f)
+			if (rules.itemSpawnTimer <= 0.f)
 			{
 				itemSpawn();
 				rules.resetItemSpwnTimer();
@@ -246,7 +246,7 @@ namespace Core
 		if (!rules.isPowerUpsAllowed())
         return;
 
-		if (items.size() >= rules.getMaxItemCount())
+		if (items.size() >= rules.maxItemCount)
 			return;
 
 		static std::random_device rd;
@@ -280,8 +280,8 @@ namespace Core
 
 	bool Match::isFinished()
 	{
-		return (playerOne.getScore() >= rules.getWinScore()) ||
-			(playerTwo.getScore() >= rules.getWinScore());
+		return (playerOne.getScore() >= rules.winScore) ||
+			(playerTwo.getScore() >= rules.winScore);
 	}
 
 	Entities::Item* Core::Match::getItemAt(int index)

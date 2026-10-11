@@ -13,12 +13,6 @@ namespace Core
 {	
 	struct Rules
 	{
-		bool		 isPowerUpsAllowed() const { return allowPowerUps; }
-		void		 toggleItems() { allowPowerUps == true ? allowPowerUps = false : allowPowerUps = true; }
-
-		void		 reduceItemSpawnTimer(float dt) { itemSpawnTimer -= dt; }
-		void		 resetItemSpwnTimer(float time = 10.f) { itemSpawnTimer = time; }
-
 		unsigned int	winScore{ 5 };
 		unsigned int	maxItemCount{ 1 };
 		unsigned int	numberOfPlayers{ 2 };
@@ -41,12 +35,17 @@ namespace Core
 		{
 			MatchType type{};
 			GameDifficulty difficulty{};
+			Rules rules{};
 		};
 
 	public:
 
 		Match(){}
-		Match(MatchSettings);
+		Match(MatchSettings settings)
+		{
+			rules = settings.rules;
+			itemspawnTimer = 0.f;
+		}
 
 		MatchEvent update(float, const PlayerInputState&, const PlayerInputState&);
 		void render(SDL_Renderer*);
@@ -80,5 +79,6 @@ namespace Core
 		std::vector<Entities::ActiveEffect> activeEffects;
 		Rules rules;
 		AIController aiController;
+		float itemspawnTimer;
 	};
 }

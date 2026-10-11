@@ -504,7 +504,7 @@ namespace Core
                     currentmatch.getPlayerTwo().getScore());
 
                 // Need to change this for a future update, online matches are temporarily without items
-                currentmatch.getRules().toggleItems();
+                currentmatch.getRules().allowPowerUps = false;
 
                 state = GameState::CONNECTING;
                 break;
@@ -529,7 +529,7 @@ namespace Core
                     currentmatch.getPlayerTwo().getScore());
 
                 // Need to change this for a future update, online matches are temporarily without items
-                currentmatch.getRules().toggleItems();
+                currentmatch.getRules().allowPowerUps = false;
 
                 networkManager.joinServer(ip.c_str(), networkManager.getActivePort());
 

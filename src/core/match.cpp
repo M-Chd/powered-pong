@@ -68,14 +68,14 @@ namespace Core
 			updateAI(dt);
 		}
 
-		rules.reduceItemSpawnTimer(dt);
+		rules.itemSpawnTimer -= dt;
 
 		if (items.empty())
 		{
 			if (rules.itemSpawnTimer <= 0.f)
 			{
 				itemSpawn();
-				rules.resetItemSpwnTimer();
+				rules.itemSpawnTimer = 0.0f;
 			}
 		}
 
@@ -199,7 +199,7 @@ namespace Core
 		ball.setEffect(BallEffect::NONE);
 		ball.setSpeed(ballSpeed);
 
-		rules.resetItemSpwnTimer();
+		rules.itemSpawnTimer = 0.0f;
 		items.clear();
 		activeEffects.clear();
 	}
@@ -243,7 +243,7 @@ namespace Core
 
 	void Match::itemSpawn()
 	{
-		if (!rules.isPowerUpsAllowed())
+		if (!rules.allowPowerUps)
         return;
 
 		if (items.size() >= rules.maxItemCount)

@@ -39,7 +39,7 @@ add_executable(PoweredPong
     src/net/networkClient.cpp
     src/net/networkManager.cpp
     src/net/networkServer.cpp
-)
+ "src/ui/menuItem.h" "src/ui/menuItem.cpp")
 
 target_include_directories(PoweredPong PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src 

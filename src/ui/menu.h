@@ -2,15 +2,15 @@
 
 #include "uiElement.h"
 #include "buttonList.hpp"
+#include "menuItem.h"
 
 #include <vector>
 
 namespace UI
 {
-	struct Action
+	struct Row
 	{
-		MenuID menuid;
-		GameAction action;
+
 	};
 
 	class Button

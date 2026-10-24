@@ -5,70 +5,45 @@
 #include "menuItem.h"
 
 #include <vector>
+#include <memory>
 
 namespace UI
 {
-	struct Row
-	{
-
-	};
-
-	class Button
-	{
-	public:
-
-		Button(const ButtonDescription& desc,
-			SDL_Renderer* r,
-			TTF_Font* font,
-			SDL_Color color) : txt(desc.position, LayerType::None), action{ desc.menuID,desc.action }, 
-			normalColor(color), selectedColor({ 255,255,0,255 })
-		{
-			setLayerText(txt, r, font, desc.txt.data(), color);
-		}
-
-
-		Action getAction() const { return action; }
-		void render(SDL_Renderer* renderer);
-
-		void setSelected(bool selected) { this->selected = selected; }
-
-	private:
-		UILayer txt;
-		Action action{};
-		SDL_Color normalColor{};
-		SDL_Color selectedColor{};
-		bool selected{ false };
-	};
-
 	class Menu
 	{
 	public:
 
+		struct Row
+		{
+			std::unique_ptr<MenuItem> item;
+			UILayer text;
+			std::string shownLabel;
+		};
+
 		Menu()
 		{
-			buttonList.reserve(5);
-		}
-
-		void addBtn(Button&& b) { buttonList.emplace_back(std::move(b)); }
-		std::vector<Button>& getButtonsList() { return buttonList; }
-
-		Button* getButtonAt(int x)
-		{ 
-			if (x >= 0 && x < buttonList.size())
-				return &buttonList[x];
-			else
-				return nullptr;
+			rows.reserve(5);
 		}
 
 		void render(SDL_Renderer* renderer);
 		void moveUp();
 		void moveDown();
+		void left();
+		void right();
 		Action activate();
-
-		void updateSelection();
+		void setFont(TTF_Font* f) { font = f; }
+		void addItem(std::unique_ptr<MenuItem> item, Util::Vec2 position) 
+		{ 
+			rows.emplace_back(Row{
+				.item = std::move(item),
+				.text = UILayer(position,LayerType::None),
+				.shownLabel{} });
+		}
+		void resetSelection() { selectedIndex = 0; }
 
 	private:
-		std::vector<Button> buttonList;
+		std::vector<Row> rows;
+		TTF_Font* font{ nullptr };
 		short selectedIndex{ 0 };
 	};
 }

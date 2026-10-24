@@ -10,6 +10,12 @@ namespace UI
 	{
 	public:
 
+		~MenuManager()
+		{
+			if(font)
+				TTF_CloseFont(font);
+		}
+
 		void init(SDL_Renderer*,
 			const std::string& fontpath,
 			int fontsize,
@@ -21,21 +27,23 @@ namespace UI
 
 		void moveUp();
 		void moveDown();
+		void onLeft();
+		void onRight();
 
 		Action activate();
 		void returnBack();
 
+		void addButtons(Menu&, const ButtonDescription*, size_t);
+
 		void setCurrentMenu(MenuID id);
 
-		Menu* getCurrentMenu() { if (currentMenu) return currentMenu; }
+		Menu* getCurrentMenu() { return currentMenu; }
 		MenuID getCurrentMenuID() const { return currentMenuID; }
 
 		void setLastCurrentMenu();
 	private:
 
-		void buildMenus(SDL_Renderer*,
-			TTF_Font*,
-			SDL_Color);
+		void buildMenus();
 
 	private:
 		Menu* currentMenu{ nullptr };
@@ -46,13 +54,14 @@ namespace UI
 		Menu mainMenu{};
 		Menu pauseMenu{};
 		Menu soloMenu{};
-		Menu PlayRulesMenu{};
+		Menu playRulesMenu{};
 		Menu multiMenu{};
 		Menu optionsMenu{};
 		Menu rulesMenu{};
 		Menu ipMenu{};
 
 		SDL_Texture* rulesTexture{ nullptr };
+		TTF_Font* font{ nullptr };
 		SDL_Rect ruleRect{};
 
 	};

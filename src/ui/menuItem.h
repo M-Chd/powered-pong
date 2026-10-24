@@ -1,8 +1,42 @@
-#include "buttonList.hpp"
 #include <string>
+
 
 namespace UI
 {
+	enum class MenuID
+	{
+		None,
+		Main,
+		Pause,
+		Solo,
+		Multiplayer,
+		OnlineIP,
+		Options,
+		Rules,
+		Play_rules
+	};
+
+	enum class GameAction
+	{
+		None,
+
+		StartSoloEasy,
+		StartSoloMedium,
+		StartSoloHard,
+		StartCustomGame,
+
+		StartLocalMultiplayer,
+
+		Resume,
+		BackToMenu,
+
+		HostGame,
+		JoinGame,
+
+		Back,
+		Quit
+	};
+
 	struct Action
 	{
 		MenuID menuid;
@@ -18,6 +52,25 @@ namespace UI
 		virtual void onLeft();
 		virtual void onRight();
 		virtual Action onActivate();
+	};
+
+	class ButtonItem : public MenuItem
+	{
+	public:
+		ButtonItem(const std::string& name, Action& action, Util::Vec2& position)
+			: name(name), action(action), pos(position)
+		{
+		}
+
+		Action onActivate() override
+		{
+			return { action.menuid, action.action };
+		}
+
+	private:
+		std::string name;
+		Action action;
+		Util::Vec2 pos;
 	};
 
 	// represente un Item toggle qui permet d'etre activer ou non (ce que j'ai compris)
@@ -40,7 +93,7 @@ namespace UI
 	class RangeItem : public MenuItem
 	{
 	public:
-		RangeItem(std::string name, T& value, T min, T max, T step)
+		RangeItem(const std::string& name, T& value, T min, T max, T step)
 		{
 			this->name = name;
 			this->value = value;

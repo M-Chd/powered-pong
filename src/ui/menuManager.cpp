@@ -5,24 +5,35 @@ namespace UI
 
 	void MenuManager::init(SDL_Renderer* r, const std::string& fontPath, int fontSize, SDL_Color c)
 	{
-		auto font = TTF_OpenFont(fontPath.c_str(), fontSize);
+		font = TTF_OpenFont(fontPath.c_str(), fontSize);
+
 		if (font)
 		{
-			buildMenus(r, font, c);
+			mainMenu.setFont(font);
+			pauseMenu.setFont(font);
+			soloMenu.setFont(font);
+			playRulesMenu.setFont(font);
+			multiMenu.setFont(font);
+			optionsMenu.setFont(font);
+			rulesMenu.setFont(font);
+			ipMenu.setFont(font);
 
+			buildMenus();
 			initRules(r, font, c);
 
-			TTF_CloseFont(font);
-
 			currentMenu = &mainMenu;
-			currentMenu->getButtonAt(0)->setSelected(true);
 		}
 		else
+		{
+			printf("Error: Font didn't load for the menus");
 			return;
+		}
 	}
 
 	void MenuManager::render(SDL_Renderer* r)
 	{
+		if (!font) return;
+
 		if (currentMenu) currentMenu->render(r);
 
 		if (currentMenuID == MenuID::Rules)
@@ -108,111 +119,119 @@ namespace UI
 			menuHistory.push(currentMenu);
 			menuIDHistory.push(currentMenuID);
 			currentMenu = &mainMenu;
-			currentMenu->updateSelection();
+			currentMenu->resetSelection();
 			currentMenuID = MenuID::Main;
 			break;
 		case UI::MenuID::Pause:
 			currentMenu = &pauseMenu;
-			currentMenu->updateSelection();
+			currentMenu->resetSelection();
 			currentMenuID = MenuID::Pause;
 			break;
 		case UI::MenuID::Solo:
 			menuHistory.push(currentMenu);
 			menuIDHistory.push(currentMenuID);
 			currentMenu = &soloMenu;
-			currentMenu->updateSelection();
+			currentMenu->resetSelection();
 			currentMenuID = MenuID::Solo;
 			break;
 		case UI::MenuID::Multiplayer:
 			menuHistory.push(currentMenu);
 			menuIDHistory.push(currentMenuID);
 			currentMenu = &multiMenu;
-			currentMenu->updateSelection();
+			currentMenu->resetSelection();
 			currentMenuID = MenuID::Multiplayer;
 			break;
 		case UI::MenuID::OnlineIP:
 			menuHistory.push(currentMenu);
 			menuIDHistory.push(currentMenuID);
 			currentMenu = &ipMenu;
-			currentMenu->updateSelection();
+			currentMenu->resetSelection();
 			currentMenuID = MenuID::OnlineIP;
 			break;
 		case UI::MenuID::Options:
 			menuHistory.push(currentMenu);
 			menuIDHistory.push(currentMenuID);
 			currentMenu = &optionsMenu;
-			currentMenu->updateSelection();
+			currentMenu->resetSelection();
 			currentMenuID = MenuID::Options;
 			break;
 		case UI::MenuID::Rules:
 			menuHistory.push(currentMenu);
 			menuIDHistory.push(currentMenuID);
 			currentMenu = &rulesMenu;
-			currentMenu->updateSelection();
+			currentMenu->resetSelection();
 			currentMenuID = MenuID::Rules;
+			break;
+		case UI::MenuID::Play_rules:
+			menuHistory.push(currentMenu);
+			menuIDHistory.push(currentMenuID);
+			currentMenu = &playRulesMenu;
+			currentMenu->resetSelection();
+			currentMenuID = MenuID::Play_rules;
 			break;
 		default:
 			break;
 		}
 	}
 
+	void MenuManager::addButtons(Menu& menu, const ButtonDescription* first, size_t count)
+	{
+		for (size_t i = 0; i < count; i++)
+		{
+			const auto& des = first[i];
+
+			menu.addItem(std::make_unique<ButtonItem>(std::string(des.txt), Action{ des.menuID,des.action }), des.position);
+		}
+	}
+
 	void MenuManager::setLastCurrentMenu()
 	{
+		if (menuHistory.empty() || menuIDHistory.empty()) return;
+
 		currentMenu = menuHistory.top();
-		currentMenu->updateSelection();
+		currentMenu->resetSelection();
 		currentMenuID = menuIDHistory.top();
 		menuHistory.pop();
 		menuIDHistory.pop();
 	}
 
+	void MenuManager::onLeft()
+	{
+		if (currentMenu)
+			currentMenu->left();
+	}
+
+	void MenuManager::onRight()
+	{
+		if (currentMenu)
+			currentMenu->right();
+	}
+
 	void MenuManager::moveUp()
 	{
-		currentMenu->moveUp();
+		if (currentMenu)
+			currentMenu->moveUp();
 	}
 
 	void MenuManager::moveDown()
 	{
-		currentMenu->moveDown();
+		if (currentMenu)
+			currentMenu->moveDown();
 	}
 
-	void MenuManager::buildMenus(SDL_Renderer* r, TTF_Font* font, SDL_Color c)
+	void MenuManager::buildMenus()
 	{
 		printf("Building menus...\n");
 
-		for (auto& desc : mainMenuButtons)
-		{	
-			mainMenu.addBtn(Button(desc, r, font, c));
-		}
+		addButtons(mainMenu, mainMenuButtons.data(), mainMenuButtons.size());
+		addButtons(pauseMenu, pauseButtons.data(), pauseButtons.size());
+		addButtons(soloMenu, soloMenuButtons.data(), soloMenuButtons.size());
+		//addButtons(playRulesMenu, playR.data(), mainMenuButtons.size());
+		addButtons(multiMenu, multiPlayerButtons.data(), multiPlayerButtons.size());
+		addButtons(optionsMenu, optionsButtons.data(), optionsButtons.size());
+		addButtons(rulesMenu, rulesButtons.data(), rulesButtons.size());
+		addButtons(ipMenu, IpMenuButtons.data(), IpMenuButtons.size());
 
-		for (auto& desc : multiPlayerButtons)
-		{
-			multiMenu.addBtn(Button(desc, r, font, c));
-		}
-
-		for (auto& desc : soloMenuButtons)
-		{
-			soloMenu.addBtn(Button(desc, r, font, c));
-		}
-
-		for (auto& desc : IpMenuButtons)
-		{
-			ipMenu.addBtn(Button(desc, r, font, c));
-		}
-
-		for (auto& desc : optionsButtons)
-		{
-			optionsMenu.addBtn(Button(desc, r, font, c));
-		}
-
-		for (auto& desc : pauseButtons)
-		{
-			pauseMenu.addBtn(Button(desc, r, font, c));
-		}
-
-		for (auto& desc : rulesButton)
-		{
-			rulesMenu.addBtn(Button(desc, r, font, c));
-		}
-
+		printf("Building menus done.");
 	}
 }

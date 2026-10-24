@@ -1,1 +1,3 @@
 InputButtons on all the menus for Custom rules
+
+-> check claude pour voir l'avancement, actuellement sur buttonlist.hpp en pleine migration

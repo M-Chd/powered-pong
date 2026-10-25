@@ -1,13 +1,10 @@
 #pragma once
 
-#include "util/vector2.hpp"
-#include <string>
-#include <SDL.h>
-#include <SDL_ttf.h>
+#include "IinputButton.h"
 
 namespace UI
 {
-    struct InputIP
+    struct InputIP : public IinputEntry
     {
         InputIP() = default;
         ~InputIP();
@@ -16,23 +13,23 @@ namespace UI
                   const std::string& fontPath,
                   int fontSize,
                   SDL_Color color,
-                  Util::Vec2 position);
+                  Util::Vec2 position) override;
 
-        void handleEvent(const SDL_Event& e);
-        void render(SDL_Renderer* renderer);
-        void updateTexture();
+        void handleEvent(const SDL_Event& e) override;
+        void render(SDL_Renderer* renderer) override;
+        void updateTexture() override;
 
         std::string getIP() const { return ip; }
         bool isValidIP() const;
-        void clear();
+        void clear() override;
 
     private:
-        SDL_Renderer* renderer = nullptr;
-        TTF_Font* font = nullptr;
+        std::string ip{ "127.0.0.1" };
+        SDL_Renderer* renderer{ nullptr };
+        TTF_Font* font{ nullptr };
         SDL_Color color{255,255,255,255};
-        Util::Vec2 position;
-        std::string ip = "127.0.0.1";
-        SDL_Texture* texture = nullptr;
-        int textWidth = 0, textHeight = 0;
+        SDL_Texture* texture{ nullptr };
+        int textWidth{ 0 }, textHeight{ 0 };
+        Util::Vec2 position{};
     };
 }

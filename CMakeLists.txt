@@ -35,6 +35,7 @@ add_executable(PoweredPong
     src/ui/menu.cpp
     src/ui/menuManager.cpp
     src/ui/scoreBoard.cpp
+    
 
     src/net/networkClient.cpp
     src/net/networkManager.cpp

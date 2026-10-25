@@ -1,73 +1,83 @@
 #include "menu.h"
-#define Yellow SDL_Color yellow{255,255,0,255};
+constexpr SDL_Color MENU_WHITE = { 255,255,255,255 };
+constexpr SDL_Color MENU_YELLOW = { 255,255,0,255 };
 
 namespace UI
 {
 	Action Menu::activate()
 	{
 
-		if (selectedIndex < buttonList.size() && selectedIndex >= 0)
+		if (selectedIndex < rows.size() && selectedIndex >= 0)
 		{
-			auto& btn = buttonList[selectedIndex];
+			auto btn = rows[selectedIndex].item->onActivate();
 
-			return { btn.getAction().menuid,btn.getAction().action };
+			return btn;
 		}
 		else
-			return { MenuID::None,GameAction::None };
+			return { MenuID::None, GameAction::None };
 	}
 
-	void Menu::updateSelection()
+
+	void Menu::left()
 	{
-		for (size_t i = 0; i < buttonList.size(); ++i)
-		{
-			if (i == selectedIndex)
-				buttonList[i].setSelected(true);
-			else
-				buttonList[i].setSelected(false);
-		}
+		if (!rows.empty())
+			rows[selectedIndex].item->onLeft();
+	}
+
+	void Menu::right()
+	{
+		if (!rows.empty())
+			rows[selectedIndex].item->onRight();
 	}
 
 	void Menu::moveDown()
 	{
+		if (rows.empty()) return;
+
 		selectedIndex++;
-		if (selectedIndex >= buttonList.size())
+		if (selectedIndex >= rows.size())
 		{
 			selectedIndex = 0;
 		}
-		updateSelection();
 	}
 
 	void Menu::moveUp()
 	{
+		if (rows.empty()) return;
+
 		selectedIndex--;
 		if (selectedIndex < 0)
 		{
-			selectedIndex = static_cast<short>(buttonList.size() - 1);
-		}
-		updateSelection();
-	}
-
-	void Button::render(SDL_Renderer* renderer)
-	{
-		if (selected)
-		{
-			txt.setColor({ 255,255,0,255 }); // yellow
-			txt.render(renderer);
-		}
-		else
-		{
-			txt.setColor({ 255,255,255,255 }); // white
-			txt.render(renderer);
+			selectedIndex = static_cast<short>(rows.size() - 1);
 		}
 	}
 
 	void Menu::render(SDL_Renderer* renderer)
 	{
-		if (!buttonList.empty())
+		if (!rows.empty())
 		{
-			for (auto& b : buttonList)
+			for (std::size_t i{0}; i < rows.size(); i++)
 			{
-				b.render(renderer);
+				auto& r = rows[i];
+
+				const std::string now_name = r.item->label();
+
+				if (now_name != r.shownLabel)
+				{
+					setLayerText(r.text, renderer, font, now_name, MENU_WHITE);
+					r.shownLabel = now_name;
+				}
+
+				if ( (int)i == selectedIndex )
+				{
+					r.text.setColor(MENU_YELLOW);
+				}
+				else
+				{
+					r.text.setColor(MENU_WHITE);
+				}
+
+				r.text.render(renderer);
 			}
 		}
 	}

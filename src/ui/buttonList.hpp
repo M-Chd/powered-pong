@@ -1,6 +1,7 @@
 #pragma once
 
 #include "util/vector2.hpp"
+#include "menuItem.h"
 
 #include <string_view>
 #include <array>
@@ -11,38 +12,6 @@ constexpr int MENU_SPACING = 60;
 
 namespace UI
 {
-	enum class MenuID
-	{
-		None,
-		Main,
-		Pause,
-		Solo,
-		Multiplayer,
-		OnlineIP,
-		Options,
-		Rules
-	};
-
-	enum class GameAction
-	{
-		None,
-
-		StartSoloEasy,
-		StartSoloMedium,
-		StartSoloHard,
-
-		StartLocalMultiplayer,
-
-		Resume,
-		BackToMenu,
-
-		HostGame,
-		JoinGame,
-
-		Back,
-		Quit
-	};
-
 	struct ButtonDescription
 	{
 		std::string_view txt;
@@ -50,7 +19,6 @@ namespace UI
 		MenuID menuID;
 		GameAction action;
 	};
-
 
 	constexpr std::array<ButtonDescription,4> mainMenuButtons
 	{ {
@@ -82,10 +50,11 @@ namespace UI
 		{"Back",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 2},MenuID::None,GameAction::Back}
 	} };
 
-	constexpr std::array<ButtonDescription,2> optionsButtons
+	constexpr std::array<ButtonDescription, 3> optionsButtons
 	{ {
 		{"Rules",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 0},MenuID::Rules,GameAction::None },
-		{"Back",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 1},MenuID::None,GameAction::Back}
+		{"Match rules",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 1},MenuID::Play_rules,GameAction::None},
+		{"Back",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 2},MenuID::None,GameAction::Back}
 	} };
 
 	constexpr std::array<ButtonDescription, 3> pauseButtons
@@ -95,7 +64,7 @@ namespace UI
 		{"Quit Game",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 2},MenuID::None,GameAction::Quit}
 	} };
 
-	constexpr std::array<ButtonDescription, 1> rulesButton =
+	constexpr std::array<ButtonDescription, 1> rulesButtons =
 	{
 	"Back",{},MenuID::None,GameAction::Back 
 	};

@@ -47,12 +47,4 @@ namespace Entities
 		if (_center.y + _radiusY >= board.height) _center = { _center.x, board.height - _radiusY };
 		if (_center.y - _radiusY <= board.offsetY) _center = { _center.x,board.offsetY + _radiusY};
 	}
-
-	void Player::AcquireItem(Item i)
-	{
-#ifdef _DEBUG
-		printf("new Item collected");
-#endif // DEBUG
-		if (!_currentItem) _currentItem = &i;
-	}
 }

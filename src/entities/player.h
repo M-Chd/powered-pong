@@ -7,6 +7,7 @@
 namespace Core { struct Board; }
 
 using Score = unsigned int;
+using Speed = Util::Vec2;
 
 constexpr Util::Vec2 PlayerOneDefaultPos{ 207.0f, 360.0f };
 constexpr Util::Vec2 PlayerTwoDefaultPos{ 1047.0f, 360.0f };
@@ -36,8 +37,6 @@ namespace Entities
 		void draw(SDL_Renderer* renderer) const;
 		void checkColisions(const Core::Board& board);
 		bool isInside(const Util::Vec2& p) const;
-		void AcquireItem(Item i);
-
 		void addPoint(int n = 1);
 		
 	public:
@@ -64,7 +63,7 @@ namespace Entities
 		float _height{ 0.0f };
 		float _power{ 1.0f };
 		PlayerEffect _effect = PlayerEffect::NONE;
-		Util::Vec2 _speed = { 0.0f,1.0f };
+		Speed _speed = { 0.0f,1.0f };
 		Score _score{ 0 };
 		PlayerType _type = PlayerType::HUMAN;
 		AILevel _aiLevel = AILevel::NONE;
@@ -72,11 +71,11 @@ namespace Entities
 
 	public:
 
-		void setCenter(Util::Vec2 pos)
+		void setCenter(const Util::Vec2& pos)
 		{
 			_center = pos;
 		}
-		void setLength(float newL)
+		void setLength(const float newL)
 		{
 			if (newL > 0)
 			{
@@ -84,7 +83,7 @@ namespace Entities
 				this->_radiusX = _length / 2;
 			}
 		}
-		void setHeight(float newH)
+		void setHeight(const float newH)
 		{
 			if (newH > 0)
 			{
@@ -92,14 +91,14 @@ namespace Entities
 				this->_radiusY = _height / 2;
 			}
 		}
-		void setPower(float newP)
+		void setPower(const float newP)
 		{
 			if (newP > 0)
 			{
 				this->_power = newP;
 			}
 		}
-		void setScore(int score)
+		void setScore(const int score)
 		{
 			if (score > 0)
 			{
@@ -117,7 +116,7 @@ namespace Entities
 		float getRadiusX() const { return _radiusX; }
 		float getRadiusY() const { return _radiusY; }
 		SDL_Color getColor() const { return _color; }
-		Util::Vec2 getSpeed() const { return _speed; }
+		Speed getSpeed() const { return _speed; }
 		unsigned int getScore() const { return _score; }
 		PlayerEffect getEffect() const { return _effect; }
 		float getPower() const { return _power; }

@@ -9,6 +9,9 @@ namespace Core
 {
 	Match::Match(MatchSettings settings)
 	{
+		rules = settings.rules;
+		itemspawnTimer = 0.f;
+
 		ball.setPosition(BALL_INITIAL_POS);
 		playerOne.setCenter(PlayerOneDefaultPos);
 		playerTwo.setCenter(PlayerTwoDefaultPos);

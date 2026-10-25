@@ -72,6 +72,7 @@ namespace Core
 		System::InputManager inputmngr;
 		GameState state;
 		NetRole netRole{ NetRole::Offline };
+		Rules customRules;
 		float pauseTimer{ 0.f };
 		float menuInputTimer{ 0.f };
 		float hostTickAccumulator{};

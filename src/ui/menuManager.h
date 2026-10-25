@@ -1,6 +1,7 @@
 #pragma once
 
 #include "menu.h"
+#include "core/match.h"
 
 #include <stack>
 
@@ -17,6 +18,7 @@ namespace UI
 		}
 
 		void init(SDL_Renderer*,
+			Core::Rules&,
 			const std::string& fontpath,
 			int fontsize,
 			SDL_Color);
@@ -43,7 +45,7 @@ namespace UI
 		void setLastCurrentMenu();
 	private:
 
-		void buildMenus();
+		void buildMenus(Core::Rules&);
 
 	private:
 		Menu* currentMenu{ nullptr };

@@ -3,7 +3,7 @@
 namespace UI
 {
 
-	void MenuManager::init(SDL_Renderer* r, const std::string& fontPath, int fontSize, SDL_Color c)
+	void MenuManager::init(SDL_Renderer* r, Core::Rules& rules, const std::string& fontPath, int fontSize, SDL_Color c)
 	{
 		font = TTF_OpenFont(fontPath.c_str(), fontSize);
 
@@ -18,7 +18,7 @@ namespace UI
 			rulesMenu.setFont(font);
 			ipMenu.setFont(font);
 
-			buildMenus();
+			buildMenus(rules);
 			initRules(r, font, c);
 
 			currentMenu = &mainMenu;
@@ -219,18 +219,29 @@ namespace UI
 			currentMenu->moveDown();
 	}
 
-	void MenuManager::buildMenus()
+	void MenuManager::buildMenus(Core::Rules& rules)
 	{
 		printf("Building menus...\n");
 
 		addButtons(mainMenu, mainMenuButtons.data(), mainMenuButtons.size());
 		addButtons(pauseMenu, pauseButtons.data(), pauseButtons.size());
 		addButtons(soloMenu, soloMenuButtons.data(), soloMenuButtons.size());
-		//addButtons(playRulesMenu, playR.data(), mainMenuButtons.size());
 		addButtons(multiMenu, multiPlayerButtons.data(), multiPlayerButtons.size());
 		addButtons(optionsMenu, optionsButtons.data(), optionsButtons.size());
 		addButtons(rulesMenu, rulesButtons.data(), rulesButtons.size());
 		addButtons(ipMenu, IpMenuButtons.data(), IpMenuButtons.size());
+		
+		//name,value,min,max,step
+		playRulesMenu.addItem(std::make_unique<RangeItem<unsigned int>>((std::string("Win score")), rules.winScore, 0u, 99u, 1u),
+			{ MENU_DEFAULT_X, MENU_FIRST_Y + MENU_SPACING * 0 });
+		playRulesMenu.addItem(std::make_unique<RangeItem<unsigned int>>((std::string("Max item count")), rules.maxItemCount, 0u, 5u, 1u),
+			{ MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 1 });
+		playRulesMenu.addItem(std::make_unique<RangeItem<unsigned int>>((std::string("Ball number")), rules.numberOfBalls, 0u, 4u, 1u),
+			{ MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 2 });
+		playRulesMenu.addItem(std::make_unique<ToggleItem>((std::string("Toggle item")), rules.allowPowerUps),
+			{ MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 3 });
+		playRulesMenu.addItem(std::make_unique<ButtonItem>((std::string("Back")), Action{ MenuID::None,GameAction::Back }),
+			{ MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 4 });
 
 		printf("Building menus done.");
 	}

@@ -24,6 +24,7 @@ namespace Core
 
         menuManager.init(
             windowRenderer.renderer,
+            customRules,
             "../../../assets/fonts/IMPACT.ttf",
             50,
             WHITE
@@ -434,6 +435,8 @@ namespace Core
                     }
                 );
 
+                currentmatch.setRules(customRules);
+
                 scoreboard.update(windowRenderer.renderer, currentmatch.getPlayerOne().getScore(),
                     currentmatch.getPlayerTwo().getScore());
 
@@ -447,6 +450,8 @@ namespace Core
                         .difficulty = GameDifficulty::MEDIUM
                     }
                 );
+
+                currentmatch.setRules(customRules);
 
                 scoreboard.update(windowRenderer.renderer, currentmatch.getPlayerOne().getScore(),
                     currentmatch.getPlayerTwo().getScore());
@@ -462,6 +467,8 @@ namespace Core
                     }
                 );
 
+                currentmatch.setRules(customRules);
+
                 scoreboard.update(windowRenderer.renderer, currentmatch.getPlayerOne().getScore(),
                     currentmatch.getPlayerTwo().getScore());
 
@@ -475,6 +482,8 @@ namespace Core
                         .difficulty = GameDifficulty::NONE
                     }
                 );
+
+                currentmatch.setRules(customRules);
 
                 scoreboard.update(windowRenderer.renderer, currentmatch.getPlayerOne().getScore(),
                     currentmatch.getPlayerTwo().getScore());

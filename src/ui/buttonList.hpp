@@ -50,10 +50,11 @@ namespace UI
 		{"Back",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 2},MenuID::None,GameAction::Back}
 	} };
 
-	constexpr std::array<ButtonDescription,2> optionsButtons
+	constexpr std::array<ButtonDescription, 3> optionsButtons
 	{ {
 		{"Rules",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 0},MenuID::Rules,GameAction::None },
-		{"Back",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 1},MenuID::None,GameAction::Back}
+		{"Match rules",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 1},MenuID::Play_rules,GameAction::None},
+		{"Back",{MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 2},MenuID::None,GameAction::Back}
 	} };
 
 	constexpr std::array<ButtonDescription, 3> pauseButtons

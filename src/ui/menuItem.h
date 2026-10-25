@@ -1,4 +1,9 @@
+#pragma once
 #include <string>
+#include <cstdio>
+#include <utility>
+#include "util/vector2.hpp"
+#include "util/util.h"
 
 
 namespace UI
@@ -49,18 +54,20 @@ namespace UI
 	public:
 		virtual ~MenuItem() = default;
 		virtual std::string label() const = 0;
-		virtual void onLeft();
-		virtual void onRight();
-		virtual Action onActivate();
+		virtual void onLeft() {};
+		virtual void onRight() {};
+		virtual Action onActivate() { return {}; }
 	};
 
 	class ButtonItem : public MenuItem
 	{
 	public:
-		ButtonItem(const std::string& name, Action& action, Util::Vec2& position)
-			: name(name), action(action), pos(position)
+		ButtonItem(std::string name, Action action)
+			: name(std::move(name)), action(action)
 		{
 		}
+
+		std::string label() const override { return name; }
 
 		Action onActivate() override
 		{
@@ -82,6 +89,7 @@ namespace UI
 		std::string label() const override { return name + ": " + (value ? "ON" : "OFF"); }
 		void onLeft() override { value = !value; }
 		void onRight() override { value = !value; }
+		Action onActivate() override { value = !value; return{}; }
 	private:
 		std::string name;
 		bool& value;
@@ -93,18 +101,41 @@ namespace UI
 	class RangeItem : public MenuItem
 	{
 	public:
-		RangeItem(const std::string& name, T& value, T min, T max, T step)
-		{
-			this->name = name;
-			this->value = value;
-			this->min = min;
-			this->max = max;
-			this->step = step;
-		};
+		RangeItem(std::string name, T& value, T minValue, T maxValue, T step)
+        : name(std::move(name)), value(value),
+          min(minValue), max(maxValue), step(step) {}
 
-		std::string label() const override;
-		void onLeft() override;
-		void onRight() override;
+		std::string label() const override
+		{
+			return name + ": < " + this->toText(value) + " >";
+		}
+
+		void onLeft() override
+		{
+			if (value > min + step)
+			{
+				value -= step;
+			}
+			else
+			{
+				value = min;
+			}
+		}
+
+		void onRight() override
+		{
+			if (value + step < max)
+			{
+				value += step;
+			}
+			else
+			{
+				value = max;
+			}
+		}
+	private:
+		static std::string toText(float value) { return Util::fmt(value); }
+		static std::string toText(unsigned int value) { return std::to_string(value); }
 	private:
 		std::string name;
 		T& value;

@@ -41,11 +41,7 @@ namespace Core
 	public:
 
 		Match(){}
-		Match(MatchSettings settings)
-		{
-			rules = settings.rules;
-			itemspawnTimer = 0.f;
-		}
+		Match(MatchSettings settings);
 
 		MatchEvent update(float, const PlayerInputState&, const PlayerInputState&);
 		void render(SDL_Renderer*);

@@ -11,29 +11,8 @@
 
 namespace Core
 {	
-	class Rules
+	struct Rules
 	{
-	public:
-		Rules(unsigned int winScore = 5, unsigned int maxItCnt = 1, unsigned int nbrPlayers = 2,
-			unsigned int nbrBalls = 1, float itemRdRate = 0.10f, float itemSpwnTimer = 10.f,
-			bool allowPwUps = true) 
-			: winScore(winScore), 
-			maxItemCount(maxItCnt), numberOfPlayers(nbrPlayers), numberOfBalls(nbrBalls),
-			itemRdmRate(itemRdRate), itemSpawnTimer(itemSpwnTimer), allowPowerUps(allowPwUps) { }
-
-		unsigned int getWinScore() const { return winScore; }
-		unsigned int getMaxItemCount() const { return maxItemCount; }
-		unsigned int getNumberOfPlayer() const { return numberOfPlayers; }
-		unsigned int getNumberOfBalls() const { return numberOfBalls; }
-		float		 getItemSpawnTimer() const { return itemSpawnTimer; }
-		float		 getItemRndmRate() const { return itemRdmRate; }
-		bool		 isPowerUpsAllowed() const { return allowPowerUps; }
-		void		 toggleItems() { allowPowerUps == true ? allowPowerUps = false : allowPowerUps = true; }
-
-		void		 reduceItemSpawnTimer(float dt) { itemSpawnTimer -= dt; }
-		void		 resetItemSpwnTimer(float time = 10.f) { itemSpawnTimer = time; }
-
-	private:
 		unsigned int	winScore{ 5 };
 		unsigned int	maxItemCount{ 1 };
 		unsigned int	numberOfPlayers{ 2 };
@@ -56,12 +35,13 @@ namespace Core
 		{
 			MatchType type{};
 			GameDifficulty difficulty{};
+			Rules rules{};
 		};
 
 	public:
 
 		Match(){}
-		Match(MatchSettings);
+		Match(MatchSettings settings);
 
 		MatchEvent update(float, const PlayerInputState&, const PlayerInputState&);
 		void render(SDL_Renderer*);
@@ -95,5 +75,6 @@ namespace Core
 		std::vector<Entities::ActiveEffect> activeEffects;
 		Rules rules;
 		AIController aiController;
+		float itemspawnTimer;
 	};
 }

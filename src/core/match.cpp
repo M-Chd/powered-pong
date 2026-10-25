@@ -9,6 +9,9 @@ namespace Core
 {
 	Match::Match(MatchSettings settings)
 	{
+		rules = settings.rules;
+		itemspawnTimer = 0.f;
+
 		ball.setPosition(BALL_INITIAL_POS);
 		playerOne.setCenter(PlayerOneDefaultPos);
 		playerTwo.setCenter(PlayerTwoDefaultPos);
@@ -68,14 +71,14 @@ namespace Core
 			updateAI(dt);
 		}
 
-		rules.reduceItemSpawnTimer(dt);
+		rules.itemSpawnTimer -= dt;
 
 		if (items.empty())
 		{
-			if (rules.getItemSpawnTimer() <= 0.f)
+			if (rules.itemSpawnTimer <= 0.f)
 			{
 				itemSpawn();
-				rules.resetItemSpwnTimer();
+				rules.itemSpawnTimer = 0.0f;
 			}
 		}
 
@@ -199,7 +202,7 @@ namespace Core
 		ball.setEffect(BallEffect::NONE);
 		ball.setSpeed(ballSpeed);
 
-		rules.resetItemSpwnTimer();
+		rules.itemSpawnTimer = 0.0f;
 		items.clear();
 		activeEffects.clear();
 	}
@@ -243,10 +246,10 @@ namespace Core
 
 	void Match::itemSpawn()
 	{
-		if (!rules.isPowerUpsAllowed())
+		if (!rules.allowPowerUps)
         return;
 
-		if (items.size() >= rules.getMaxItemCount())
+		if (items.size() >= rules.maxItemCount)
 			return;
 
 		static std::random_device rd;
@@ -280,8 +283,8 @@ namespace Core
 
 	bool Match::isFinished()
 	{
-		return (playerOne.getScore() >= rules.getWinScore()) ||
-			(playerTwo.getScore() >= rules.getWinScore());
+		return (playerOne.getScore() >= rules.winScore) ||
+			(playerTwo.getScore() >= rules.winScore);
 	}
 
 	Entities::Item* Core::Match::getItemAt(int index)

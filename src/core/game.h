@@ -52,6 +52,7 @@ namespace Core
 		void applyMatchEvent(MatchEvent);
 		void applySnapshotToMatch(const Network::NetGameState&);
 		Network::NetGameState buildNetGameState(Match&);
+		void startOfflineMatch(Match::MatchType, GameDifficulty);
 
 		void renderMenu();
 		void renderPlay();
@@ -72,6 +73,7 @@ namespace Core
 		System::InputManager inputmngr;
 		GameState state;
 		NetRole netRole{ NetRole::Offline };
+		Rules customRules;
 		float pauseTimer{ 0.f };
 		float menuInputTimer{ 0.f };
 		float hostTickAccumulator{};

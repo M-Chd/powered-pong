@@ -232,16 +232,19 @@ namespace UI
 		addButtons(ipMenu, IpMenuButtons.data(), IpMenuButtons.size());
 		
 		//name,value,min,max,step
-		playRulesMenu.addItem(std::make_unique<RangeItem<unsigned int>>((std::string("Win score")), rules.winScore, 0u, 99u, 1u),
+		playRulesMenu.addItem(std::make_unique<RangeItem<unsigned int>>((std::string("Win score")), rules.winScore, 1u, 99u, 1u),
 			{ MENU_DEFAULT_X, MENU_FIRST_Y + MENU_SPACING * 0 });
 		playRulesMenu.addItem(std::make_unique<RangeItem<unsigned int>>((std::string("Max item count")), rules.maxItemCount, 0u, 5u, 1u),
 			{ MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 1 });
-		playRulesMenu.addItem(std::make_unique<RangeItem<unsigned int>>((std::string("Ball number")), rules.numberOfBalls, 0u, 4u, 1u),
-			{ MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 2 });
+
+		// Not implemented yet
+		//playRulesMenu.addItem(std::make_unique<RangeItem<unsigned int>>((std::string("Ball number")), rules.numberOfBalls, 0u, 4u, 1u),
+			//{ MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 2 });
+
 		playRulesMenu.addItem(std::make_unique<ToggleItem>((std::string("Toggle item")), rules.allowPowerUps),
-			{ MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 3 });
+			{ MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 2 });
 		playRulesMenu.addItem(std::make_unique<ButtonItem>((std::string("Back")), Action{ MenuID::None,GameAction::Back }),
-			{ MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 4 });
+			{ MENU_DEFAULT_X,MENU_FIRST_Y + MENU_SPACING * 3 });
 
 		printf("Building menus done.");
 	}

@@ -52,6 +52,7 @@ namespace Core
 		void applyMatchEvent(MatchEvent);
 		void applySnapshotToMatch(const Network::NetGameState&);
 		Network::NetGameState buildNetGameState(Match&);
+		void startOfflineMatch(Match::MatchType, GameDifficulty);
 
 		void renderMenu();
 		void renderPlay();

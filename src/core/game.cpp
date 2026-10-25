@@ -135,6 +135,18 @@ namespace Core
                 handleMenuAction(menuManager.activate());
                 menuInputTimer = MENU_REPEAT_DELAY;
             }
+            else if (menuManager.getCurrentMenuID() == MenuID::Play_rules &&
+                inputmngr.isKeyDown(SDL_SCANCODE_RIGHT))
+            {
+                menuManager.onRight();
+                menuInputTimer = MENU_REPEAT_DELAY;
+            }
+            else if (menuManager.getCurrentMenuID() == MenuID::Play_rules &&
+                inputmngr.isKeyDown(SDL_SCANCODE_LEFT))
+            {
+                menuManager.onLeft();
+                menuInputTimer = MENU_REPEAT_DELAY;
+            }
         }
     }
 
@@ -428,51 +440,21 @@ namespace Core
             switch (a.action)
             {
             case GameAction::StartSoloEasy:
-                currentmatch = Match(
-                    Match::MatchSettings{
-                        .type = Match::MatchType::Solo,
-                        .difficulty = GameDifficulty::EASY
-                    }
-                );
 
-                currentmatch.setRules(customRules);
+                startOfflineMatch(Match::MatchType::Solo, GameDifficulty::EASY);
 
-                scoreboard.update(windowRenderer.renderer, currentmatch.getPlayerOne().getScore(),
-                    currentmatch.getPlayerTwo().getScore());
-
-                state = GameState::PLAY;
                 break;
 
             case GameAction::StartSoloMedium:
-                currentmatch = Match(
-                    Match::MatchSettings{
-                        .type = Match::MatchType::Solo,
-                        .difficulty = GameDifficulty::MEDIUM
-                    }
-                );
 
-                currentmatch.setRules(customRules);
+                startOfflineMatch(Match::MatchType::Solo, GameDifficulty::MEDIUM);
 
-                scoreboard.update(windowRenderer.renderer, currentmatch.getPlayerOne().getScore(),
-                    currentmatch.getPlayerTwo().getScore());
-
-                state = GameState::PLAY;
                 break;
 
             case GameAction::StartSoloHard:
-                currentmatch = Match(
-                    Match::MatchSettings{
-                        .type = Match::MatchType::Solo,
-                        .difficulty = GameDifficulty::HARD
-                    }
-                );
+                
+                startOfflineMatch(Match::MatchType::Solo, GameDifficulty::HARD);
 
-                currentmatch.setRules(customRules);
-
-                scoreboard.update(windowRenderer.renderer, currentmatch.getPlayerOne().getScore(),
-                    currentmatch.getPlayerTwo().getScore());
-
-                state = GameState::PLAY;
                 break;
 
             case GameAction::StartLocalMultiplayer:
@@ -557,6 +539,24 @@ namespace Core
                 break;
             }
         }
+    }
+
+    void Game::startOfflineMatch(Match::MatchType type, GameDifficulty difficulty)
+    {
+        auto& p1 = currentmatch.getPlayerOne();
+        auto& p2 = currentmatch.getPlayerTwo();
+
+        currentmatch = Match(
+            Match::MatchSettings{
+                .type = type,
+                .difficulty = difficulty
+            }
+        );
+
+        currentmatch.setRules(customRules);
+
+        scoreboard.update(windowRenderer.renderer, p1.getScore(), p2.getScore());
+        state = GameState::PLAY;
     }
 
     void Game::handleEvent(const SDL_Event& e)
@@ -653,7 +653,7 @@ namespace Core
     {
         for (int i = 1; i < argc; i++)
 		{
-			if (argv[i] == "-debug")
+			if (std::string_view(argv[i]) == "-debug" || std::string_view(argv[i]) == "-d")
 				debug = true;
 		}
     }
